@@ -1,0 +1,320 @@
+<div class="phonemanagement" style="padding: 24px;">
+        <div class="phonemanagement_text">
+            <span><b>管理</b>&nbsp;&nbsp;>手机号管理</span>
+        </div>
+        <div class="phonemanagement_con">
+        	<div class="phonemanagement_con_head">
+        		<ul class="phone_left">
+	        		
+        	   </ul>
+	           <ul class="phone_right">
+	            	<li>
+	            		<input type="text" placeholder="名称/类型/状态/等级"  [(ngModel)]="inputmodel"/>
+	            	</li>
+	            	<li>
+	            		<input type="button" value="搜索" (click)="searchlist()">
+	            	</li>
+	            	<li>
+	            		<button class="newuser" (click)="showphonecard()">添加手机卡管理</button>
+	            	</li>
+	            </ul>
+	            <div style="clear: both;"></div>
+        	</div>
+            <div class="phone_table">
+	            <nz-table #nzTable
+	            	  [nzData]="phoneData"
+				      [nzPageSize]="10"
+				      nzBordered
+				      [nzFrontPagination]="false"
+				      [nzTotal]="total"
+				      [(nzPageIndex)]="pageIndex"
+				      [(nzPageSize)]="pageSize"
+				      (nzPageIndexChange)="searchData($event)"
+				      (nzPageSizeChange)="searchData(true)">
+				      <thead>
+					      <tr>
+					        <th nzWidth="5%">ID</th>
+					        <th nzWidth="10%">手机号</th>
+					        <th nzWidth="10%">注册日期</th>
+					        <th nzWidth="5%">运营商</th>
+					        <th nzWidth="8%">认证人员</th>
+					        <th nzWidth="10%">证件类型</th>
+					        <th nzWidth="8%">证件编码</th>
+					        <th nzWidth="10%">上次注册时间</th>
+					        <th nzWidth="8%">关联微信</th>
+					        <th nzWidth="8%">缴费</th>
+					        <th nzWidth="8%">操作</th>
+					      </tr>
+				      </thead>
+				      <tbody>
+						      <tr *ngFor="let item of phoneData;let i = index">
+						      	   <td>{{item.id}}</td>
+							        <td>{{item.phoneNumber}}</td>
+							        <td>{{item.createString}}</td>
+							        <td>{{item.operator === 0 ? '电信' : item.operator === 1 ? '移动' : item.operator === 2 ? '联通' : ''}}</td>
+							        <td>{{item.person}}</td>
+							        <td>{{item.idType==0?'身份证':item.idType==1?'护照':item.idType==2?'港澳通行证':''}}</td>
+							        <td>{{item.identityNumber}}</td>
+							        <td>{{item.lastregisterString}}</td>
+							        <td>
+							         {{item.associativeWechat}}
+							        </td>
+							        <td>{{item.payment}}</td>
+							        <td class="imglist">
+							        	<img src="./assets/images/detail_yl.png" (click)="showzhucehist(item.id)">
+							        	<img src="./assets/images/delect.png" (click)="delectphone(item.id)">
+							        	<img src="./assets/images/add.png" (click)="showaddhist()">
+							        </td>
+						      </tr>
+				      </tbody>
+				    </nz-table>
+        	
+            </div>
+        </div>
+          <!--注册历史弹框-->
+        <div class="phonemanagement_social" *ngIf="zhucehist">
+        	<div class="phonemanagement_social_head">
+        		<span>注册历史</span>
+        		<span class="spanclose" (click)="closezhucehist()">x</span>
+        	</div>
+        	<div class="phonemanagement_social_center">
+        		
+        		<div class="tankuang_cendiv">
+        			
+        			<nz-table #nzTable
+        		       [nzData]="zhuceData"
+				       nzBordered
+				      [nzFrontPagination]="false"
+				      [nzTotal]="total1"
+				      [(nzPageIndex)]="pageIndex1"
+				      [(nzPageSize)]="pageSize1"
+				      (nzPageIndexChange)="searchData1($event)"
+				      (nzPageSizeChange)="searchData1(true)">
+				      <thead>
+					      <tr>
+					        <th width="100px">微信昵称</th>
+					        <th width="100px">社交号</th>
+					        <th width="100px">绑定</th>
+					        <th width="80px">状态</th>
+					        <th width="100px">注册时间</th>
+					        <th width="100px">上次封号</th>
+					        <th width="100px">解封时间</th>
+					        <th width="100px">封号原因</th>
+					        <th width="70px" >绑卡</th>
+					        <th width="120px">3个应急联系人</th>
+					      </tr>
+				      </thead>
+				      <tbody>
+						      <tr *ngFor="let item of zhuceData;let i = index" >
+						      	    <td>{{item.id}}</td>
+							        <td>{{item.socialNumber}}</td>
+							        <td>{{item.boundStatus==1?'绑定':'未绑定'}}</td>
+							        <td>{{item.wechatStatus==1?'正常':'封号'}}</td>
+							        <td>{{item.registerTimeString}}</td>
+							        <td>{{item.lastBannedTime}}</td>
+							        <td>{{item.unBanTime}}</td>
+							        <td>{{item.banreason}}</td>
+							        <td>{{item.isBindcard==1?'是':'否'}}</td>
+							        <td style="display: flex;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;width:120px;">
+							        	<span title="{{item.emergencyContact}}">{{item.emergencyContact}}</span>
+							        </td>
+						      </tr>
+				      </tbody>
+				    </nz-table>
+        		</div>
+        	</div>
+        	<div class="phonemanagement_social_foot">
+        		<span style="float: right;">
+        			<button class="quxiao" (click)="closezhucehist()">取消</button>
+        		    <button class="sure">确定</button>
+        		</span>
+        		
+        	</div>
+     </div>
+     <!--添加历史弹框-->
+     <div class="phonemanagement_addhist" *ngIf="addhist">
+     	 <div class="phonemanagement_addhist_head">
+     	 	<span>添加历史</span>
+     	 	<span (click)="closeaddhist()" class="closebtncur">
+     	 		<span>x</span>
+     	 	</span>
+     	 </div>
+     	 <div class="phonemanagement_addhist_center">
+     	 	 <ul>
+     	 	 	<li>
+     	 	 		<span>社交平台:</span>
+     	 	 		<div>
+     	 	 			 <nz-select style="width: 345px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="history_pt">
+	                            <nz-option nzLabel="微信" nzValue="0"></nz-option>
+	                            <nz-option nzLabel="qq" nzValue="1"></nz-option>
+	                    </nz-select>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>社交号昵称:</span>
+     	 	 		<div>
+     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="history_sjnc">
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>社交号:</span>
+     	 	 		<div>
+     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="history_sjh">
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>绑定状态:</span>
+     	 	 		<div>
+     	 	 			 <nz-select style="width: 345px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="history_bdzt">
+     	 	 			 	    <nz-option nzLabel="解绑" nzValue="0"></nz-option>
+	                            <nz-option nzLabel="绑定" nzValue="1"></nz-option>
+	                         
+	                    </nz-select>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>账号状态:</span>
+     	 	 		<div>
+     	 	 			 <nz-select style="width: 345px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="history_zhzt">
+	                            <nz-option nzLabel="封号" nzValue="0"></nz-option>
+	                            <nz-option nzLabel="正常" nzValue="1"></nz-option>
+	                    </nz-select>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>注册时间:</span>
+     	 	 		<div>
+     	 	 			 <nz-week-picker nzFormat="yyyy-MM-dd"  [(ngModel)]="history_zcsj" (ngModelChange)="getZhuce($event)" nzPlaceHolder="Select week" [nzStyle]="{width:'345px'}"></nz-week-picker>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>上次封号时间:</span>
+     	 	 		<div>
+     	 	 			 <nz-week-picker nzFormat="yyyy-MM-dd"  [(ngModel)]="history_fengtime" (ngModelChange)="getFenghao($event)" nzPlaceHolder="Select week" [nzStyle]="{width:'345px'}"></nz-week-picker>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>解封时间:</span>
+     	 	 		<div>
+     	 	 			 <nz-week-picker nzFormat="yyyy-MM-dd"  [(ngModel)]="history_jietime" (ngModelChange)="getJiefeng($event)" nzPlaceHolder="Select week" [nzStyle]="{width:'345px'}"></nz-week-picker>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>封号原因:</span>
+     	 	 		<div>
+     	 	 			<input type="text" placeholder="请输入"  [(ngModel)]="history_fengresult">
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>是否绑定:</span>
+     	 	 		<div>
+     	 	 			 <nz-select style="width: 345px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="history_bd">
+	                            <nz-option nzLabel="没有" nzValue="0"></nz-option>
+	                            <nz-option nzLabel="绑定" nzValue="1"></nz-option>
+	                    </nz-select>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li class="lastli">
+     	 	 		<span>三个急联系人:</span>
+     	 	 		<div>
+     	 	 			<input type="text" placeholder="请输入" style="margin-left:0;"  [(ngModel)]="history_pn1"> 
+     	 	 			<input type="text" placeholder="请输入"  [(ngModel)]="history_pn2">
+     	 	 			<input type="text" placeholder="请输入"  [(ngModel)]="history_pn3" (ngModelChange)="pinjie()">
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	
+     	 	 </ul>
+     	 </div>
+     	 <div class="phonemanagement_addhist_footer">
+     	 	<span style="float: right;margin-right:20px">
+        		<button class="quxiao" (click)="closeaddhist()">取消</button>
+        		<button class="sure" (click)="addhistory()">确定</button>
+          </span>
+     	 </div>
+     </div>
+     
+      <!--添加手机卡管理弹框-->
+     <div class="phonemanagement_addcard" *ngIf="phonecard">
+     	 <div class="phonemanagement_addcard_head">
+     	 	<span>手机卡管理</span>
+     	 	<span (click)="colsephonecard()" class="closebtncur">
+     	 		<span>x</span>
+     	 	</span>
+     	 </div>
+     	 <div class="phonemanagement_addcard_center">
+     	 	 <ul>
+     	 	 	<li>
+     	 	 		<span>手机号:</span>
+     	 	 		<div>
+     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="phone" onkeyup="this.value=this.value.replace(/\D/g, '')">
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>微信注册时间:</span>
+     	 	 		<div>
+     	 	 			 <nz-week-picker nzFormat="yyyy-MM-dd"  [(ngModel)]="weitime" (ngModelChange)="getWeitime($event)" nzPlaceHolder="Select week" [nzStyle]="{width:'345px'}"></nz-week-picker>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>运营商:</span>
+     	 	 		<div>
+     	 	 			 <nz-select style="width: 345px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="yunValue">
+     	 	 			 	    <nz-option nzLabel="电信" nzValue="0"></nz-option>
+	                            <nz-option nzLabel="移动" nzValue="1"></nz-option>
+	                            <nz-option nzLabel="联通" nzValue="2"></nz-option>
+	                    </nz-select>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>认证人员:</span>
+     	 	 		<div>
+     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="renpeople">
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>证件类型:</span>
+     	 	 		<div>
+     	 	 			 <nz-select style="width: 345px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="zhengdValue">
+	                            <nz-option nzLabel="身份证" nzValue="0"></nz-option>
+	                            <nz-option nzLabel="护照" nzValue="1"></nz-option>
+	                            <nz-option nzLabel="港澳通行证" nzValue="2"></nz-option>
+	                    </nz-select>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>证件编号:</span>
+     	 	 		<div>
+     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="zhenghao">
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>上次注册时间:</span>
+     	 	 		<div>
+     	 	 			 <nz-week-picker nzFormat="yyyy-MM-dd"  [(ngModel)]="agotime" (ngModelChange)="getAgotime($event)" nzPlaceHolder="Select week" [nzStyle]="{width:'345px'}"></nz-week-picker>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>关联微信:</span>
+     	 	 		<div>
+     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="nearwei">
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>缴费:</span>
+     	 	 		<div>
+     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="money">
+     	 	 		</div>
+     	 	 	</li>
+     	 	 </ul>
+     	 </div>
+     	 <div class="phonemanagement_addcard_footer">
+     	 	<span style="float: right;margin-right:20px;">
+        		<button class="quxiao" (click)="colsephonecard()">取消</button>
+        		<button class="sure" (click)="addphone()">确定</button>
+           </span>
+     	 </div>
+     </div>
+</div>
+
+<app-mask *ngIf="ismask"></app-mask>
+      

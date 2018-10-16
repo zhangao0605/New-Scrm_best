@@ -1,0 +1,63 @@
+.devicemanagement_text{
+    height: 28px;
+    line-height: 16px;
+    border-bottom:2px solid rgba(220,220,220,1);
+}
+.devicemanagement_text b{
+	font-size:16px;
+}
+.devicemanagement_con{
+   padding-left:35px;
+   padding-top:20px;
+}
+.devicemanagement_con ul{
+	float:right;
+	display: flex;
+}
+ .devicemanagement_con ul li{
+	margin-right:20px;
+}
+ .devicemanagement_con ul li input[type="text"]{
+	width:242px;
+	height:30px;
+	border-radius:15px;
+	border:1px solid rgba(220,220,220,1);
+	padding-left: 20px;
+}
+
+ .devicemanagement_con ul li input[type="button"]{
+	width:50px;
+    height:28px;
+	border-radius:2px;
+	border:1px solid #eee;
+	background: none;
+}
+ .devicemanagement_con ul li .Scanning{
+	width:78px;
+    height:28px;
+	border-radius:2px;
+	border:1px solid #eee;
+	background: none;
+	margin-right:50px;
+}
+
+
+.imglist img{
+	margin-left: 10px;
+}
+
+:host ::ng-deep .zaqj .ant-table-tbody > tr > td {
+  text-align: center;
+  padding: 15px 10px;
+}
+
+.table_tr_bgColor_gray {
+  background:rgba(255,255,255,1)
+}
+
+.table_tr_bgColor_white {
+  background:rgba(248,248,248,1)
+}
+:host ::ng-deep  .zaqj .ant-table-thead > tr > th{
+  background: white;
+}

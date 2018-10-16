@@ -1,0 +1,165 @@
+  <div class="jurisdiction" style="padding: 24px;">
+        <div class="jurisdiction_headtext">
+            <b>权限</b>
+        </div>
+        <div class="jurisdiction_con">
+            <ul>
+            	<li>
+            		<input type="text" placeholder="名称/类型/状态/等级" [(ngModel)]="search"/>
+            	</li>
+            	<li>
+            		<input type="button" value="搜索" (click)="searchclick()">
+            	</li>
+            	<li>
+            		<button class="newuser" (click)="showadduser( )">新建用户</button>
+            	</li>
+            </ul>
+        </div>
+        <div class="tablelist">
+        	
+        	
+        	<nz-table #nzTable
+      [nzData]="quanxianData"
+      [nzPageSize]="10"
+      nzBordered
+      [nzFrontPagination]="false"
+      [nzTotal]="total"
+      [(nzPageIndex)]="pageIndex"
+      [(nzPageSize)]="pageSize"
+      (nzPageIndexChange)="searchData($event)"
+      (nzPageSizeChange)="searchData(true)">
+				      <thead>
+					      <tr>
+					        <th nzWidth="5%">ID</th>
+					        <th nzWidth="8%">用户名</th>
+					        <th nzWidth="5%">类型</th>
+					        <th nzWidth="5%">状态</th>
+					        <th nzWidth="8%">上级账号</th>
+					        <th nzWidth="10%">创建时间</th>
+					        <th nzWidth="10%">备注</th>
+					        <th nzWidth="8%">操作</th>
+					      </tr>
+				      </thead>
+				      <tbody>
+						      <tr *ngFor="let item of quanxianData;let i = index">
+							        <td>{{item.id}}</td>
+							        <td>{{item.username}}</td>
+							        <td>{{item.role.roleName}}</td>
+							        <td>{{item.status==1?'可用':'不可用'}}</td>
+							        <td>{{item.parentId}}</td>
+							        <td>{{item.createTime}}</td>
+							        
+							        <td>{{item.remark}}</td>
+							        <td class="imglist">
+							        	<img src="./assets/images/bianji.png" (click)="showupdateuser(item.id)">
+							        	<img src="./assets/images/delect.png" (click)="delect(item.id)">
+							        	<img src="./assets/images/resetpass.png" style="width:25px;height:25px;" (click)="resetpass(item.id)">
+							        </td>
+						      </tr>
+				      </tbody>
+				    </nz-table>
+        </div>
+         <!--新建用户-->
+     <div class="jurisdiction_addcard" *ngIf="isadduser">
+     	 <div class="jurisdiction_addcard_head">
+     	 	<span>新建用户</span>
+     	 	<span (click)="closeadduser()" class="closebtncur">
+     	 		 <span>x</span>
+     	 	</span>
+     	 </div>
+     	 <div class="jurisdiction_addcard_center">
+     	 	 <ul style="position:relative;top:35px;">
+     	 	 	<li>
+     	 	 		<span>用户名:</span>
+     	 	 		<div>
+     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="newuser"   value="">
+     	 	 			
+     	 	 		</div>
+     	 	 		
+     	 	 	</li>
+     	 	 
+     	 	 	<li>
+     	 	 		<span>类型:</span>
+     	 	 		<div>
+     	 	 			 <nz-select style="width: 345px;" nzShowSearch nzAllowClear  [(ngModel)]="leixing" (ngModelChange)="ying($event)" nzPlaceHolder="请选择">
+	                <nz-option 
+	                	*ngFor="let item of leixingData;let i = index"
+	                	nzLabel="{{item.roleName}}" nzValue="{{item.id}}"
+	                	>
+	                </nz-option>
+	             </nz-select>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>备注:</span>
+     	 	 		<div>
+     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="beizhu" maxlength="50">
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<span style=" margin-left: 60px;margin-top: 15px;display: inline-block;color:red;">密码为用户名后6位</span>
+     	 	 </ul>
+     	 </div>
+     	 <div class="jurisdiction_addcard_footer">
+     	 	<span style="float: right;margin-right:20px;">
+        		<button class="quxiao" (click)="closeadduser()">取消</button>
+        		<button class="sure" (click)="createduser()">确定</button>
+           </span>
+     	 </div>
+     </div>
+        <!--修改用户-->
+     <div class="jurisdiction_addcard" *ngIf="updateuser">
+     	 <div class="jurisdiction_addcard_head">
+     	 	<span>修改用户</span>
+     	 	<span (click)="closeupdateuser()" class="closebtncur">
+     	 		<span>x</span>
+     	 	</span>
+     	 </div>
+     	 <div class="jurisdiction_addcard_center">
+     	 	 <ul style="position: relative;top:30px;">
+     	 	 	<li>
+     	 	 		<span>用户名:</span>
+     	 	 		<div>
+     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="update_us">
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	
+     	 	 	<li>
+     	 	 		<span>状态:</span>
+     	 	 		<div>
+     	 	 			 <nz-select style="width: 345px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="update_zt">
+	                    <nz-option nzLabel="账户到期" nzValue="账户到期"></nz-option>
+	                  	<nz-option nzLabel="正常" nzValue="正常"></nz-option>
+	               
+	             </nz-select>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>类型:</span>
+     	 	 		<div>
+     	 	 			 <nz-select style="width: 345px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="update_lx" (ngModelChange)="updateying($event)" >
+	                  <nz-option 
+		                	*ngFor="let item of leixingData;let i = index"
+		                	nzLabel="{{item.roleName}}" nzValue="{{item.id}}"
+	                	>
+	                </nz-option>
+	             </nz-select>
+     	 	 		</div>
+     	 	 	</li>
+     	 	 	<li>
+     	 	 		<span>备注:</span>
+     	 	 		<div>
+     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="update_bz">
+     	 	 		</div>
+     	 	 	</li>
+     	 	 </ul>
+     	 </div>
+     	 <div class="jurisdiction_addcard_footer">
+     	 	<span style="float: right;margin-right:20px;">
+        		<button class="quxiao" (click)="closeupdateuser()">取消</button>
+        		<button class="sure" (click)="updateperson()">确定</button>
+           </span>
+     	 </div>
+     </div>
+     
+</div>
+<app-mask *ngIf="ismask"></app-mask>

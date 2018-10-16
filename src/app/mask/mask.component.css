@@ -1,0 +1,10 @@
+.mask{
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color:#00000026;
+	filter: Alpha(Opacity=60);
+	opacity: 0.6;
+}

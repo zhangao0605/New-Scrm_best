@@ -1,0 +1,160 @@
+<div class="home" [hidden]="isShow">
+  <div class="home_navigation">
+    <div [class]="select_chat==true?'select_micro_signal':'select_micro_signal click_st'" (click)="select_chat_show()">
+      请选择相关微信
+      <i [class]="select_chatIs==0?'anticon anticon-down ':'anticon anticon-up '"></i>
+    </div>
+    <div class="select_micro_signal_opt" [hidden]="select_chat">
+      <div class="select_micro_signal_select">
+        <nz-checkbox-wrapper style="width: 100%;" (nzOnChange)="MultiSelectWeChat($event)">
+          <div nz-row>
+            <div *ngFor="let data of gcchat;let index=index" class="style_Multiple_selection" nz-col nzSpan="24"><label
+              nz-checkbox [nzValue]="data.id" [ngModel]="data.ischeckd">{{data.nickName}}</label></div>
+          </div>
+        </nz-checkbox-wrapper>
+      </div>
+      <div class="select_micro_signal_choose">
+        <button class="select_micro_signal_choose_sure" (click)="select_chat_sure()">确认</button>
+      </div>
+    </div>
+  </div>
+  <div class="home_title" nz-row [nzGutter]="{ xs: 16, sm: 16, md: 16, lg: 16, xl: 16, xxl: 16 }">
+    <div nz-col class="gutter-row" nzSpan="6">
+      <div class="home_card bg1">
+        <div class="home_card_title">
+          <div class="home_card_title_number">
+            {{titleData.friendCount}}
+          </div>
+          <div class="home_card_title_icon">
+            <span class="home_card_title_icon_img">
+          </span>
+          </div>
+        </div>
+        <div class="home_card_body">
+          客户总数
+        </div>
+      </div>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="6">
+      <div class="home_card bg2">
+        <div class="home_card_title">
+          <div class="home_card_title_number">
+            {{titleData.newFriendCount}}
+          </div>
+          <div class="home_card_title_icon">
+            <span class="home_card_title_icon_img1">
+          </span>
+          </div>
+        </div>
+        <div class="home_card_body">
+          近一周新增客户数
+        </div>
+      </div>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="6">
+      <div class="home_card bg3">
+        <div class="home_card_title">
+          <div class="home_card_title_number">
+            {{titleData.chatroomCount}}
+          </div>
+          <div class="home_card_title_icon">
+            <span class="home_card_title_icon_img2">
+          </span>
+          </div>
+        </div>
+        <div class="home_card_body">
+          群组总数
+        </div>
+      </div>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="6">
+      <div class="home_card bg4">
+        <div class="home_card_title">
+          <div class="home_card_title_number">
+            {{titleData.unReadMessageCount}}
+          </div>
+          <div class="home_card_title_icon">
+            <span class="home_card_title_icon_img3">
+          </span>
+          </div>
+        </div>
+        <div class="home_card_body">
+          今日未读消息数
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="home_body" nz-row>
+    <div nz-col nzSpan="12" class="home_body_map">
+      <div class="home_body_map_all">
+        <div id="home_body_map_all_one" style="min-height:700px; min-width:700px">
+
+        </div>
+      </div>
+    </div>
+    <div nz-col nzSpan="12" class="home_body_data">
+      <div class="home_body_data_statistics">
+        <div class="home_body_data_statistics_con">
+          <p class="home_body_data_statistics_con_title">统计数据</p>
+          <ul class="home_body_data_statistics_con_ul">
+            <li><span class="d_1">今日任务数</span> <span class="d_2">{{titleData.taskTodayCount}}</span></li>
+            <li><span class="d_1">活跃客户数</span> <span class="d_2">{{titleData.activeCount}}</span></li>
+          </ul>
+          <ul class="home_body_data_statistics_con_ul">
+            <li><span class="d_1">失败任务数</span> <span class="d_2">{{titleData.failedTaskCount}}</span></li>
+            <li><span class="d_1">今日交流客户数</span> <span class="d_2">{{titleData.chatCount}}</span></li>
+          </ul>
+          <ul class="home_body_data_statistics_con_ul">
+            <li><span class="d_1">在线设备数</span> <span class="d_2">{{titleData.onlineCount}}</span></li>
+            <li><span class="d_1">近一周新增群组数</span> <span class="d_2">{{titleData.newChatroomCount}}</span></li>
+          </ul>
+          <ul class="home_body_data_statistics_con_ul">
+            <li><span class="d_1">空闲设备数</span> <span class="d_2">{{titleData.offlineCount}}</span></li>
+            <li><span class="d_1">今日消息总数</span> <span class="d_2">{{titleData.todayMessageCount}}</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="home_body_data_notice_title">
+        系统公告
+      </div>
+      <div class="home_body_data_notice">
+        <div *ngFor="let data of announcement;let index=index" class="home_body_data_notice_body"
+             (click)="showdetails(data.id,index+1)">
+             <!--(click)="showdetails(data.id,announcement.length-(index+1))">-->
+          <div class="home_body_data_notice_body_title">
+            <span class="home_body_data_notice_body_title_con">{{data.title}}</span>
+            <span class="home_body_data_notice_body_title_icon">New！</span>
+            <div class="home_body_data_notice_body_text_con">
+              <span class="home_body_data_notice_body_text_con_1">{{data.abstracts}}</span>
+              <span class="home_body_data_notice_body_text_con_2">{{InterceptionTime(data.releaseTime)}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="announcement_details" [hidden]="!isShow" nz-row>
+  <div class="return" (click)="showdetails_false()"><< 返回</div>
+  <div class="announcement_details_title">
+    系统公告：{{Announcement_details.title}}
+  </div>
+  <div class="announcement_details_introduction">
+    <div class="announcement_details_introduction1">
+      <span>作者：</span>
+      <span class="announcement_details_introduction_paddong_right">{{Announcement_details.author}}</span>
+      <span>时间：</span>
+      <span>{{Announcement_details.releaseTime}}</span>
+    </div>
+
+  </div>
+  <div class="announcement_details_con">
+    {{Announcement_details.content}}
+  </div>
+  <div class="announcement_details_turn">
+    <span class="announcement_details_turn_prev" (click)="Previous()">上一篇</span>
+    <span class="announcement_details_turn_next" (click)="Next()">下一篇</span>
+  </div>
+</div>
+<div class="Mask" [hidden]="isOperating">
+</div>

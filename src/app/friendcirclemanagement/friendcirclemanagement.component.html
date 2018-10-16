@@ -1,0 +1,338 @@
+<div class="label_management">
+  <div class="label_management_title">
+    <span class="label_management_title_1">资源</span>&nbsp;&nbsp;>&nbsp;朋友圈管理
+  </div>
+  <div class="label_management_all_search">
+    <input type="text" placeholder="标签名/内容"  [(ngModel)]='fuzzyQuery' class="label_management_all_search_input">
+    <button class="label_management_all_search_search" (click)="fuzzy_query_table()">搜索</button>
+    <button class="label_management_all_search_batch_deletion" (click)="tagging_public_open(-1)" style="margin-right: 50px">
+      批量打标签
+    </button>
+    <button class="label_management_all_search_batch_deletion" (click)="add_circle_open()" style="margin-right: 50px">
+      添加朋友圈
+    </button>
+    <button class="label_management_all_search_batch_deletion" (click)="delThis(-1)">批量删除</button>
+  </div>
+  <!--主体title+表格-->
+  <div class="label_management_body friend_table">
+    <nz-table
+      #ajaxTable
+      nzBordered
+      [nzFrontPagination]="false"
+      [nzData]="dataSet"
+      [nzLoading]="isLoading"
+      [nzTotal]="total"
+      [(nzPageIndex)]="pageIndex"
+      [(nzPageSize)]="pageSize"
+      (nzPageIndexChange)="searchData()"
+      (nzPageSizeChange)="searchData(true)">
+      <!--数据总条数-->
+      <!--当前页码，可双向绑定-->
+      <!--每页展示多少数据，可双向绑定-->
+      <!--当前页码改版时的回调函数-->
+      <!--页数改变时的回调函数-->
+      <thead>
+      <tr>
+        <th nzWidth="3%" nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
+            (nzCheckedChange)="checkAll($event)"></th>
+        <th nzWidth="5%">序号</th>
+        <th nzWidth="8%">主题图片</th>
+        <th nzWidth="20%">朋友圈内容</th>
+        <th nzWidth="20%">标签</th>
+        <th nzWidth="18%">添加时间</th>
+        <th nzWidth="8%">是否公有</th>
+        <th nzWidth="18%">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of dataSet;let index=index"
+          [ngClass]="index%2 === 0 ? 'table_tr_bgColor_white' : 'table_tr_bgColor_gray'">
+        <td nzShowCheckbox [(nzChecked)]="data.checked" [attr.id]="data.id"
+            (nzCheckedChange)="refreshStatus($event)" class="oneCheck" (click)="thisIndex(index)"></td>
+        <td>{{((pageIndex-1)*10)+index+1}}</td>
+        <td><img class="material_management_avatar" [src]="data.profilePhoto===''?default_people:data.profilePhoto"  alt=""></td>
+        <td nzWidth="20%" class="con_table">{{data.contentOfMoment}}</td>
+        <td>{{data.tags}}</td>
+        <td>{{data.createTime}}</td>
+        <td>{{IsPublic(data.isPublic)}}</td>
+        <td class="label_management_operating_ed">
+          <span  style="margin-left:8%" nzTitle="修改" nz-tooltip nzPlacement="top" class="label_management_operating_bg4" (click)=" modify_circle_open(data.id)"></span>
+          <span nzTitle="详情" nz-tooltip nzPlacement="top" class="label_management_operating_bg3" (click)=" friends_circle_detal_open(data.id)"></span>
+          <span nzTitle="打标签" nz-tooltip nzPlacement="top" class="label_management_operating_bg2" (click)="tagging_public_open(data.id)"></span>
+          <span nzTitle="删除" nz-tooltip nzPlacement="top" class="label_management_operating_bg1" (click)="delThis(data.id)"></span>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+
+  <!--朋友圈详情-->
+  <div class="friends_circle_detal" [hidden]="friendScircleDetal">
+    <div class="friends_circle_detal-title">
+      详情
+      <span class="friends_circle_close" (click)="friends_circle_close()">x</span>
+    </div>
+    <div class="friends_circle_detal-con">
+      <div class="friends_circle_detal-con1">
+        <div class="friends_circle_detal_friendImg">
+          <div class="friends_circle_detal_left">
+            朋友圈图片：
+          </div>
+          <div class="friends_circle_detal_right">
+            <ul class="img_six">
+              <li *ngFor="let data of seeDital.imagepaths"><img class="det_img" [src]="data.imagpath" alt=""></li>
+            </ul>
+          </div>
+        </div>
+        <div class="friends_circle_detal_say">
+          <div class="friends_circle_detal_left">
+            朋友圈内容：
+          </div>
+          <div class="friends_circle_detal_right">
+            <div class="friends_circle_detal_text">
+             {{seeDital.contentOfMoment}}
+            </div>
+          </div>
+        </div>
+        <div class="friends_circle_detal_say">
+          <div class="friends_circle_detal_left">
+            标签：
+          </div>
+          <div class="friends_circle_detal_right">
+            <div class="friends_circle_detal_text">
+              {{seeDital.tags}}
+            </div>
+          </div>
+        </div>
+        <div class="friends_circle_detal_say" style="margin-top: 30px">
+          <div class="friends_circle_detal_left">
+            添加时间：
+          </div>
+          <div class="friends_circle_detal_right">
+            {{seeDital.createTime}}
+            <div class="cds">
+              <span class="cds-2">是否公有：</span><span class="cds-1"> {{IsPublic(seeDital.isPublic)}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="friends_circle_footer">
+      <div class="friends_circle_choose">
+        <button class="friends_circle_choose_sure" (click)="friends_circle_sure()">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--朋友圈修改-->
+  <div class="modify_circle" [hidden]="modifyCircle" style="height: 440px">
+    <div class="friends_circle_detal-title">
+      修改朋友圈
+      <span class="friends_circle_close" (click)="modify_circle_close()">x</span>
+    </div>
+    <div class="friends_circle_detal-con">
+      <div class="friends_circle_detal-con1">
+        <div class="friends_circle_detal_friendImg">
+          <div class="friends_circle_detal_left">
+            朋友圈图片：
+          </div>
+          <div class="friends_circle_detal_right">
+            <div class="clearfix">
+              <nz-upload
+                [(nzAction)]="getimgUrl"
+                nzListType="picture-card"
+                [nzBeforeUpload]="beforeUpload"
+                [(nzFileList)]="fileList"
+                [nzShowButton]="fileList.length < 6"
+                [nzPreview]="handlePreview">
+                <i class="anticon anticon-plus"></i>
+                <div class="ant-upload-text">上传</div>
+              </nz-upload>
+              <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+                        (nzOnCancel)="previewVisible=false">
+                <ng-template #modalContent>
+                  <img [src]="previewImage" [ngStyle]="{ 'width': '100%' }"/>
+                </ng-template>
+              </nz-modal>
+            </div>
+          </div>
+        </div>
+        <div class="friends_circle_detal_say">
+          <div class="friends_circle_detal_left">
+            朋友圈内容：
+          </div>
+          <div class="friends_circle_detal_right">
+            <textarea class="friends_circle_detal_text add_friends_circle_detal_text" [(ngModel)]="editCon">
+            </textarea>
+          </div>
+        </div>
+        <div class="friends_circle_detal_say">
+          <div class="friends_circle_detal_left">
+            标签：
+          </div>
+          <div class="friends_circle_detal_right">
+            <div class="friends_circle_detal_text" style="border: 1px solid rgba(220, 220, 220, 1);">
+          {{editTag}}
+            </div>
+          </div>
+        </div>
+        <div class="friends_circle_detal_say" style="margin-top: 20px">
+          <div class="friends_circle_detal_left">
+            添加时间：
+          </div>
+          <div class="friends_circle_detal_right">
+           {{sliceTime(editTime)}}
+            <div class="cds">
+              <span class="cds-2">是否公有：</span><span class="cds-1">
+              <nz-select style="width: 120px;"
+                         [(ngModel)]="selectedValue2"
+                         [nzPlaceHolder]="'请选择'">
+        <nz-option nzValue="0" nzLabel="是"></nz-option>
+        <nz-option nzValue="1" nzLabel="否"></nz-option>
+      </nz-select></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="friends_circle_footer">
+      <div class="friends_circle_choose">
+        <button class="friends_circle_choose_cancel" (click)="modify_circle_close()">取消</button>
+        <button class="friends_circle_choose_sure" (click)="modify_circle_sure()">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--添加朋友圈-->
+  <div class="add_circle" [hidden]="addCircle"  style="height: 360px">
+    <div class="friends_circle_detal-title" style="height: 15%">
+      添加朋友圈
+      <span class="friends_circle_close" (click)="add_circle_close()">x</span>
+    </div>
+    <div class="friends_circle_detal-con"  style="height: 70%">
+      <div class="friends_circle_detal-con1">
+        <div class="friends_circle_detal_friendImg">
+          <div class="friends_circle_detal_left">
+            朋友圈图片：
+          </div>
+          <div class="friends_circle_detal_right">
+            <div class="clearfix">
+              <nz-upload
+                [(nzAction)]="getimgUrl"
+                nzListType="picture-card"
+                [nzBeforeUpload]="beforeUpload1"
+                [nzRemove]="RemoveUpload1"
+                [(nzFileList)]="previewImageList"
+                [nzShowButton]="previewImageList.length < 6"
+                [nzPreview]="handlePreview1">
+                <i class="anticon anticon-plus"></i>
+                <div class="ant-upload-text">上传</div>
+              </nz-upload>
+              <nz-modal [nzVisible]="previewVisible1" [nzContent]="modalContent" [nzFooter]="null"
+                        (nzOnCancel)="previewVisible1=false">
+                <ng-template #modalContent>
+                  <img [src]="previewImage1" [ngStyle]="{ 'width': '100%' }"/>
+                </ng-template>
+              </nz-modal>
+            </div>
+          </div>
+        </div>
+        <div class="friends_circle_detal_say">
+          <div class="friends_circle_detal_left">
+            朋友圈内容：
+          </div>
+          <div class="friends_circle_detal_right">
+            <textarea class="friends_circle_detal_text add_friends_circle_detal_text" [(ngModel)]="addCon">
+            </textarea>
+          </div>
+        </div>
+        <div class="friends_circle_detal_say" style="margin-top: 20px">
+          <div class="friends_circle_detal_left">
+            是否公有：
+          </div>
+          <div class="friends_circle_detal_right">
+            <nz-select style="width: 100%;height: 20px"
+                       [(ngModel)]="selectedValue1"
+                       [nzPlaceHolder]="'请选择'">
+              <nz-option nzValue="0" nzLabel="是"></nz-option>
+              <nz-option nzValue="1" nzLabel="否"></nz-option>
+            </nz-select>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="friends_circle_footer">
+      <div class="friends_circle_choose">
+        <button class="friends_circle_choose_cancel" (click)="add_circle_close()">取消</button>
+        <button class="friends_circle_choose_sure" (click)="add_circle_sure()">确认</button>
+      </div>
+    </div>
+  </div>
+
+  <!--打标签-->
+  <div class="tagging_public" [hidden]="taggingPublic">
+    <div class="tagging_public_title">
+      修改标签
+      <span class="tagging_public_close" (click)="tagging_public_close()">x</span>
+    </div>
+
+    <div class="tagging_public_con">
+      <!--输入搜索打标签部分-->
+      <div class="searchTag">
+        <button class="tagging_public_con_button" (click)="tagging_public_clean_selectedUser()">添加</button>
+        <nz-select style="width: 80%;" nzMode="multiple" [(ngModel)]="selectedUser" nzPlaceHolder="请输入关键字" nzAllowClear
+                   nzShowSearch [nzServerSearch]="true" (nzOnSearch)="onSearch($event)">
+          <ng-container *ngFor="let o of optionList;let ids=index">
+            <nz-option *ngIf="!isLoading" [nzValue]="ids" [nzLabel]="o.tagName"></nz-option>
+          </ng-container>
+          <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+            <i class="anticon anticon-loading anticon-spin loading-icon"></i> 数据加载中...
+          </nz-option>
+        </nz-select>
+      </div>
+      <!--最新标签-->
+      <div class="newTag_public">
+        <div class="newTag_public_title">
+          最新标签
+        </div>
+        <div class="newTag_public_con">
+          <nz-checkbox-wrapper style="width: 100%;margin-top: -10px" (nzOnChange)="newTag_con_change($event)">
+            <div nz-row>
+              <div nz-col nzSpan="4" *ngFor="let a of newTagList;let idx=index" ><label nz-checkbox  [(ngModel)]="a.checked" nzValue={{idx}}>{{a.tagName}}</label>
+              </div>
+            </div>
+          </nz-checkbox-wrapper>
+        </div>
+      </div>
+      <!--常用标签-->
+      <div class="newTag_public" style="margin-top: 2px">
+        <div class="newTag_public_title">
+          常用标签
+        </div>
+        <div class="newTag_public_con">
+          <nz-checkbox-wrapper style="width: 100%;margin-top: -10px" (nzOnChange)="usedTag_con_change($event)">
+            <div nz-row>
+              <div nz-col nzSpan="4" *ngFor="let a of useTagList;let idx=index"><label nz-checkbox   [(ngModel)]="a.checked" nzValue={{idx}}>{{a.tagName}}</label>
+              </div>
+            </div>
+          </nz-checkbox-wrapper>
+        </div>
+      </div>
+      <!--标签信息-->
+      <div class="tagLibrary">
+        <div class="tagLibrary_box">
+          <nz-tag nzMode="closeable" [nzColor]="'blue'" (nzOnClose)="tagging_public_onClose($event,a.id,a.addtype,a.Tagindex)" (nzAfterClose)="tagging_public_afterClose()"
+                  *ngFor="let a of Ownedtag;let ins=index">{{a.tagName}}
+          </nz-tag>
+        </div>
+      </div>
+    </div>
+    <div class="tagging_public_footer">
+      <div class="tagging_public_choose">
+        <button class="tagging_public_choose_cancel" (click)="tagging_public_close()">取消</button>
+        <button class="tagging_public_choose_sure" (click)="tagging_public_true()">确认</button>
+      </div>
+    </div>
+  </div>
+  <div class="Mask" [hidden]="isOperating">
+  </div>
+</div>

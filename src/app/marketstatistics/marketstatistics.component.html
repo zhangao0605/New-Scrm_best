@@ -1,0 +1,222 @@
+<div class="marketstatistics" style="padding: 24px;">
+        <div class="marketstatistics_text">
+            <span><b>统计</b>&nbsp;&nbsp;>营销统计</span>
+             <nz-select style="width:100px;position: relative;top:-13px;float: right;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="wechatidmodel" (ngModelChange)="byidchangedata(wechatidmodel)">
+               	     <nz-option *ngFor="let item of weChatList;let i = index" nzLabel="{{item.nickName}}" nzValue="{{item.id}}">
+               	    	
+               	    </nz-option>
+           </nz-select>
+        </div>
+        <div class="marketstatistics_con">
+	        	<ul class="general_topul">
+	        		 <li class="oneli">
+	        		  	<div class="general_left">
+	        		  		<img src="./assets/images/tongjione.png">
+	        		  	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>客户总数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.friendCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        		 <li>
+	        		 	<div class="general_left">
+	        		 			<img src="./assets/images/tongjitwo.png">
+	        		 	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>今日新增客户数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.newFriendTodayCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        		 <li>
+	        		 	<div class="general_left">
+	        		 			<img src="./assets/images/yxthree.png">
+	        		 	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>今日拉群数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.createChatroomCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        		 <li>
+	        		 	<div class="general_left">
+	        		 			<img src="./assets/images/yxfour.png">
+	        		 	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>累计清理僵尸粉数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.zombieFanTotal}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        	</ul>
+	        	<!--中一-->
+	        	<div class="general_center">
+	        		<!--左-->
+	        		   <div class="toadyweek">
+	        		      <b>{{title1}}</b>
+	        		      <div class="tongji">
+		        		      	<div class="tongji_head">
+		        		      		   <div class="">
+		        		      	    		 <span class="sbnum">{{Tuokecount}}</span>
+				        		             <span class="sbzi">拓客总数</span>
+		        		      	    	</div>
+			        		      		
+				        		      	<div class="tongji_head_right">
+				        		      		 <span class="circle" style="background:rgba(43,169,235,1);"></span>
+				        		      		 <span style="margin-right: 35px;">拓客总数</span>
+				        		      		 <span class="circle" style="background:rgba(144,216,131,1);"></span>
+				        		      		 <span style="margin-right: 35px;">拓客成功数</span>
+				        		      	</div>
+		        		      	</div>
+	        		      	        
+	        		      	      
+	        		      	   
+	        		      	    <ol>
+	        		      	    	<!--左-->
+	        		      	    	<div class="todaydiv">
+	        		      	    		
+	        		      	    	</div>
+	        		      	    	<!--右-->
+	        		      	    	<div class="riqidiv">
+	        		      	    		<li [ngClass] = "coloritem==0 ? 'li-color' : ''" (click)="getTimeClick(0)">今日</li>
+	        		      	    	    <li [ngClass] = "coloritem==1 ? 'li-color' : ''" (click)="getTimeClick(1)">近一周</li>
+	        		      	    	    <li [ngClass] = "coloritem==2 ? 'li-color' : ''" (click)="getTimeClick(2)">本月</li>
+	        		      	    	    <li style="width: 385px;">
+		        		      	    		 <nz-range-picker nzFormat="yyyy-MM-dd" ngModel (ngModelChange)="getday($event)"></nz-range-picker>
+	        		      	    	    </li>
+	        		      	    	</div>
+	        		      	    </ol>
+	        		      	    <div id="one" style="width:918px;height:228px;">
+
+								</div> 
+	        		      </div> 
+	        	     </div>
+	        	     <!--右-->
+	        	     <div class="runuser">
+	        	     	 <b>近一周新增客户数排行榜</b>
+	        	     	 <div class="huoyue">
+	        	     	 	      <span class="sbnum">{{zongadd}}</span>
+	        		      	      <span class="sbzi">总加人数</span>
+	        		      	      <div class="toadychathead">
+						   	       <span>排名</span>
+						   	       <span>渠道</span>
+						   	       <span>新增客户数</span>
+						   	       <span>占比</span>
+			                     </div>
+						      	 <div class="gaoxuying">
+					      	    	<ul class="toadychathead_ul">
+					      	    		<li *ngFor="let item of kehuData;let i = index">
+						      	    		<span>{{i}}</span>
+						      	    		<span>{{item['friendSource']}}</span>
+						      	    		<span>{{item['addContact']}}</span>
+						      	    		<span>
+						      	    			  <nz-progress [nzPercent]="item.proportion" nzStatus="active"></nz-progress>
+						      	    		</span>
+					      	    	   </li>
+					      	    	</ul>
+						      	  </div> 
+	        	     	 </div>
+	        	     </div>
+	        	
+	        	</div>
+	        	<!--底部-->
+	        	<div class="general_foot">
+	        		   <ul>
+	        		   	  <li class="onlyli">
+	        		   	  	<div class="general_left">
+	        		   	  		<img src="./assets/images/yxfive.png"/>
+	        		   	  	</div>
+			        		 	  <div class="general_right">
+			        		 	  	 <span>自动查看未读消息（总数）</span>
+			        		 	  	 <br/>
+			        		 	  	 <b>{{headData.unReadMessageCount}}</b>
+			        		 	  	
+			        		 	  </div> 
+	        		   	  </li>
+	        		   	  <li class="marginno">
+	        		   	  	<span style="display: inline-block;width:144px;">自动查看腾讯新闻（总数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.seeTencentCount}}</b>
+		        		 	  	
+	        		   	  </li>
+	        		   	  <li>
+	        		   	  	<span>自动查看朋友圈（总数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.seeMomentCount}}</b>
+		        		 	  	
+	        		   	  </li>
+	        		   	  <li>
+	        		   	  	<span>自动查看通讯录（总数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.seeContactCount}}</b>
+		        		 	  	 
+	        		   	  </li>
+	        		   	  <li>
+	        		   	  	<span>自动查看订阅号（总数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.seeSubscriptionCount}}</b>
+		        		 	  	 
+	        		   	  </li>
+	        		   	  <li>
+	        		   	  	<span>自动查看相册（总数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.seePhotoCount}}</b>
+		        		 	  	 
+	        		   	  </li>
+	        		   </ul>
+	        	</div>
+	        	
+	        	     <!--底部-->
+	        	<div class="general_foot">
+	        		   <ul>
+	        		   	  <li class="onlyli">
+	        		   	  	<div class="general_left">
+	        		   	  			<img src="./assets/images/yxsix.png"/>
+	        		   	  	</div>
+			        		 	  <div class="general_right">
+			        		 	  	 <span>自动浏览图文链接（总数）</span>
+			        		 	  	 <br/>
+			        		 	  	 <b>{{headData.seeLinkCount}}</b>
+			        		 	  	
+			        		 	  </div> 
+	        		   	  </li>
+	        		   	  <li class="marginno">
+	        		   	  	<span>群发文字图片（总数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.sendScriptCount}}</b>
+		        		 	  	 
+	        		   	  </li>
+	        		   	  <li>
+	        		   	  	<span>发送链接（总数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.sendLinkCount}}</b>
+		        		 	  	 
+	        		   	  </li>
+	        		   	  <li>
+	        		   	  	<span>发送朋友圈（总数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.sendMomentCount}}</b>
+		        		 	  	 
+	        		   	  </li>
+	        		   	  <li>
+	        		   	  	<span>自动查看钱包（总数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.seeWalletCount}}</b>
+		        		 	  	 
+	        		   	  </li>
+	        		   	  <li>
+	        		   	  	<span>自动清理僵尸粉（总数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.zombieFanCount}}</b>
+		        		 	  	 
+	        		   	  </li>
+	        		   </ul>
+	        	</div>
+        </div>
+</div>
+      

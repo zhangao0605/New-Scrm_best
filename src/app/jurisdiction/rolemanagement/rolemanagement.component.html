@@ -1,0 +1,137 @@
+  <div class="rolemanagemen" style="padding: 24px;">
+        <div class="rolemanagemen_headtext">
+            <b>权限>角色管理</b>
+        </div>
+        <div class="rolemanagemen_con">
+            <ul>
+            	<li>
+            		<input type="text" placeholder="名称/类型/状态/等级" [(ngModel)]="roleinput"/>
+            	</li>
+            	<li>
+            		<input type="button" value="搜索" (click)="searchdata()">
+            	</li>
+            	<li>
+            		<button class="newuser" (click)="showrole()">添加角色</button>
+            	</li>
+            </ul>
+        </div>
+        <div class="tablelist">
+        	  	<nz-table #nzTable
+        	  		[nzData]="allpersonData"
+					      [nzPageSize]="10"
+					      nzBordered
+					      [nzFrontPagination]="false"
+					      [nzTotal]="total"
+					      [(nzPageIndex)]="pageIndex"
+					      [(nzPageSize)]="pageSize"
+					      (nzPageIndexChange)="searchData($event)"
+					      (nzPageSizeChange)="searchData(true)">
+				      <thead>
+					      <tr style="text-align: center;">
+					        <th nzWidth="3%">ID</th>
+					        <th nzWidth="3%">角色</th>
+					        <th nzWidth="3%">备注</th>
+					        <th nzWidth="3%">操作</th>
+					      </tr>
+				      </thead>
+				      <tbody>
+						      <tr *ngFor="let item of allpersonData;let i = index">
+							        <td>{{item.id}}</td>
+							        <td>{{item.roleName}}</td>
+							        <td>{{item.remark}}</td>
+							        <td class="imglist">
+							        	<img src="./assets/images/bianji.png" (click)="seedetail(item.id)">
+							        	<img src="./assets/images/delect.png" (click)="deleperson(item.id)">
+							        </td>
+						      </tr>
+				      </tbody>
+				    </nz-table>
+        </div>
+        <!--增加角色-->
+        <div class="rolemanagemen_addcard" *ngIf="isrole">
+		     	 <div class="rolemanagemen_addcard_head">
+		     	 	<span>增加角色</span>
+		     	 	<span (click)="closerole()" class="closebtncur">
+		     	 		<span>x</span>
+		     	 	</span>
+		     	 </div>
+		     	 <div class="rolemanagemen_addcard_center">
+		     	 	 <ul>
+		     	 	 	<li>
+		     	 	 		<span>角色名称:</span>
+		     	 	 		<div>
+		     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="role_user"> 
+		     	 	 		</div>
+		     	 	 	</li>
+		     	 	 	<li>
+		     	 	 		<span>备注:</span>
+		     	 	 		<div>
+		     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="role_beiz">
+		     	 	 		</div>
+		     	 	 	</li>
+		     	 	 	<li>
+		     	 	 		<span>角色权限:</span>
+		     	 	 		<div style="height:160px;overflow: auto;width: 366px;text-align: left;">
+		     	 	 		   <nz-tree
+							      [(ngModel)]="nodes"
+							      [nzMultiple]="true"
+							      [nzCheckable]="true"
+							      (nzCheckBoxChange)="out($event)"
+							    >
+		            </nz-tree>
+		     	 	 		</div>
+		     	 	 	</li>
+		     	 	 </ul>
+		     	 </div>
+		     	 <div class="rolemanagemen_addcard_footer">
+		     	 	<span style="float: right;margin-right:20px;">
+		        		<button class="quxiao" (click)="closerole()">取消</button>
+		        		<button class="sure" (click)="addrole()">确定</button>
+		           </span>
+		     	 </div>
+     </div>
+     <!--修改角色-->
+     <div class="rolemanagemen_addcard" *ngIf="detailper">
+		     	 <div class="rolemanagemen_addcard_head">
+		     	 	<span>修改角色</span>
+		     	 	<span (click)="closedetailper()" class="closebtncur">
+		     	 		<span>x</span>
+		     	 	</span>
+		     	 </div>
+		     	 <div class="rolemanagemen_addcard_center">
+		     	 	 <ul>
+		     	 	 	<li>
+		     	 	 		<span>角色名称:</span>
+		     	 	 		<div>
+		     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="role_detailuser"> 
+		     	 	 		</div>
+		     	 	 	</li>
+		     	 	 	<li>
+		     	 	 		<span>备注:</span>
+		     	 	 		<div>
+		     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="role_detailbeiz">
+		     	 	 		</div>
+		     	 	 	</li>
+		     	 	 	<li>
+		     	 	 		<span>角色权限:</span>
+		     	 	 		<div style="height:160px;overflow: auto;width: 366px;text-align: left;">
+		     	 	 		   <nz-tree
+							      [(ngModel)]="detailnodes"
+							      [nzMultiple]="true"
+							      [nzCheckable]="true"
+							      (nzCheckBoxChange)="update($event)"
+							    >
+		            </nz-tree>
+		     	 	 		</div>
+		     	 	 	</li>
+		     	 	 </ul>
+		     	 </div>
+		     	 <div class="rolemanagemen_addcard_footer">
+		     	 	<span style="float: right;margin-right:20px;">
+		        		<button class="quxiao" (click)="closedetailper()">取消</button>
+		        		<button class="sure" (click)="updatesure()">确定</button>
+		           </span>
+		     	 </div>
+     </div>
+    </div>
+    <app-mask *ngIf="ismask"></app-mask>

@@ -1,0 +1,573 @@
+.material_management_title_1 {
+  font-size: 20px;
+  font-family: PingFangSC-Semibold;
+  color: rgba(43, 43, 43, 1);
+}
+
+.material_management_title {
+  font-size: 16px;
+  font-family: PingFangSC-Regular;
+  color: #636363;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(220, 220, 220, 1);
+}
+
+.material_management_all_search {
+  position: relative;
+  text-align: right;
+  width: 100%;
+}
+
+.material_management_body {
+  width: 100%;
+  position: relative;
+
+  margin-top: 13px;
+}
+
+.material_management_all_search_input {
+  width: 242px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid rgba(220, 220, 220, 1);
+  outline: none;
+  text-indent: 15px;
+  margin-right: 25px;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 30px;
+}
+
+.material_management_all_search_input::-webkit-input-placeholder { /* WebKit browsers */
+  font-size: 14px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+}
+
+.material_management_all_search_input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  font-size: 14px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+}
+
+.material_management_all_search_input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  font-size: 14px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+}
+
+.material_management_all_search_input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  font-size: 14px;
+  /*font-family:PingFangSC-Light;*/
+  font-weight: normal;
+  color: rgba(205, 205, 205, 1);
+}
+
+.material_management_all_search_search {
+  margin-right: 50px;
+  width: 50px;
+  height: 30px;
+  border-radius: 2px;
+  border: 1px solid rgba(220, 220, 220, 1);
+  font-size: 14px;
+  font-family: PingFangSC-Light;
+  color: rgba(43, 43, 43, 1);
+  background-color: #ffffff;
+  outline: none;
+  cursor: pointer;
+}
+
+.material_management_all_search_batch_deletion {
+  width: 110px;
+  height: 28px;
+  background: rgba(244, 244, 244, 1);
+  border-radius: 2px;
+  border: 1px solid rgba(220, 220, 220, 1);
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  outline: none;
+}
+
+.material_management_all {
+  padding: 10px 30px;
+  display: flex;
+
+}
+
+.material_management_all_title {
+  display: flex;
+}
+
+.material_management_all_title div {
+  margin-left: 60px;
+  font-size: 16px;
+  font-family: PingFangSC-Regular;
+  color: rgba(43, 43, 43, 1);
+}
+
+.material_management_all_title div:nth-of-type(1) {
+  margin-left: 20px;
+}
+
+.material_management_all_search {
+  position: absolute;
+  right: 60px;
+}
+
+.material_management_body ::ng-deep .ant-tabs-nav .ant-tabs-tab {
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+  font-size: 16px;
+  margin-left: 0;
+  /*border: none;*/
+}
+
+::ng-deep.ant-tabs-bar {
+  margin: 20px 0px 16px 0px !important;
+}
+
+::ng-deep.ant-table-body {
+  /*border: 1px #D4D4D4 solid;*/
+  margin-top: 20px;
+}
+
+::ng-deep.ant-table-bordered .ant-table-thead > tr > th {
+  text-align: center;
+}
+
+.material_management_operating_bg_ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+}
+
+.material_management_operating_bg_ul:nth-of-type(2) {
+  margin-top: 15px;
+}
+
+.material_management_operating_bg_ul li {
+  list-style: none;
+  cursor: pointer;
+}
+
+.material_management_operating_bg1 {
+  width: 18px;
+  height: 18px;;
+  background: url("../../assets/images/customer_shape_blue.png") center center no-repeat;
+  background-size: 18px 18px;
+}
+
+.material_management_operating_bg2 {
+  width: 18px;
+  height: 18px;
+  background: url("../../assets/images/edit_blue.png")no-repeat center center ;
+  background-size: 18px 18px;
+}
+
+.material_management_operating_bg3 {
+  width: 18px;
+  height: 18px;
+  background: url("../../assets/images/delete_blue.png" ) no-repeat center center;
+  background-size: 18px 18px;
+}
+
+::ng-deep.ant-table-bordered .ant-table-tbody > tr > td {
+  text-align: center;
+  padding: 10px 5px;
+}
+
+.material_management_avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.material_management_all_search_batch_deletion {
+  width: 110px;
+  height: 28px;
+  background: rgba(244, 244, 244, 1);
+  border-radius: 2px;
+  border: 1px solid rgba(220, 220, 220, 1);
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  outline: none;
+}
+
+.image_addPlan {
+  z-index: 2;
+  position: fixed;
+  height: 440px;
+  width: 582px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  left: 50%;
+  top: 50%;
+  margin-left: -296px;
+  margin-top: -205px;
+}
+
+.image_addPlan_title {
+  height: 13%;
+  font-size: 17px;
+  font-family: PingFangSC-Regular;
+  color: rgba(102, 102, 102, 1);
+  padding: 17px 20px;
+}
+
+.image_addPlan_close {
+  float: right;
+  font-size: 18px;
+  cursor: pointer;
+  color: rgba(153, 153, 153, 1);
+  position: relative;
+  top: -3px;
+}
+
+.image_addPlan_con {
+  height: 74%;
+  padding: 0px 85px;
+  width: 100%;
+  border-top: 1px solid rgba(233, 233, 233, 1);
+  border-bottom: 1px solid rgba(233, 233, 233, 1);
+}
+
+.image_addPlan_choose {
+  float: right;
+  padding: 13px 20px 20px 20px;
+}
+
+.image_addPlan_choose_cancel {
+  width: 65px;
+  height: 32px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  border: 1px solid rgba(217, 217, 217, 1);
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: rgba(102, 102, 102, 1);
+  margin-right: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.image_addPlan_choose_sure {
+  width: 65px;
+  height: 32px;
+  background: rgba(16, 142, 233, 1);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.image_addPlan_con ul {
+  width: 100%;
+  display: flex;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.image_addPlan_con ul li {
+  list-style: none;
+}
+
+.image_addPlan_con ul li:nth-of-type(1) {
+  width: 25%;
+  text-align: right;
+}
+
+.image_addPlan_con ul li:nth-of-type(2) {
+  width: 70%;
+  margin-left: 5%;
+}
+
+.image_addPlan_con-text_input {
+  position: relative;
+  top: -3px;
+  border-radius: 3px;
+  border: 1px solid rgba(233, 233, 233, 1);
+  outline: none;
+  height: 36px;
+  width: 100%;
+  text-indent: 15px;
+}
+
+.image_addPlan_con-text_input::-webkit-input-placeholder {
+  font-size: 15px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+}
+
+.image_addPlan_con-text_input input:-moz-placeholder { /* Firefox 18- */
+  font-size: 15px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+}
+
+.image_addPlan_con-text_input input::-moz-placeholder { /* Firefox 19+ */
+  font-size: 15px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+
+}
+
+.image_addPlan_con-text_input input:-ms-input-placeholder {
+  font-size: 15px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+}
+
+.image_addPlan_con-text {
+  font-size: 16px;
+}
+
+.image_addPlan_con-text_textarea {
+  text-indent: 10px;
+  overflow: auto;
+  height: 70px;
+  resize: none;
+  border-radius: 3px;
+  border: 1px solid rgba(233, 233, 233, 1);
+  outline: none;
+  width: 100%;
+}
+
+.image_addPlan_con-text_textarea::-webkit-scrollbar-track {
+  border-radius: 2px;
+  background: white;
+}
+
+.image_addPlan_con-text_textarea::-webkit-scrollbar {
+  width: 2px;
+  background: white;
+}
+
+.image_addPlan_con-text_textarea::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: #C1C1C0;
+}
+
+:host ::ng-deep .clearfix .ant-upload-list-picture-card .ant-upload-list-item {
+  width: 65px;
+  height: 65px;
+}
+
+:host ::ng-deep .clearfix .ant-upload.ant-upload-select-picture-card {
+  width: 65px;
+  height: 65px;
+}
+
+:host ::ng-deep.ant-upload-list-item-uploading-text {
+  opacity: 0;
+}
+
+.tagging_public {
+  width: 854px;
+  height: 500px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -347px;
+  margin-top: -245px;
+  z-index: 2;
+}
+
+.searchTag {
+  width: 100%;
+  margin-top: -15px;
+}
+
+.tagging_public_con_button {
+  cursor: pointer;
+  position: absolute;
+  right: 7%;
+  width: 116px;
+  height: 33px;
+  background: rgba(0, 125, 206, 1);
+  border-radius: 2px;
+  font-size: 15px;
+  font-family: PingFangSC-Medium;
+  color: rgba(255, 255, 255, 1);
+  outline: none;
+  border: none;
+}
+
+.newTag_public {
+  margin-top: 15px;
+  width: 100%;
+}
+
+.tagging_public_choose {
+  float: right;
+  padding: 15px 20px 20px 20px;
+}
+
+.tagging_public_close {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  color: rgba(153, 153, 153, 1);
+  position: relative;
+  top: -3px;
+  right: 10px;
+}
+
+.tagging_public_choose_cancel {
+  width: 65px;
+  height: 32px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  border: 1px solid rgba(217, 217, 217, 1);
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: rgba(102, 102, 102, 1);
+  margin-right: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.tagging_public_choose_sure {
+  width: 65px;
+  height: 32px;
+  background: rgba(16, 142, 233, 1);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.tagging_public_con {
+  height: 76%;
+  padding: 30px 70px;
+  width: 100%;
+  border-top: 1px solid rgba(233, 233, 233, 1);
+  border-bottom: 1px solid rgba(233, 233, 233, 1);
+}
+
+.newTag_public_title {
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: rgba(102, 102, 102, 1);
+}
+
+.newTag_public_con {
+  padding: 15px;
+  max-height: 65px;
+  overflow: auto;
+}
+
+.newTag_public_con::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: #C1C1C0;
+}
+
+.newTag_public_con::-webkit-scrollbar {
+  width: 2px;
+  background: white;
+}
+
+.newTag_public_con::-webkit-scrollbar-track {
+  border-radius: 2px;
+  background: white;
+}
+
+.tagLibrary {
+  width: 100%;
+  height: 107px;
+  border-radius: 2px;
+  border: 1px solid rgba(220, 220, 220, 1);
+  margin-top: 10px;
+}
+
+.tagLibrary_box {
+  padding: 7px;
+
+}
+
+::ng-deep.ant-tag-blue {
+  border-radius: 2px;
+  border: 1px solid rgba(0, 125, 206, 1);
+  font-family: PingFangSC-Light;
+  color: rgba(0, 125, 206, 1);
+  background-color: #ffffff;
+}
+
+.tagging_public_title {
+  height: 12%;
+  font-size: 16px;
+  font-family: PingFangSC-Regular;
+  color: rgba(102, 102, 102, 1);
+  padding: 20px;
+}
+
+:host::ng-deep.ant-checkbox + span {
+  padding-left: 8px;
+  padding-right: 8px;
+  display: inline-block;
+  width: 90px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: relative;
+  top: 6px;
+}
+
+.Mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #00000026;
+  filter: Alpha(Opacity=60);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+:host ::ng-deep .material_management_table .con_table {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 45px;
+  text-overflow: ellipsis;
+}
+
+:host ::ng-deep .material_management .image_addPlan .ant-upload-list-item-info > span {
+  width: 100%;
+  height: 100%;
+}
+.table_tr_bgColor_gray {
+  background:rgba(255,255,255,1)
+}
+
+.table_tr_bgColor_white {
+  background:rgba(248,248,248,1)
+}
+
+:host::ng-deep.ant-table-thead > tr > th {
+  background-color: #ffffff;
+  font-weight: normal;
+  font-size: 15px;
+}

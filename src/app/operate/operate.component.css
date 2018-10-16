@@ -1,0 +1,78 @@
+.operate{
+    background: #fff;
+}
+.operate_headtext{
+   height: 28px;
+   line-height: 16px;
+   border-bottom:2px solid rgba(220,220,220,1);
+}
+.operate_headtext b{
+    font-family:PingFangSC-Semibold;
+    color:rgba(43,43,43,1);
+    font-size: 16px;
+}
+.operate_con{
+   padding-left:30px;
+   display:flex;
+}
+.operate_con ul{
+    list-style: none;
+}
+
+.operate_con ul li{
+    width:400px;
+    height:80px;
+    background:rgba(255,255,255,1);
+    box-shadow: 2px 2px 8px #d2d6de;
+    list-style: none;
+    margin-top: 30px;
+    display:flex;
+    padding: 15px;
+}
+.operate_con ul li .operate_con_left_div{
+    width:56px;
+    height:56px;
+    background:rgba(0,125,206,1);
+    border-radius:2px;
+    padding: 8px 5px;
+}
+.operate_con ul li .operate_con_right_div{
+    margin-left:30px;
+}
+.operate_con ul li .operate_con_right_div b{
+    color:rgba(49,49,49,1);
+ }
+.operate_con ul li .operate_con_right_div span{
+   position: relative;
+   top:12px;
+   color:rgba(49,49,49,1);
+}
+.operate_con .operate_con_right{
+     padding-left:150px;
+}
+.operate_con_left_div{
+	position: relative;
+}
+.operate_con_left_div img{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
+.operate_con_left_div .one{
+	width:32px;
+	height:26px;
+	margin-left: -16px;
+	margin-top:-13px
+}
+.operate_con_left_div .two,.three,.qi,.ba{
+	width:32px;
+	height:32px;
+	margin-left: -16px;
+	margin-top:-16px
+}
+.operate_con_left_div .four,.five,.six{
+	width:32px;
+	height:30px;
+	margin-left: -16px;
+	margin-top:-15px
+}

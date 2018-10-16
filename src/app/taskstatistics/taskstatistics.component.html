@@ -1,0 +1,173 @@
+<div class="taskstatistics" style="padding: 24px;">
+        <div class="taskstatistics_text">
+            <span><b>统计</b>&nbsp;&nbsp;>任务统计</span>
+             <nz-select style="width:100px;position: relative;top:-13px;float: right;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="wechatidmodel" (ngModelChange)="byidchangedata(wechatidmodel)">
+               	    <nz-option *ngFor="let item of weChatList;let i = index" nzLabel="{{item.nickName}}" nzValue="{{item.id}}">
+               	    	
+               	    </nz-option>
+	               
+           </nz-select>
+        </div>
+        <div class="taskstatistics_con">
+	        	<ul class="general_topul">
+	        		 <li class="oneli">
+	        		  	<div class="general_left">
+	        		  		<img src="./assets/images/renwuone.png">
+	        		  	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>任务模板(总数)</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.taskTemplateCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        		 <li>
+	        		 	<div class="general_left">
+	        		 		<img src="./assets/images/renwutwo.png">
+	        		 	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>我创建的任务(总数)</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.taskCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        		 <li>
+	        		 	<div class="general_left">
+	        		 		<img src="./assets/images/renwuthree.png">
+	        		 	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>未启动的任务数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.noExecuteCount}}</b>
+	        		 	  	
+	        		 	  	
+	        		 	  </div>
+	        		 </li>
+	        		 <li>
+	        		 	<div class="general_left">
+	        		 		<img src="./assets/images/renwufour.png">
+	        		 	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>启动的任务数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.executeCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        	</ul>
+	        	<!--中一-->
+	        	<div class="general_center">
+	        		<!--左-->
+	        		   <div class="toadyweek">
+	        		      <b>{{title}}</b>
+	        		      <div class="tongji">
+	        		      	   
+	        		      	    <div class="tongji_head">
+	        		      	    	<div class="">
+	        		      	    		 <span class="sbnum">{{taskcount}}</span>
+	        		      	            <span class="sbzi">任务总数</span>
+	        		      	    	</div>
+		        		      		
+			        		      	<div class="tongji_head_right">
+			        		      		 <span class="circle" style="background:rgba(43,169,235,1);"></span>
+			        		      		 <span style="margin-right: 35px;">成功数</span>
+			        		      		 <span class="circle" style="background:rgba(144,216,131,1);"></span>
+			        		      		 <span style="margin-right: 35px;">失败数</span>
+			        		      	</div>
+		        		      	</div>
+	        		      	    <ol>
+	        		      	    	<!--左-->
+	        		      	    	<div class="todaydiv">
+	        		      	    		
+	        		      	    	</div>
+	        		      	    	<!--右-->
+	        		      	    	<div class="riqidiv">
+	        		      	    		<li [ngClass] = "coloritem==0 ? 'li-color' : ''" (click)="getTimeClick(0)">今日</li>
+	        		      	    	    <li [ngClass] = "coloritem==1 ? 'li-color' : ''" (click)="getTimeClick(1)">近一周</li>
+	        		      	    	    <li [ngClass] = "coloritem==2 ? 'li-color' : ''" (click)="getTimeClick(2)">本月</li>
+	        		      	    	    <li style="width: 385px;">
+		        		      	    		  <nz-range-picker nzFormat="yyyy-MM-dd" ngModel (ngModelChange)="getday($event)"></nz-range-picker>
+	        		      	    	    </li>
+	        		      	    	</div>
+	        		      	    </ol>
+	        		      	    <div id="two" style="width:918px;height:228px;">
+
+								</div> 
+	        		      </div> 
+	        	     </div>
+	        	     <!--右-->
+	        	     <div class="runuser">
+	        	     	 <b>任务成功率排行榜</b>
+	        	     	 <div class="huoyue">
+	        	     	 	      <span class="sbnum">{{headData.taskProportion}}%</span>
+	        		      	      <span class="sbzi">任务总成功率</span>
+	        		      	    <div class="toadychathead">
+						   	       <span>排名</span>
+						   	       <span>社交号</span>
+						   	       <span>执行任务数</span>
+						   	       <span>执行成功数</span>
+			                     </div>
+						      	 <div class="gaoxuying">
+					      	    	<ul class="toadychathead_ul">
+					      	    		<li *ngFor="let item of taskData;let i = index">
+						      	    		<span>{{i}}</span>
+						      	    		<span>{{item['nickName']}}</span>
+						      	    		<span>{{item['taskCount']}}</span>
+						      	    		<span>
+						      	    			  {{item['executeCount']}}
+						      	    		</span>
+					      	    	   </li>
+					      	    	</ul>
+						      	  </div> 
+	        	     	 </div>
+	        	     </div>
+	        	</div>
+	        	<!--中二-->
+	        	<div class="general_centertwo">
+	        		<!--左-->
+	        		   <div class="tuokenum">
+	        		      <b>{{title1}}</b>
+	        		      <div class="tongji">
+		        		      	<div class="tongji_head">
+		        		      		<div class="">
+			        		      		 <span class="sbnum">210</span>
+		        		      	         <span class="sbzi">任务总数</span>
+			        		      	</div>
+			        		      	<div class="tongji_head_right">
+			        		      		 <span class="circle" style="background:rgba(43,169,235,1);"></span>
+			        		      		 <span style="margin-right: 35px;">总任务数</span>
+			        		      		 <span class="circle" style="background:rgba(144,216,131,1);"></span>
+			        		      		 <span style="margin-right: 35px;">成功任务数</span>
+			        		      		 <span class="circle" style="background:rgba(255,216,120,1);"></span>
+			        		      		 <span>失败任务数</span>      
+			        		      	</div>
+		        		      	</div>
+		        		      	
+	        		      	    <ol>
+	        		      	    	<!--左-->
+	        		      	    	<div class="todaydiv">
+	        		      	    		
+	        		      	    	</div>
+	        		      	    	<!--右-->
+	        		      	    	<div class="riqidiv">
+	        		      	    		<li [ngClass] = "coloritem1==0 ? 'li-color' : ''" (click)="getTimeClick1(0)">今日</li>
+	        		      	    	    <li [ngClass] = "coloritem1==1 ? 'li-color' : ''" (click)="getTimeClick1(1)">近一周</li>
+	        		      	    	    <li [ngClass] = "coloritem1==2 ? 'li-color' : ''" (click)="getTimeClick1(2)">本月</li>
+	        		      	    	    <li style="width: 385px;">
+		        		      	    		 <nz-range-picker nzFormat="yyyy-MM-dd" ngModel (ngModelChange)="getday1($event)"></nz-range-picker>
+	        		      	    	    </li>
+	        		      	    	</div>
+	        		      	    </ol>
+								
+	        		      	     <div id="one" style="width:918px;height:240px;">
+
+								</div> 
+	        		      </div>
+	        	     </div>
+	        	     
+	        	</div>
+	        	
+        </div>
+</div>
+      

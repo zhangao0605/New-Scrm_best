@@ -1,0 +1,264 @@
+.taskstatistics_text{
+    height: 28px;
+    line-height: 16px;
+    border-bottom:2px solid rgba(220,220,220,1);
+}
+.taskstatistics_text b{
+	font-size:16px;
+}
+.taskstatistics_con{
+   padding-top:25px;
+   
+}
+.taskstatistics_con .general_topul{
+	display: flex;
+	
+}
+.taskstatistics_con .general_topul li{
+	width:320px;
+	height:108px;
+	background:rgba(255,255,255,1);
+	border:1px solid rgba(220,220,220,1);
+	margin-left: 104px;
+	display: flex;
+	padding:30px;
+}
+.taskstatistics_con .general_topul .oneli{
+	margin-left:0px;
+}
+.taskstatistics_con .general_topul li .general_left{
+	text-align: center;
+	width:40px;
+	height:40px;
+	background:rgba(0,125,206,1);
+	border-radius: 50%;
+	line-height:35px;
+}
+.taskstatistics_con .general_topul li .general_right{
+	margin-left: 15px;
+	margin-top: -9px;
+}
+.taskstatistics_con .general_topul li .general_right b{
+	font-size: 20px;
+}
+.taskstatistics_con .general_topul li .general_right span,i{
+	color:rgba(155,155,155,1);
+	font-size:12px;
+}
+.taskstatistics_con .general_center{
+	display: flex;
+	margin-top:25px;
+} 
+.taskstatistics_con .general_center .toadyweek{
+	width:960px;
+	height:390px;
+	background:rgba(255,255,255,1);
+	border:1px solid rgba(220,220,220,1);
+}
+.taskstatistics_con .general_center .toadyweek .tongji{
+	padding: 20px;
+}
+.taskstatistics_con .general_center .toadyweek .tongji ol{
+	 margin-top: 10px;
+ 	 display: flex;
+ 	 justify-content: space-between;
+}
+.taskstatistics_con .general_center .toadyweek .tongji ol div{
+ 	display: flex;
+}
+.taskstatistics_con .general_center .toadyweek .tongji ol li{
+    line-height: 30px;
+	margin-left:20px;
+}
+
+.li-color{
+	color: rgba(16,142,233,1);
+}
+
+.taskstatistics_con .general_center .toadyweek .tongji .tongji_head{
+	display: flex;
+	justify-content: space-between;
+}
+.taskstatistics_con .general_center .toadyweek .tongji .tongji_head .tongji_head_right{
+	line-height: 30px;
+}
+.taskstatistics_con .general_center .toadyweek .tongji .tongji_head .tongji_head_right .circle{
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: red;
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.taskstatistics_con .general_center .toadyweek .tongji .sbnum{
+	font-size: 20px;
+	font-weight: 800;
+	margin-left:15px;
+}
+.taskstatistics_con .general_center .toadyweek .sbzi{
+	margin-left:20px;
+}
+
+.taskstatistics_con .general_center .toadyweek b{
+	font-size: 20px;
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 20px;
+	border-bottom:1px solid rgba(220,220,220,1);
+}
+
+.taskstatistics_con .general_center .runuser{
+	margin-left:43px;
+	width:590px;
+	height:390px;
+	background:rgba(255,255,255,1);
+	border:1px solid rgba(220,220,220,1);
+}
+.taskstatistics_con .general_center .runuser .huoyue{
+	padding: 20px;
+}
+.taskstatistics_con .general_center .runuser .huoyue .sbnum{
+	font-size: 20px;
+	font-weight: 800;
+	margin-left:15px;
+}
+.taskstatistics_con .general_center .runuser .huoyue .sbzi{
+	margin-left:20px;
+}
+.taskstatistics_con .general_center .runuser b{
+	font-size: 20px;
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 20px;
+	border-bottom:1px solid rgba(220,220,220,1);
+}
+.taskstatistics_con .general_centertwo{
+	display: flex;
+	margin-top:25px;
+} 
+.taskstatistics_con .general_centertwo .tuokenum{
+	width:960px;
+	height:390px;
+	background:rgba(255,255,255,1);
+	border:1px solid rgba(220,220,220,1);
+}
+.taskstatistics_con .general_centertwo .tuokenum b{
+	font-size: 20px;
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 20px;
+	border-bottom:1px solid rgba(220,220,220,1);
+}
+.taskstatistics_con .general_centertwo .jiaoliunum{
+	margin-left:43px;
+	width:590px;
+	height:390px;
+	background:rgba(255,255,255,1);
+	border:1px solid rgba(220,220,220,1);
+}
+.taskstatistics_con .general_centertwo .jiaoliunum b{
+	font-size: 20px;
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 20px;
+	border-bottom:1px solid rgba(220,220,220,1);
+}
+
+
+
+.taskstatistics_con .general_centertwo .tuokenum .tongji{
+	padding: 20px;
+}
+
+.taskstatistics_con .general_centertwo .tuokenum .tongji .tongji_head{
+	display: flex;
+	justify-content: space-between;
+}
+.taskstatistics_con .general_centertwo .tuokenum .tongji .tongji_head .tongji_head_right{
+	line-height: 30px;
+}
+.taskstatistics_con .general_centertwo .tuokenum .tongji .tongji_head .tongji_head_right .circle{
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: red;
+	display: inline-block;
+	margin-right: 10px;
+}
+.taskstatistics_con .general_centertwo .tuokenum .tongji ol{
+	 margin-top: 10px;
+ 	 display: flex;
+ 	justify-content: space-between;
+}
+.taskstatistics_con .general_centertwo .tuokenum .tongji ol div{
+ 	display: flex;
+}
+.taskstatistics_con .general_centertwo .tuokenum .tongji ol li{
+    line-height: 30px;
+	margin-left:20px;
+}
+.taskstatistics_con .general_centertwo .tuokenum .tongji ol  .threeoli{
+	margin-left: 198px;
+}
+.taskstatistics_con .general_centertwo .tuokenum .tongji .sbnum{
+	font-size: 20px;
+	font-weight: 800;
+	margin-left:15px;
+}
+.taskstatistics_con .general_centertwo .tuokenum .tongji .sbzi{
+	margin-left:20px;
+}
+
+ .gaoxuying{
+				width: 555px;
+				height:250px;
+				overflow: auto;
+			}
+			.gaoxuying::-webkit-scrollbar{
+				width:1px;
+			}
+			.gaoxuying::-webkit-scrollbar-track {
+				background: white;
+				border-radius: 4px;
+			}
+			/*滑块样式*/
+			.gaoxuying::-webkit-scrollbar-thumb {
+				border-radius:2px;
+				background: white;
+			}
+			.toadychathead_ul{
+				width: 553px;
+				height:248px;
+				
+			}
+			.toadychathead_ul li{
+				display: flex;
+				height:40px;
+				border-bottom: 1px solid #ccc;
+				line-height: 40px;
+			}
+			
+			.toadychathead_ul li span{
+				width:138px;
+				height: 100%;
+				text-align: center;
+				display:block;
+			}
+             .toadychathead{
+                 	width: 555px;
+				   height:40px;
+				   display:flex;
+				   border-bottom: 1px solid #ccc;
+				   line-height: 40px;
+              }
+              .toadychathead span{
+	               	width:138px;
+					height: 100%;
+					text-align: center;
+					display:block;
+               }

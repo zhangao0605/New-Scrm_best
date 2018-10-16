@@ -1,0 +1,239 @@
+<nz-layout class="layout">
+  <nz-header class="myhead">
+    <div class="total_title">
+      <span class="total_title_icon"></span>
+      <span class="total_title_text">蚁客宝群控平台</span>
+    </div>
+    <div class="myheadSetting">
+      <nz-avatar nzIcon="anticon anticon-user"
+                 nzSrc="{{userIn.profilePhoto}}"></nz-avatar>
+      <button class="hiddbut"
+              nz-button
+              nz-popover
+              [nzTitle]="titleTemplate"
+              [nzContent]="contentTemplate">
+      </button>
+      <ng-template #titleTemplate>
+        <div class="fkd">
+          个人资料
+        </div>
+      </ng-template>
+      <ng-template #contentTemplate>
+        <div class="personal_Information_con_div" style="margin-top: 0px">
+          <span class="asd">昵&#12288;称：</span><span>{{userIn.username}}</span>
+        </div>
+        <div class="personal_Information_con_div">
+          <span class="asd">手机号：</span><span>{{userIn.phone}}</span>
+        </div>
+        <div class="personal_Information_con_div">
+          <span class="asd">邮&#12288;箱：</span><span>{{userIn.email}}</span>
+        </div>
+        <div class="personal_Information_con_div">
+          <span class="asd">微&#12288;信：</span><span>{{userIn.wechat}}</span>
+        </div>
+      </ng-template>
+      <span class="myheadSetting_name">{{userIn.username}}</span>
+      <span class="myheadSetting_set">设置</span>
+      <button class="hiddbut1" nz-button
+              nz-popover
+              [nzTitle]="titleTemplate1"
+              [nzContent]="contentTemplate1">>
+      </button>
+      <ng-template #titleTemplate1>
+        <div class="fkd">
+          设置
+        </div>
+      </ng-template>
+      <ng-template #contentTemplate1>
+        <div class="personal_Information_con_div" style="margin-top: 0px">
+          <span class="asd"><a (click)='editdata()'>修改资料</a></span>
+        </div>
+        <div class="personal_Information_con_div">
+          <span class="asd"> <a (click)='editpassword()'>修改密码</a></span>
+        </div>
+      </ng-template>
+      <span class="myheadSetting_out" (click)="Logout()">注销</span>
+    </div>
+  </nz-header>
+  <div class="personal_Information" [hidden]="editdata_hidden">
+    <div class="personal_Information_title">
+      个人资料
+    </div>
+    <div class="personal_Information_con">
+      <div class="personal_Information_con_icon">
+        <nz-upload
+          [(nzAction)]="getimgUrl"
+          nzListType="picture-card"
+          [nzBeforeUpload]="beforeUpload_image"
+          [nzRemove]="RemoveUpload_image"
+          [(nzFileList)]="fileList_image"
+          [nzShowButton]="fileList_image.length < 1"
+          [nzPreview]="handlePreview_image">
+          <i class="anticon anticon-plus"></i>
+          <div class="ant-upload-text">上传</div>
+        </nz-upload>
+        <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+                  (nzOnCancel)="previewVisible=false">
+          <ng-template #modalContent>
+            <img [src]="previewImage1" [ngStyle]="{ 'width': '100%' }"/>
+          </ng-template>
+        </nz-modal>
+      </div>
+      <div class="koko">
+        <div class="personal_Information_con_div">
+          <span class="del_all">昵&#12288;称：</span><input nz-input placeholder="请输入昵称" [(ngModel)]="data_name">
+        </div>
+        <div class="personal_Information_con_div">
+          <span class="del_all">手机号：</span><input nz-input placeholder="请输入手机号" [(ngModel)]="data_tel">
+        </div>
+        <div class="personal_Information_con_div">
+          <span class="del_all">邮&#12288;箱：</span><input nz-input placeholder="请输入邮箱" [(ngModel)]="data_email">
+        </div>
+        <div class="personal_Information_con_div">
+          <span class="del_all">微&#12288;信：</span><input nz-input placeholder="请输入微信号" [(ngModel)]="data_wx">
+        </div>
+      </div>
+    </div>
+    <div class="personal_Information_footer">
+      <div class="address_book_management_upload_choose">
+        <button class="address_book_management_upload_choose_cancel" (click)="editdataclose()">取消
+        </button>
+        <button class="address_book_management_upload_choose_sure" (click)="editdatasure()">确认
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="personal_Information edit_pas_1" [hidden]="editpassword_hidden">
+    <div class="personal_Information_title edit_pas_2">
+      修改密码
+    </div>
+    <div class="personal_Information_con edit_pas_3">
+      <div class="personal_Information_con_div  edit_pas_4">
+        <span class="del_all">原密码：</span><input nz-input type="password" placeholder="请输入原密码"
+                                                [(ngModel)]="oldpassword">
+      </div>
+      <div class="personal_Information_con_div edit_pas_4">
+        <span class="del_all">新密码：</span><input nz-input type="password" placeholder="请输入新密码"
+                                                [(ngModel)]="newpassword">
+      </div>
+      <div class="personal_Information_con_div edit_pas_4">
+        <span class="del_all">确认密码：</span><input nz-input type="password" placeholder="请输入确认密码"
+                                                 [(ngModel)]="surepassword">
+      </div>
+    </div>
+    <div class="personal_Information_footer">
+      <div class="address_book_management_upload_choose">
+        <button class="address_book_management_upload_choose_cancel" (click)="editpasclose()">取消
+        </button>
+        <button class="address_book_management_upload_choose_sure" (click)="editpassure()">确认
+        </button>
+      </div>
+    </div>
+  </div>
+  <nz-layout>
+    <nz-sider [nzWidth]="200" style="background:#fff" class="menu_style">
+      <ul nz-menu [nzMode]="'inline'" style="height:100%">
+        <li [hidden]="!NaIs_0" nz-submenu [(nzOpen)]="openMap.sub1" (nzOpenChange)="openHandler('sub1')"
+            [class]="openMap.sub1==false?'default_click_color ant-menu-submenu ant-menu-submenu-inline':'menu_click_color ant-menu-submenu ant-menu-submenu-inline'">
+          <span [class]="openMap.sub1==true?'menu_text_click_color icon_style':'default_text_click_color icon_style'"
+                title><i
+            [class]="openMap.sub1==true?'icon_style_1_1 menu_text_click_color special':'icon_style_1 default_text_click_color special'"></i>首页</span>
+          <ul>
+            <li [hidden]="!NaIs_0_0" routerLink="/home" nz-menu-item>首页</li>
+          </ul>
+        </li>
+        <li [hidden]="!NaIs_1" nz-submenu [(nzOpen)]="openMap.sub2" (nzOpenChange)="openHandler('sub2')"
+            [class]="openMap.sub2==false?'default_click_color ant-menu-submenu ant-menu-submenu-inline':'menu_click_color ant-menu-submenu ant-menu-submenu-inline'">
+          <span [class]="openMap.sub2==true?'menu_text_click_color icon_style':'default_text_click_color icon_style'"
+                title><i [class]="openMap.sub2==true?'icon_style_2_1 special':'icon_style_2 special'"></i>客户</span>
+          <ul>
+            <li [hidden]="!NaIs_1_0" routerLink="/customermanagement" nz-menu-item>客户管理</li>
+            <li [hidden]="!NaIs_1_1" routerLink="/groupmanagement" nz-menu-item>群管理</li>
+            <li [hidden]="!NaIs_1_2" routerLink="/grouping" nz-menu-item>分组管理</li>
+          </ul>
+        </li>
+        <li [hidden]="!NaIs_2" nz-submenu [(nzOpen)]="openMap.sub3" (nzOpenChange)="openHandler('sub3')">
+          <span class="icon_style" title><i class="icon_style_3 special"></i>云客服</span>
+        </li>
+        <li [hidden]="!NaIs_3" nz-submenu [(nzOpen)]="openMap.sub4" (nzOpenChange)="openHandler('sub4')"
+            [class]="openMap.sub4==false?'default_click_color ant-menu-submenu ant-menu-submenu-inline':'menu_click_color ant-menu-submenu ant-menu-submenu-inline'">
+          <span [class]="openMap.sub4==true?'menu_text_click_color icon_style':'default_text_click_color icon_style'"
+                title><i [class]="openMap.sub4==true?'icon_style_4_1 special':'icon_style_4 special'"></i>营销</span>
+          <ul>
+            <li [hidden]="!NaIs_3_0" nz-menu-item routerLink="/toker">拓客</li>
+            <li [hidden]="!NaIs_3_1" nz-menu-item routerLink="/operate">运营</li>
+            <li [hidden]="!NaIs_3_2" nz-menu-item routerLink="/personification">拟人</li>
+            <li [hidden]="!NaIs_3_3" nz-menu-item routerLink="/maintain">维护</li>
+          </ul>
+        </li>
+        <li [hidden]="!NaIs_4" nz-submenu [(nzOpen)]="openMap.sub5" (nzOpenChange)="openHandler('sub5')"
+            [class]="openMap.sub5==false?'default_click_color ant-menu-submenu ant-menu-submenu-inline':'menu_click_color ant-menu-submenu ant-menu-submenu-inline'">
+          <span [class]="openMap.sub5==true?'menu_text_click_color icon_style':'default_text_click_color icon_style'"
+                title><i [class]="openMap.sub5==true?'icon_style_5_1 special':'icon_style_5 special'"></i>任务</span>
+          <ul>
+            <li [hidden]="!NaIs_4_0" nz-menu-item routerLink="/taskscheduler">任务计划</li>
+            <li [hidden]="!NaIs_4_1" nz-menu-item routerLink="/task">任务管理</li>
+            <li [hidden]="!NaIs_4_2" nz-menu-item routerLink="/tasktemplate">任务模板</li>
+          </ul>
+        </li>
+        <li [hidden]="!NaIs_5" nz-submenu [(nzOpen)]="openMap.sub6" (nzOpenChange)="openHandler('sub6')"
+            [class]="openMap.sub6==false?'default_click_color ant-menu-submenu ant-menu-submenu-inline':'menu_click_color ant-menu-submenu ant-menu-submenu-inline'">
+          <span [class]="openMap.sub6==true?'menu_text_click_color icon_style':'default_text_click_color icon_style'"
+                title><i [class]="openMap.sub6==true?'icon_style_6_1 special':'icon_style_6 special'"></i>资源</span>
+          <ul>
+            <li [hidden]="!NaIs_5_2" nz-menu-item routerLink="/materialmanagement">素材</li>
+            <li [hidden]="!NaIs_5_1" nz-menu-item routerLink="/labelmanagement">标签</li>
+            <li [hidden]="!NaIs_5_0" nz-menu-item routerLink="/addressbookmanagement">通讯录</li>
+            <li [hidden]="!NaIs_5_3" nz-menu-item routerLink="/friendcircle">朋友圈</li>
+            <li [hidden]="!NaIs_5_4" nz-menu-item routerLink="/publicnumber">公众号</li>
+            <li [hidden]="!NaIs_5_5" nz-menu-item routerLink="/socialnumber">社交号</li>
+          </ul>
+        </li>
+        <li [hidden]="!NaIs_6" nz-submenu [(nzOpen)]="openMap.sub7" (nzOpenChange)="openHandler('sub7')"
+            [class]="openMap.sub7==false?'default_click_color ant-menu-submenu ant-menu-submenu-inline':'menu_click_color ant-menu-submenu ant-menu-submenu-inline'">
+          <span [class]="openMap.sub7==true?'menu_text_click_color icon_style':'default_text_click_color icon_style'"
+                title><i [class]="openMap.sub7==true?'icon_style_7_1 special':'icon_style_7 special'"></i>管理</span>
+          <ul>
+            <li [hidden]="!NaIs_6_0" nz-menu-item routerLink="/devicemanagement">设备管理</li>
+            <li [hidden]="!NaIs_6_1" nz-menu-item routerLink="/socialmanagement">社交号管理</li>
+            <li [hidden]="!NaIs_6_2" nz-menu-item routerLink="/phonemanagement">手机号管理</li>
+            <li [hidden]="!NaIs_6_3" nz-menu-item routerLink="/systembulletin">系统公告管理</li>
+          </ul>
+        </li>
+        <li [hidden]="!NaIs_7" nz-submenu [(nzOpen)]="openMap.sub8" (nzOpenChange)="openHandler('sub8')"
+            [class]="openMap.sub8==false?'default_click_color ant-menu-submenu ant-menu-submenu-inline':'menu_click_color ant-menu-submenu ant-menu-submenu-inline'">
+          <span [class]="openMap.sub8==true?'menu_text_click_color icon_style':'default_text_click_color icon_style'"
+                title><i [class]="openMap.sub8==true?'icon_style_8_1 special':'icon_style_8 special'"></i>统计</span>
+          <ul>
+            <li [hidden]="!NaIs_7_0" nz-menu-item routerLink="/generalstatistics">总体统计</li>
+            <li [hidden]="!NaIs_7_1" nz-menu-item routerLink="/taskstatistics">任务统计</li>
+            <li [hidden]="!NaIs_7_2" nz-menu-item routerLink="/marketstatistics">营销统计</li>
+            <li [hidden]="!NaIs_7_3" nz-menu-item routerLink="/customerstatistics">客服统计</li>
+            <li [hidden]="!NaIs_7_4" nz-menu-item routerLink="/resoursestatistics">资源统计</li>
+          </ul>
+        </li>
+        <li [hidden]="!NaIs_8" nz-submenu [(nzOpen)]="openMap.sub9" (nzOpenChange)="openHandler('sub9')"
+            [class]="openMap.sub9==false?'default_click_color ant-menu-submenu ant-menu-submenu-inline':'menu_click_color ant-menu-submenu ant-menu-submenu-inline'">
+          <span routerLink="/jurisdiction" [class]="openMap.sub9==true?'menu_text_click_color icon_style':'default_text_click_color icon_style'"
+                title><i [class]="openMap.sub9==true?'icon_style_9_1 special':'icon_style_9 special'"></i>权限</span>
+          <ul>
+            <li [hidden]="!NaIs_8_0" nz-menu-item routerLink="/rolemanagement">角色管理</li>
+          </ul>
+        </li>
+        <li [hidden]="!NaIs_9" nz-submenu [(nzOpen)]="openMap.sub10" (nzOpenChange)="openHandler('sub10')"
+            [class]="openMap.sub10==false?'default_click_color ant-menu-submenu ant-menu-submenu-inline':'menu_click_color ant-menu-submenu ant-menu-submenu-inline'">
+          <span routerLink="/system" [class]="openMap.sub10==true?'menu_text_click_color icon_style':'default_text_click_color icon_style'"
+                title><i [class]="openMap.sub10==true?'icon_style_10_1 special':'icon_style_10 special'"></i>系统</span>
+        </li>
+      </ul>
+    </nz-sider>
+
+    <nz-layout style="background-color: #ffffff">
+      <nz-content style="background:#ffffff; padding: 24px; min-height: 280px;position: relative">
+        <router-outlet></router-outlet>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>
+<div class="Mask" [hidden]="isOperating">
+</div>

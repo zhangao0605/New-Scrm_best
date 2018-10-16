@@ -1,0 +1,825 @@
+.accurateadd_text{
+    height: 28px;
+    line-height: 16px;
+    border-bottom:2px solid rgba(220,220,220,1);
+}
+.accurateadd_text b{
+	font-size:16px;
+}
+.accurateadd_con{
+   padding-left:35px;
+    padding-top:15px;
+    /* background:pink; */
+}
+.accurateadd_con ul>li{
+     display:flex;
+     margin-top:25px;
+}
+.accurateadd_con ul li>div{
+    margin-left:120px;
+}
+.accurateadd_con ul li input[type="text"]{
+    width:380px;
+    height:28px;
+    border-radius:2px;
+    border:1px solid rgba(220,220,220,1);
+    padding-left: 15px;
+}
+.accurateadd_con ul li input::-webkit-input-placeholder {
+   color:#ccc;
+ }
+.accurateadd_con ul li .choosebutton{
+    width:80px;
+    height:28px;
+    background:rgba(244,244,244,1);
+    border-radius:2px;
+    border:1px solid rgba(220,220,220);
+    margin-left:10px;
+}
+.accurateadd .buttongroup{
+    margin-left:485px;
+}
+.accurateadd .buttongroup button{
+    width:68px;
+    height:30px;
+    font-size:12px;
+    color:rgba(255,255,255,1);
+    line-height:18px;
+    border-radius: 5px;
+    border:none;
+}
+.accurateadd .buttongroup .onebut{
+     color:black;
+     background: #fff;
+     border:1px solid #ccc;
+}
+
+.accurateadd .buttongroup .twobut{
+    margin-left:20px;
+    background: rgba(0,125,206,1);
+}
+
+.tab:hover{
+    color: rgba(16,142,233,1);
+}
+  .li-active{
+    border:1px solid rgba(16,142,233,1);
+    color: rgba(16,142,233,1);
+  }
+ .accurateadd .oltab{
+    display: flex;
+    border:1px solid rgba(217,217,217,1);
+}
+.accurateadd .oltab>.tab{
+    width:75px;
+    height:28px;
+    background:rgba(255,255,255,1);
+    border-radius:2px 0px 0px 2px;
+    line-height: 28px;
+    text-align:center;
+    margin-left:5px;
+    margin-top:0;
+    list-style: none;
+}
+.accurateadd .oltab .tabonenomar{
+      margin-left:0;
+}
+.accurateadd .tab-content>div{
+       width:380px;
+       height:60px;
+       border:1px solid #ccc;
+       margin-top:25px;
+       margin-left:0 !important;
+}
+.accurateadd .tab-content .tab-content-msg{
+	 height: 90px;
+}
+.tab-content-msg_head{
+  	height:25px;
+  	background:rgb(247,247,247);
+}
+.tab-content-msg_cen{
+  	height: 65px;
+  	width: 380px;
+  	overflow: auto;
+}
+.tab-content-msg_cen::-webkit-scrollbar{
+	width:4px;
+}
+			
+.tab-content-msg_cen::-webkit-scrollbar-track {
+	background: white;
+	border: 1px solid #FFC0CB;
+	border-radius:2px;
+}
+       
+.tab-content-msg_cen::-webkit-scrollbar-thumb {
+	background:#2ABF9E;
+	border-radius:2px;
+}
+   .tab-content-msg_cen div{
+   	 height: 65px;
+   	 outline: none;
+   	 width: 376px;
+   }
+ .tab-content-msg_head #btn{
+ 	position: relative;
+ 	z-index: 16;
+ 	opacity: 0.2;
+ 	width:25px;
+ 	height:25px;
+ }
+ .tab-content-msg_head .xiao{
+ 	margin-left: -24px;
+    margin-top: -14px;
+ }
+  .accurateadd  .oltab_choose{
+    width:80px;
+    height:28px;
+    margin-left:65px;
+    background:rgba(244,244,244,1);
+    border-radius:2px;
+    border:1px solid rgba(220,220,220);
+  }
+   .accurateadd  .oltab_daoru{
+    width:80px;
+    height:28px;
+    margin-left:65px;
+    background:rgba(244,244,244,1);
+    border-radius:2px;
+    border:1px solid rgba(220,220,220);
+    position: absolute;
+    left: 668px;
+  }
+
+ .accurateadd_con .marginLeftno{
+     margin-left: 35px !important;
+ }
+ .accurateadd_con .ant-checkbox-wrapper{
+  	margin-top: 10px;
+ }
+ .accurateadd_con .choosespan{
+   	  position: relative;
+   	  top: 5px;
+   	  color:rgba(0,125,206,1);
+   	  font-size:12px;
+}
+.accurateadd_social{
+    width:853px;
+    height: 512px;
+    background: rgba(255,255,255,1);
+    position: absolute;
+    left: 50%;
+    top:50%;
+    margin-left:-426px;
+    margin-top:-256px;
+    box-shadow:2px 2px 8px #d2d6de;
+    z-index: 1;
+}
+.accurateadd_social .accurateadd_social_head{
+	height: 50px;
+	border-bottom:2px solid rgba(233,233,233,1);
+	padding: 6px 6px 0px 15px;
+	color:rgba(102,102,102,1);
+	display: flex;
+	justify-content: space-between;
+	line-height: 33px;
+	font-size:16px;
+}
+.accurateadd_social .accurateadd_social_head .spanclose{
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	
+}
+
+.accurateadd_social .accurateadd_social_center{
+	height:412px;
+	border-bottom:2px solid rgba(233,233,233,1);
+}
+.accurateadd_social .accurateadd_social_foot{
+	height: 50px;
+	padding: 9px 30px;
+}
+.accurateadd_social .accurateadd_social_center .tankuang_headdiv{
+   padding: 10px 20px 0px;
+}
+.accurateadd_social .accurateadd_social_center .tankuang_headdiv .tankuang_ul{
+	display: flex;
+	line-height: 30px;
+}
+.accurateadd_social .accurateadd_social_center .tankuang_headdiv .tankuang_ul li{
+	margin-left: 20px;
+}
+.accurateadd_social .accurateadd_social_center .tankuang_headdiv .tankuang_ul li input{
+	width:270px;
+	height:30px;
+	background:rgba(255,255,255,1);
+	border-radius:2px;
+	border:1px solid rgba(220,220,220,1);
+	padding-left: 15px;
+}
+.accurateadd_social .accurateadd_social_center .tankuang_headdiv .tankuang_ul li button{
+	width:80px;
+	height:28px;
+	background:rgba(244,244,244,1);
+    border-radius:2px;
+    border: none;
+}
+.accurateadd_social .accurateadd_social_center .tankuang_cendiv{
+	display: flex;
+}
+.accurateadd_social .accurateadd_social_foot .quxiao{
+	width:65px;
+	height:32px;
+	background:rgba(255,255,255,1);
+	border-radius:4px;
+	border:1px solid rgba(217,217,217,1);
+	margin-right:10px;
+}
+.accurateadd_social .accurateadd_social_foot .sure{
+	width:65px;
+	height:32px;
+	background:rgba(16,142,233,1);
+	border-radius:4px;
+	border: none;
+}
+/*目标微信的选择标签*/
+.accurateadd_wechat_label{
+	width:853px;
+    height:500px;
+	background: rgba(255,255,255,1);
+	box-shadow:2px 2px 8px #d2d6de;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left:-426px;
+	margin-top: -250px;
+	z-index: 1;
+}
+.accurateadd_wechat_label_head{
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	padding: 14px;
+	font-size:15px;
+	border-bottom:2px solid rgba(233,233,233,1);
+}
+.accurateadd_wechat_label_head .wechatclose{
+	display: inline-block;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    margin-top: -6px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.accurateadd_wechat_label_con{
+	height: 400px;
+	border-bottom:2px solid rgba(233,233,233,1);
+	padding: 12px 15px;
+}
+.accurateadd_wechat_label_con .wechatdiv{
+	/*background: pink;*/
+}
+.accurateadd_wechat_label_con .wechatdiv input{
+	width: 270px;
+    height: 30px;
+    background: rgba(255,255,255,1);
+    border-radius: 2px;
+    border: 1px solid rgba(220,220,220,1);
+    padding-left: 15px;
+    margin-left: 15px;
+}
+.accurateadd_wechat_label_con .wechatdiv button{
+    width: 80px;
+    height: 28px;
+    background: rgba(244,244,244,1);
+    border-radius: 2px;
+    border: none;
+     margin-left: 15px;
+}
+.accurateadd_wechat_label_con .wechatdivtablelist{
+	display: flex;
+}
+.accurateadd_wechat_label_con .wechatdivtablelist .onetable{
+	width:396px;
+	height:330px;
+	position: relative;
+	top:10px;
+	border: 1px solid #ccc;
+}
+.accurateadd_wechat_label_con .wechatdivtablelist .twotable{
+	width: 396px;
+	border:1px solid #ccc;
+	position: relative;
+	left:32px;
+	height: 330px;
+	overflow: auto;
+	top: 10px;
+}
+#rightwctable thead{
+	border-bottom:1px solid #ccc;
+}
+#rightwctable thead tr{
+	width: 394px;
+    display: flex;
+    justify-content: space-around;
+    line-height: 36px;
+    background: #fafafa;
+}
+#rightwctable thead th{
+	width: 100px;
+	text-align: center;
+	height: 36px;
+	border: none;
+	font-weight: 500;
+}
+#rightwctable tbody tr{
+	width:392px;
+	display: block;
+	height: 58px;
+	border-bottom:1px solid #ccc;
+}
+#rightwctable tbody{
+    width: 394px;
+    height: 290px;
+    display: block;
+    overflow: auto;
+}
+#rightwctable tbody div{
+     width: 360px;
+}
+
+#rightwctable tbody::-webkit-scrollbar{
+    width:2px;
+}
+#rightwctable tbody::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 4px;
+}
+/*滑块样式*/
+#rightwctable tbody::-webkit-scrollbar-thumb {
+    border-radius:3px;
+    background:#2ABF9E;
+}
+.idphonediv{
+	display: flex;
+	justify-content: space-around;
+}
+.idphonediv span{
+	width: 100px;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+:host ::ng-deep .accurateadd_wechat_label_con .ant-table-tbody > tr > td{
+		padding:6px 10px;
+		text-align: center;
+}
+:host ::ng-deep .accurateadd_wechat_label_con .ant-table-thead > tr > th{
+	    padding:8px 5px;
+	    text-align: center;
+}
+
+
+
+.accurateadd_wechat_label_footer{
+   height: 50px;
+   padding: 9px 30px;
+   
+}
+.accurateadd_wechat_label_footer .quxiao{
+	width:65px;
+	height:32px;
+	background:rgba(255,255,255,1);
+	border-radius:4px;
+	border:1px solid rgba(217,217,217,1);
+	margin-right:10px;
+}
+.accurateadd_wechat_label_footer .sure{
+	width:65px;
+	height:32px;
+	background:rgba(16,142,233,1);
+	border-radius:4px;
+	border: none;
+}
+
+
+/*话术选择标签*/
+.accurateadd_huashu_label{
+	width:853px;
+    height:500px;
+	background: rgba(255,255,255,1);
+	box-shadow:2px 2px 8px #d2d6de;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left:-426px;
+	margin-top: -250px;
+	z-index: 1;
+}
+.accurateadd_huashu_label_head{
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	padding: 14px;
+	font-size:15px;
+	border-bottom:2px solid rgba(233,233,233,1);
+}
+.accurateadd_huashu_label_head .huashuclose{
+	display: inline-block;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    margin-top: -6px;
+    text-align: center;
+    cursor: pointer;
+}
+.accurateadd_huashu_label_con{
+	height: 400px;
+	border-bottom:2px solid rgba(233,233,233,1);
+	padding: 12px 15px;
+}
+.accurateadd_huashu_label_con .huashudiv{
+	/*background: skyblue;*/
+}
+.accurateadd_huashu_label_con .huashudiv input{
+	width: 270px;
+    height: 30px;
+    background: rgba(255,255,255,1);
+    border-radius: 2px;
+    border: 1px solid rgba(220,220,220,1);
+    padding-left: 15px;
+    margin-left: 15px;
+}
+.accurateadd_huashu_label_con .huashudiv button{
+    width: 80px;
+    height: 28px;
+    background: rgba(244,244,244,1);
+    border-radius: 2px;
+    border: none;
+     margin-left: 15px;
+}
+.accurateadd_huashu_label_con .huashutablelist{
+	display: flex;
+}
+.accurateadd_huashu_label_con .huashutablelist .onetable{
+	width:396px;
+	height:330px;
+	position: relative;
+	top:10px;
+	border: 1px solid #ccc;
+}
+.accurateadd_huashu_label_con .huashutablelist .twotable{
+	width: 396px;
+	border:1px solid #ccc;
+	position: relative;
+	left:32px;
+	height: 330px;
+	overflow: auto;
+	top: 10px;
+}
+#righthstable thead{
+	border-bottom:1px solid #ccc;
+}
+#righthstable thead tr{
+	width: 394px;
+    display: flex;
+    justify-content: space-around;
+    line-height: 36px;
+    background: #fafafa;
+}
+#righthstable thead th{
+	width: 100px;
+	text-align: center;
+	height: 36px;
+	border: none;
+	font-weight: 500;
+}
+#righthstable tbody tr{
+	width:392px;
+	display: block;
+	height: 58px;
+	border-bottom:1px solid #ccc;
+}
+#righthstable tbody{
+    width: 394px;
+    height: 290px;
+    display: block;
+    overflow: auto;
+}
+#righthstable tbody div{
+     width: 360px;
+}
+
+#righthstable tbody::-webkit-scrollbar{
+    width:2px;
+}
+#righthstable tbody::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 4px;
+}
+/*滑块样式*/
+#righthstable tbody::-webkit-scrollbar-thumb {
+    border-radius:3px;
+    background:#2ABF9E;
+}
+.idphonediv{
+	display: flex;
+	justify-content: space-around;
+}
+.idphonediv span{
+	width: 100px;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+:host ::ng-deep .accurateadd_huashu_label_con .ant-table-tbody > tr > td{
+		padding:6px 10px;
+		text-align: center;
+}
+:host ::ng-deep .accurateadd_huashu_label_con .ant-table-thead > tr > th{
+	    padding:8px 5px;
+	    text-align: center;
+}
+.accurateadd_huashu_label_footer{
+   height: 50px;
+   padding: 9px 30px;
+   
+}
+.accurateadd_huashu_label_footer .quxiao{
+	width:65px;
+	height:32px;
+	background:rgba(255,255,255,1);
+	border-radius:4px;
+	border:1px solid rgba(217,217,217,1);
+	margin-right:10px;
+}
+.accurateadd_huashu_label_footer .sure{
+	width:65px;
+	height:32px;
+	background:rgba(16,142,233,1);
+	border-radius:4px;
+	border: none;
+}
+.accurateadd .tab-content .wenjiandiv{
+	     border: none;
+	 }
+   .accurateadd .tab-content .wenjiandiv .wenjian_head{
+	   	width:136px;
+	   	height:45px;
+	   	border:1px solid rgba(220,220,220,1);
+	   	position: relative;
+	   	padding: 7px;
+   }
+    .accurateadd .tab-content .wenjiandiv .wenjian_head .closewen{
+    	 display: inline-block;
+    	 width:12px;
+    	 height:12px;
+    	 background:rgba(220,220,220,1);
+    	 color: white;
+    	 position: absolute;
+    	 right: -5px;
+    	 top: -6px;
+    	 line-height: 8px;
+    	 text-align: center;
+    }
+    .accurateadd .tab-content .wenjiandiv .wenjian_head .rightwen b{
+    	margin-top:-4px;
+    	display: inline-block;
+    	width:80px;
+    	overflow: hidden;
+    	text-overflow:ellipsis;
+    	white-space: nowrap;
+    }
+    .accurateadd .tab-content .wenjiandiv .wenjian_head .rightwen span{
+    	position: relative;
+    	top: -7px;
+    }
+    .ant-btn{
+		width: 80px;
+	    height: 28px;
+	    background: rgba(244,244,244,1);
+	    border-radius: 2px;
+	    border: 1px solid rgba(220,220,220);
+	    margin-left:64px;
+   }
+	:host ::ng-deep .ant-upload-list-item{
+		display: none;
+	}
+/*xinjia*/
+.accurateadd_con .quejia{
+	position: relative;
+    top: -25px;
+}
+.accurateadd_con .quejia>div div{
+	margin-top:15px;
+}
+
+.accurateadd_con .quejia .timesele{
+	margin-left: 38px;
+}
+.accurateadd_con .quejia input{
+	width:279px !important;
+	height:30px;
+	margin-left:51px;
+	border-radius:2px;
+    border:1px solid rgba(220,220,220,1);
+}
+.accurateadd_con .quejia .zhushi{
+	width:279px;
+	height: 80px;
+	margin-left:68px;
+	border-radius:2px;
+    border:1px solid rgba(220,220,220,1);
+    outline: none;
+}
+.accurateadd_con .quejia .option{
+	margin-left: 23px;
+	width: 188px;
+}
+:host ::ng-deep .ant-time-picker{
+	margin-left: 20px;
+}
+.dingshi{
+	width:410px;
+	margin-top: 20px;
+}
+.dingshi .dingshi_div{
+	margin-top:10px;
+}
+.dingshi .dingshi_div .close{
+    width: 15px;
+    height: 15px;
+    color: white;
+    background: red;
+    display: inline-block;
+    border-radius: 50%;
+    line-height: 13px;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+.dingshi .dingshi_add{
+	width:70px;
+	height: 22px;
+	border:1px dashed rgba(0,125,206,1);
+	text-align: center;
+	color:rgba(0,125,206,1);
+	margin-top:20px;
+	cursor: pointer;
+}
+
+.zhouqi{
+	width:423px;
+	margin-top: 20px;
+	display: none;
+}
+.zhouqi .zhouqi_div{
+	margin-top:10px;
+}
+.zhouqi .zhouqi_div .close{
+	 width: 15px;
+    height: 15px;
+    color: white;
+    background: red;
+    display: inline-block;
+    border-radius: 50%;
+    line-height: 13px;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+     margin-left: 20px;
+}
+.zhouqi .zhouqi_add{
+	width:70px;
+	height: 22px;
+	border:1px dashed rgba(0,125,206,1);
+	text-align: center;
+	color:rgba(0,125,206,1);
+	margin-top:20px;
+    cursor: pointer;
+}
+:host ::ng-deep .ant-time-picker{
+	margin-left: 20px;
+}
+.taglist{
+    width: 312px;
+    height: 23px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align:left;
+    position: relative;
+    top: 3px;
+}
+ .taglist span{
+    	display:inline-block;
+    	width: 50px;
+    	height:22px;
+    	line-height:22px;
+    	text-align: center;
+    	background:white;
+    	white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin-left:15px;
+		border: 1px solid #ccc;
+ }
+ .taglist span:nth-of-type(1){
+ 	margin-left: 0;
+ }
+ 
+/*llllllllll*/
+/*社交号弹框里的样式*/
+  .idphonediv{
+	 	display: flex;
+	 	justify-content: space-around;
+	 	position: relative;
+	 	top: -1px;
+  }
+   :host ::ng-deep .tankuang_cendiv .ant-table-tbody > tr > td{
+		padding:6px 10px;
+		text-align: center;
+   }
+	:host ::ng-deep .tankuang_cendiv .ant-table-thead > tr > th{
+	    padding:5px 5px;
+	    text-align: center;
+	    background: white;
+	}
+.wechat_leftdiv{
+	width: 370px;
+	border:1px solid #ccc;
+	position: relative;
+	left:35px;
+	height: 345px;
+}
+	
+.wechat_botdiv{
+	width: 370px;
+	border:1px solid #ccc;
+	position: relative;
+	left: 78px;
+	height: 345px;
+	overflow: auto;
+}
+#righttable thead{
+	border-bottom:1px solid #ccc;
+}
+#righttable thead tr{
+	width: 368px;
+    display: flex;
+    justify-content: space-around;
+    line-height: 30px;
+}
+#righttable thead th{
+	height: 30px;
+	border: none;
+	font-weight: 600;
+}
+#righttable tbody tr{
+	width:366px;
+	display: block;
+	height: 64px;
+	border-bottom:1px solid #ccc;
+}
+#righttable tbody{
+    width: 368px;
+    height: 310px;
+    display: block;
+    overflow: auto;
+}
+#righttable tbody div{
+     width: 340px;
+}
+
+#righttable tbody::-webkit-scrollbar{
+    width:2px;
+}
+#righttable tbody::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 4px;
+}
+/*滑块样式*/
+#righttable tbody::-webkit-scrollbar-thumb {
+    border-radius:3px;
+    background:#2ABF9E;
+}
+textarea{
+	width:380px;
+    height: 60px;
+    border:1px solid #ccc;
+    outline: none;
+    text-align: left;
+    resize: none;
+    padding-left: 15px;
+}

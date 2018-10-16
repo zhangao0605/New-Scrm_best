@@ -1,0 +1,170 @@
+<div class="systembulletin" style="padding: 24px;">
+        <div class="systembulletin_text">
+            <span><b>管理</b>&nbsp;&nbsp;>系统公告管理</span>
+        </div>
+        <div class="systembulletin_con">
+            <ul class="headul">
+            	 <li>
+            		<input type="text" placeholder="名称/类型/状态/等级"  [(ngModel)]="searmodle"/>
+            	</li>
+            	<li>
+            		<input type="button" value="搜索" (click)="changeagument()">
+            	</li>
+            	<li>
+	            		<button class="newuser" (click)="showaddagument()">添加公告</button>
+	            	</li>
+            </ul>
+            <div style="clear: both;"></div>
+            <div style="margin-top: 20px;" class="zaqj">
+	            	<nz-table #nzTable nzBordered
+	            		  [nzData]="allagumentData"
+					      [nzFrontPagination]="false"
+					      [nzTotal]="total"
+					      [(nzPageIndex)]="pageIndex"
+					      [(nzPageSize)]="pageSize"
+					      (nzPageIndexChange)="searchData($event)"
+					      (nzPageSizeChange)="searchData(true)">
+				      <thead>
+					      <tr>
+					        <th nzWidth="5%">ID</th>
+					        <th nzWidth="11%">公告标题</th>
+					        <th nzWidth="7%">状态</th>
+					        <th nzWidth="7%">作者</th>
+					        <th nzWidth="8%">添加时间</th>
+					        <th nzWidth="8%">发布时间</th>
+					        <th nzWidth="12%">操作</th>
+					      </tr>
+				      </thead>
+				      <tbody>
+						      <tr *ngFor="let item of allagumentData;let i = index">
+							        <td>{{item.id}}</td>
+							        <td>{{item.title}}</td>
+							        <td>{{item.status==0?'未发布':'发布'}}</td>
+							        <td>{{item.author}}</td>
+							        <td>{{item.addTimeString}}</td>
+							        <td>{{item.releaseTimeString}}</td>
+							        <td class="imglist">
+							        	<img src="./assets/images/update.png" (click)="updateagument(item.id)">
+							        	<img src="./assets/images/delect.png" (click)="delectagument(item.id)">
+							        	<img src="./assets/images/liuyan.png" (click)="seeagument(item.id)">
+							        	<img src="./assets/images/fabu.png" (click)="fabuagument(item.id)">
+							        </td>
+						      </tr>
+				      </tbody>
+				    </nz-table>
+            </div>
+            
+            
+                <!--增加公告-->
+		        <div class="systembulletin_addcard" *ngIf="isaddagument">
+				     	 <div class="systembulletin_addcard_head">
+				     	 	<span>添加公告</span>
+				     	 	<span (click)="closeagument()" class="closebtncur">
+				     	 		<span>x</span>
+				     	 	</span>
+				     	 </div>
+				     	 <div class="systembulletin_addcard_center">
+				     	 	 <ul>
+				     	 	 	<li>
+				     	 	 		<span>标题:</span>
+				     	 	 		<div>
+				     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="agumenttitle"> 
+				     	 	 		</div>
+				     	 	 	</li>
+				     	 	 	<li>
+				     	 	 		<span>作者:</span>
+				     	 	 		<div>
+				     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="agumentauthor">
+				     	 	 		</div>
+				     	 	 	</li>
+				     	 	 	<li>
+				     	 	 		<span>正文:</span>
+				     	 	 		<div>
+				     	 	 			<textarea  placeholder="请输入正文" [(ngModel)]="agumenttext"></textarea>
+				     	 	 		</div>
+				     	 	 	</li>
+				     	 	 	<li>
+				     	 	 		<span>摘要:</span>
+				     	 	 		<div>
+				     	 	 			<textarea  placeholder="选填" [(ngModel)]="agumentzhaiyao"></textarea>
+				     	 	 		</div>
+				     	 	 	</li>
+				     	 	 </ul>
+				     	 </div>
+				     	 <div class="systembulletin_addcard_footer">
+				     	 	<span style="float: right;margin-right:20px;">
+				        		<button class="quxiao" (click)="closeagument()">取消</button>
+				        		<button class="sure" (click)="addagument()">确定</button>
+				           </span>
+				     	 </div>
+		     </div>
+		     
+		     <!--预览-->
+		     <div class="systembulletin_detail" *ngIf="isdetail">
+				     	 <div class="systembulletin_detail_head">
+				     	 	<span>查看</span>
+				     	 	<span (click)="closeisdetail()" class="closebtncur">
+				     	 		<span>x</span>
+				     	 	</span>
+				     	 </div>
+				     	 <div class="systembulletin_detail_center">
+				     	 	<div>
+				     	 		<div style="border-bottom:1px solid #ccc;">
+				     	 			<h3>系统公告:{{detailData.title}}</h3>
+					     	 		<span>时间 ：{{detailData.addTime}}</span>
+					     	 		<span style="margin-left:30px;">作者：{{ detailData.author}} </span>
+				     	 		</div>
+				     	 		<div style=";margin-top:25px;overflow: hidden;">
+				     	 			{{detailData.content}}
+				     	 		</div>
+				     	 	</div>
+				         </div>
+		     </div>
+		     
+             <!--xiugai公告-->
+		        <div class="systembulletin_addcard" *ngIf="isupdateagument">
+				     	 <div class="systembulletin_addcard_head">
+				     	 	<span>修改公告</span>
+				     	 	<span (click)="closeupdateagument()" class="closebtncur">
+				     	 		<span>x</span>
+				     	 	</span>
+				     	 </div>
+				     	 <div class="systembulletin_addcard_center">
+				     	 	 <ul>
+				     	 	 	<li>
+				     	 	 		<span>标题:</span>
+				     	 	 		<div>
+				     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="update_title"> 
+				     	 	 		</div>
+				     	 	 	</li>
+				     	 	 	<li>
+				     	 	 		<span>作者:</span>
+				     	 	 		<div>
+				     	 	 			<input type="text" placeholder="请输入" [(ngModel)]="update_author">
+				     	 	 		</div>
+				     	 	 	</li>
+				     	 	 	<li>
+				     	 	 		<span>正文:</span>
+				     	 	 		<div>
+				     	 	 			<textarea  placeholder="请输入正文" [(ngModel)]="update_text"></textarea>
+				     	 	 		</div>
+				     	 	 	</li>
+				     	 	 	<li>
+				     	 	 		<span>摘要:</span>
+				     	 	 		<div>
+				     	 	 			<textarea  placeholder="选填" [(ngModel)]="update_zhaiyao"></textarea>
+				     	 	 		</div>
+				     	 	 	</li>
+				     	 	 </ul>
+				     	 </div>
+				     	 <div class="systembulletin_addcard_footer">
+				     	 	<span style="float: right;margin-right:20px;">
+				        		<button class="quxiao" (click)="closeupdateagument()">取消</button>
+				        		<button class="sure" (click)="sureupdate()">确定</button>
+				           </span>
+				     	 </div>
+		     </div>
+            
+        </div>
+</div>
+<app-mask *ngIf="ismask"></app-mask>     

@@ -1,0 +1,200 @@
+<div class="address_book_management">
+  <div class="address_book_management_title">
+    <span class="address_book_management_title_1">资源</span>&nbsp;&nbsp;>&nbsp;通讯录管理
+  </div>
+  <div class="address_book_management_all_search">
+    <input type="text" placeholder="标签名" [(ngModel)]='fuzzyQuery' class="address_book_management_all_search_input">
+    <button class="address_book_management_all_search_search" (click)="fuzzy_query_table()">搜索</button>
+    <button class="address_book_management_all_search_batch_deletion" (click)="tagging_public_open(-1)">批量打标签</button>
+    <button class="address_book_management_all_search_batch_deletion" (click)="addressBookUpload()"
+            style="margin-right: 50px">
+      导入通讯录
+    </button>
+    <button class="address_book_management_all_search_batch_deletion" (click)="delThis(-1)">批量删除</button>
+  </div>
+  <!--主体title+表格-->
+  <div class="address_book_management_body">
+    <nz-table
+      #nzTable
+      [nzData]="dataSet"
+      [nzPageSize]="10"
+      nzBordered
+      [nzFrontPagination]="false"
+      [nzData]="dataSet"
+      [nzLoading]="loading"
+      [nzTotal]="total"
+      [(nzPageIndex)]="pageIndex"
+      [(nzPageSize)]="pageSize"
+      (nzPageIndexChange)="searchData()"
+      (nzPageSizeChange)="searchData(true)">
+      <thead>
+      <tr style="background-color: red">
+        <th nzWidth="3%" nzShowCheckbox  [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
+            (nzCheckedChange)="checkAll($event)"></th>
+        <th nzWidth="5%" class="border_right_none">序号</th>
+        <th nzWidth="10%" class="border_right_none">通讯方式</th>
+        <th nzWidth="10%" class="border_right_none">姓名</th>
+        <th nzWidth="10%" class="border_right_none">好友</th>
+        <th nzWidth="10%" class="border_right_none">添加时间</th>
+        <th nzWidth="10%" class="border_right_none">导入时间</th>
+        <th nzWidth="10%" class="border_right_none">社交号</th>
+        <th nzWidth="10%" class="border_right_none">有效性</th>
+        <th nzWidth="6%" class="border_right_none">添加次数</th>
+        <th nzWidth="6%" class="border_right_none">是否共有</th>
+        <th nzWidth="10%">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of dataSet; let index = index;" [ngClass]="index%2 === 0 ? 'table_tr_bgColor_white' : 'table_tr_bgColor_gray'">
+        <td nzShowCheckbox [(nzChecked)]="data.checked"[attr.id]="data.id"
+            (nzCheckedChange)="refreshStatus($event)" (click)="thisIndex(index)" class="oneCheck"></td>
+        <td class="border_right_none">{{((pageIndex-1)*10)+index+1}}</td>
+        <td [attr.colspan]="7" class="table_edit border_right_none">
+          <div class="table_div">
+            <div class="table_div_titlr">
+              <div class="text_more" style="left: -7px;position: relative">{{data.phone}}</div>
+              <div class="text_more" style="left: -7px;position: relative">{{data.username}}</div>
+              <div class="text_more" style="left: -5px;position: relative">{{IsFriend(data.whetherFriend)}}</div>
+              <div class="text_more">{{data.createTimeString}}</div>
+              <div class="text_more">{{data.importTimeString}}</div>
+              <div class="text_more" style="left: 5px;position: relative">{{data.socialNumber}}</div>
+              <div class="text_more" style="left: 5px;position: relative">{{Iseffectiveness(data.effectiveness)}}</div>
+            </div>
+            <div class="table_div_tag">
+                    <span *ngFor="let tagindex of data.tagss" [hidden]="tagindex.tags===''?true:false">
+                      {{tagindex.tags}}
+                    </span>
+            </div>
+          </div>
+        </td>
+        <td class="border_right_none">
+          <div>{{data.addNumber}}</div>
+        </td>
+        <td class="border_right_none">
+          <div>{{IsPublic(data.isPublic)}}</div>
+        </td>
+        <td>
+          <ul class="address_book_management_operating_bg_ul">
+            <li style="margin-left:11%" nzTitle="打标签" nz-tooltip nzPlacement="top"  class="address_book_management_operating_bg1" (click)="tagging_public_open(data.id)"></li>
+            <li nzTitle="删除" nz-tooltip nzPlacement="top"  class="address_book_management_operating_bg2" (click)="delThis(data.id)"></li>
+          </ul>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  <!--导入通讯录-->
+  <div class="address_book_management_upload" [hidden]="addressBookUploadIs">
+    <div class="address_book_management_upload_title">
+      导入通讯录
+      <span class="address_book_management_upload_close" (click)="address_book_management_upload_close()">x</span>
+    </div>
+    <div class="address_book_management_upload_con">
+      <div class="address_book_management_upload_text">
+        <div class="address_book_management_upload_file">
+          <div class="address_book_management_upload_file_left">
+            请选择文件：
+          </div>
+          <div class="address_book_management_upload_file_right">
+            <nz-upload
+
+              [(nzFileList)]="addressbookupList"
+              [nzBeforeUpload]="beforeUpload">
+              <button nz-button [disabled]="addressbookupList.length >= 1">
+                <i class="anticon anticon-upload"></i><span>选择文件</span>
+              </button>
+            </nz-upload>
+            <button nz-button [nzType]="'primary'" [nzLoading]="uploading"
+                    (click)="address_book_management_upload_sure()" [disabled]="addressbookupList.length == 0"
+                    style="margin-top: 16px">
+              {{ uploading ? '上传中' : '上传' }}
+            </button>
+          </div>
+
+        </div>
+        <div class="upSuc" [hidden]="isShowSuc"  [ngStyle]="{'color':IsSuc === false ? 'red' : 'green' }">
+          {{isShowSText}}
+        </div>
+      </div>
+    </div>
+    <div class="address_book_management_upload_footer">
+      <div class="address_book_management_upload_choose">
+        <button class="address_book_management_upload_choose_sure" (click)="address_book_management_upload_close()">确认
+        </button>
+      </div>
+    </div>
+  </div>
+  <!--打标签-->
+  <div class="tagging_public" [hidden]="taggingPublic">
+    <div class="tagging_public_title">
+      修改标签
+      <span class="tagging_public_close" (click)="tagging_public_close()">x</span>
+    </div>
+
+    <div class="tagging_public_con">
+      <!--输入搜索打标签部分-->
+      <div class="searchTag">
+        <button class="tagging_public_con_button" (click)="tagging_public_clean_selectedUser()">添加</button>
+        <nz-select style="width: 80%;" nzMode="multiple" [(ngModel)]="selectedUser" nzPlaceHolder="请输入关键字" nzAllowClear
+                   nzShowSearch [nzServerSearch]="true" (nzOnSearch)="onSearch($event)">
+          <ng-container *ngFor="let o of optionList;let ids=index">
+            <nz-option *ngIf="!isLoading" [nzValue]="ids" [nzLabel]="o.tagName"></nz-option>
+          </ng-container>
+          <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+            <i class="anticon anticon-loading anticon-spin loading-icon"></i> 数据加载中...
+          </nz-option>
+        </nz-select>
+      </div>
+      <!--最新标签-->
+      <div class="newTag_public">
+        <div class="newTag_public_title">
+          最新标签
+        </div>
+        <div class="newTag_public_con">
+          <nz-checkbox-wrapper style="width: 100%;margin-top: -10px" (nzOnChange)="newTag_con_change($event)">
+            <div nz-row>
+              <div nz-col nzSpan="4" *ngFor="let a of newTagList;let idx=index"><label nz-checkbox
+                                                                                       [(ngModel)]="a.checked"
+                                                                                       nzValue={{idx}}>{{a.tagName}}</label>
+              </div>
+            </div>
+          </nz-checkbox-wrapper>
+        </div>
+      </div>
+      <!--常用标签-->
+      <div class="newTag_public" style="margin-top: 2px">
+        <div class="newTag_public_title">
+          常用标签
+        </div>
+        <div class="newTag_public_con">
+          <nz-checkbox-wrapper style="width: 100%;margin-top: -10px" (nzOnChange)="usedTag_con_change($event)">
+            <div nz-row>
+              <div nz-col nzSpan="4" *ngFor="let a of useTagList;let idx=index"><label nz-checkbox
+                                                                                       [(ngModel)]="a.checked"
+                                                                                       nzValue={{idx}}>{{a.tagName}}</label>
+              </div>
+            </div>
+          </nz-checkbox-wrapper>
+        </div>
+      </div>
+      <!--标签信息-->
+      <div class="tagLibrary">
+        <div class="tagLibrary_box">
+          <nz-tag nzMode="closeable" [nzColor]="'blue'"
+                  (nzOnClose)="tagging_public_onClose($event,a.id,a.addtype,a.Tagindex)"
+                  (nzAfterClose)="tagging_public_afterClose()"
+                  *ngFor="let a of Ownedtag;let ins=index">{{a.tagName}}
+          </nz-tag>
+        </div>
+      </div>
+    </div>
+    <div class="tagging_public_footer">
+      <div class="tagging_public_choose">
+        <button class="tagging_public_choose_cancel" (click)="tagging_public_close()">取消</button>
+        <button class="tagging_public_choose_sure" (click)="tagging_public_true()">确认</button>
+      </div>
+    </div>
+  </div>
+  <div class="Mask" [hidden]="isOperating">
+  </div>
+</div>

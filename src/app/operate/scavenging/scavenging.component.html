@@ -1,0 +1,217 @@
+<div class="scavenging" style="padding: 24px;">
+  <div class="scavenging_text">
+      <span><b>运营</b>&nbsp;&nbsp;>扫码进群</span>
+  </div>
+  <div class="scavenging_con">
+      <ul>
+          <li>
+              <span>任务名称</span>
+              <div>
+                <input type="text" [(ngModel)]="taskmodel">
+              </div>
+          </li>
+          <li>
+              <span>社交号&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <div>
+                <input type="text" [(ngModel)]="shejiao">
+                <button class="choosebutton" (click)="showisscaven()">选择</button>
+              </div>
+             
+          </li>
+          <li>
+              <span>优先级&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <div>
+                  <nz-radio-group [(ngModel)]="radioValue">
+                      <label nz-radio nzValue="A">普通</label>
+                      <label nz-radio nzValue="B">紧急</label>
+                  </nz-radio-group>
+              </div>
+          </li>
+          <li>
+              <span>执行时间</span>
+              <div>
+                  <nz-week-picker nzFormat="yyyy-MM-dd" [(ngModel)]="date" (ngModelChange)="getWeek($event)" nzPlaceHolder="Select week"></nz-week-picker>
+                  <nz-time-picker [(ngModel)]="time" (ngModelChange)="log($event)" style="margin-left:25px;width: 178px;"></nz-time-picker>
+              </div>
+          </li>
+          <li>
+             <div style="margin-left:175px;" class="uploadimg">
+                 <div class="clearfix">
+							    <nz-upload
+							      nzAction="http://192.168.1.241:8081/scrm/moment/test1"
+							      nzListType="picture-card"
+							      [nzBeforeUpload]="beforeUpload"
+							      [(nzFileList)]="fileList"
+							      [nzShowButton]="fileList.length < 1"
+							      [nzPreview]="handlePreview">
+							        <i class="anticon anticon-plus"></i>
+							        <div class="ant-upload-text">Upload</div>
+							    </nz-upload>
+							    <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible=false">
+							      <ng-template #modalContent>
+							        <img [src]="previewImage" [ngStyle]="{ 'width': '100%' }" />
+							      </ng-template>
+							    </nz-modal>
+							  </div>
+             </div>
+          </li>
+          <li class="flexwrap">
+             <span>高级选项</span>
+              <div>
+                  <span>超时时间</span>
+                  <nz-select style="width: 160px;margin-left:20px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="timeout">
+                      <nz-option nzLabel="10分钟" nzValue="10"></nz-option>
+                      <nz-option nzLabel="30分钟" nzValue="30"></nz-option>
+                      <nz-option nzLabel="1小时" nzValue="60"></nz-option>
+                      <nz-option nzLabel="2小时" nzValue="120"></nz-option>
+                      <nz-option nzLabel="12小时" nzValue="720"></nz-option>
+                      <nz-option nzLabel="24小时" nzValue="1440"></nz-option>
+                  </nz-select>
+                 <br>
+                 <br>
+                 <span>加入间隔</span>
+                 <nz-select style="width:88px;margin-left:20px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="interval1">
+                    <nz-option nzLabel="5" nzValue="5"></nz-option>
+                    <nz-option nzLabel="10" nzValue="10"></nz-option>
+                    <nz-option nzLabel="15" nzValue="15"></nz-option>
+                    <nz-option nzLabel="20" nzValue="20"></nz-option>
+                    <nz-option nzLabel="25" nzValue="25"></nz-option>
+                    <nz-option nzLabel="30" nzValue="30"></nz-option>
+                    <nz-option nzLabel="35" nzValue="35"></nz-option>
+                    <nz-option nzLabel="40" nzValue="40"></nz-option>
+                    <nz-option nzLabel="45" nzValue="45"></nz-option>
+                    <nz-option nzLabel="50" nzValue="50"></nz-option>
+                    <nz-option nzLabel="55" nzValue="55"></nz-option>
+                    <nz-option nzLabel="60" nzValue="60"></nz-option>
+                 </nz-select>
+                  <b>～</b>
+                  <nz-select style="width:88px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="interval2">
+                      <nz-option nzLabel="5" nzValue="5"></nz-option>
+                      <nz-option nzLabel="10" nzValue="10"></nz-option>
+                      <nz-option nzLabel="15" nzValue="15"></nz-option>
+                      <nz-option nzLabel="20" nzValue="20"></nz-option>
+                      <nz-option nzLabel="25" nzValue="25"></nz-option>
+                      <nz-option nzLabel="30" nzValue="30"></nz-option>
+                      <nz-option nzLabel="35" nzValue="35"></nz-option>
+                      <nz-option nzLabel="40" nzValue="40"></nz-option>
+                      <nz-option nzLabel="45" nzValue="45"></nz-option>
+                      <nz-option nzLabel="50" nzValue="50"></nz-option>
+                      <nz-option nzLabel="55" nzValue="55"></nz-option>
+                      <nz-option nzLabel="60" nzValue="60"></nz-option>
+                  </nz-select>&nbsp;&nbsp;&nbsp;&nbsp;秒
+                   
+                
+                	    
+              </div>
+          </li>
+         
+      </ul>
+       <div class="buttongroup">
+                 <button class="onebut" *ngIf="surebtn" (click)="open()">立即执行</button>
+                 <button class="twobut" *ngIf="!surebtn">确认添加</button>
+       </div>
+  </div>
+     <div class="scavenging_social" *ngIf="isscaven">
+        	<div class="scavenging_social_head">
+        		<span>选择社交号</span>
+        		<span class="spanclose" (click)="closeisscaven()">x</span>
+        	</div>
+        	<div class="scavenging_social_center">
+        		<div class="tankuang_headdiv">
+        			<ul class="tankuang_ul">
+        				<li>未选择14</li>
+        				
+        				<li>
+        					<input type="text" placeholder="标签/微信号/设备号/资产号" [(ngModel)]="sjinputmodel">
+        				</li>
+        				<li>
+        					<button (click)="changesj()">搜索</button>
+        				</li>
+        			</ul>
+        		</div>
+        		<div class="tankuang_cendiv">
+        		
+        		   <div class="wechat_leftdiv">
+        				 <nz-table #nzTable 
+        				 	  [nzData]="shejarr"
+						      [nzFrontPagination]="false"
+						      [nzTotal]="total"
+						      [(nzPageIndex)]="pageIndex"
+						      [(nzPageSize)]="pageSize"
+						      (nzPageIndexChange)="searchData($event)"
+						      (nzPageSizeChange)="searchData(true)">
+						  <thead>
+						    <tr>
+						      <th></th>
+						      <th>id</th>
+						      <th>手机号/微信号</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr *ngFor="let item of shejarr;let i = index">
+						      <td>
+						      	 <label nz-checkbox [nzValue]="item.id" [(ngModel)]="item.checked" (ngModelChange)="addright(item,item.checked)" class="lable"> 
+	     				 	        {{item.tagName}}
+	     				         </label>
+	     				          
+						      </td>
+						      <td [attr.colspan]="2">
+						      	 <div class="idphonediv">
+				                 	 <span style="position: relative;right: 11px;">{{item.id}}</span>
+				                 	 <span></span>
+				                     <span style="position: relative;right: 20px;">{{item.socialNumber}}</span>
+                                 </div>
+				                 <div class="taglist">
+				                 	<span *ngFor="let tagindex of item.tagss">
+				                      {{tagindex.tags}}
+				                    </span>
+				                 </div> 	
+						      </td>
+						    </tr>
+						  </tbody>
+						</nz-table>
+        			</div>
+        			
+        			<div class="wechat_botdiv" id="scrolldiv">
+        				 <table  id="righttable">
+						  <thead>
+						    <tr>
+						      <th>id</th>
+						      <th>手机号/微信号</th>
+						      <th>操作</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						      <div>
+						      	  <tr *ngFor="let item of rightData;let i = index">
+							    	<td colspan="3">
+							    			<div class="idphonediv" style="margin-top: 6px;">
+							                 	 <span style="position: relative;right:-13px;">{{item.id}}</span>
+							                 	 <span style="position: relative;right:-22px;">{{item.socialNumber}}</span>
+							                     <span style="position: relative;right:-18px;" (click)="delectwechta(item,i)">删除</span>
+	                                       </div>	
+						                 <div class="taglist" style="position: relative;left: 26px;">
+						                 	<span *ngFor="let tagindex of item.tagss">
+					                             {{tagindex.tags}}
+					                         </span>
+						                 </div> 	
+							    	</td>
+							    </tr>
+							    
+							    
+						      </div>
+						  </tbody>
+						</table>
+        			</div>
+        		</div>
+        	</div>
+        	<div class="scavenging_social_foot">
+        		<span style="float: right;">
+        			<button class="quxiao" (click)="closeisscaven()">取消</button>
+        		    <button class="sure" (click)="surewechat()">确定</button>
+        		</span>
+        		
+        	</div>
+     </div>
+</div>
+<app-mask *ngIf="ismask"></app-mask>

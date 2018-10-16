@@ -1,0 +1,231 @@
+<div class="customerstatistics" style="padding: 24px;">
+        <div class="customerstatistics_text">
+            <span><b>统计</b>&nbsp;&nbsp;>客服统计</span>
+             <nz-select style="width:100px;position: relative;top:-13px;float: right;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="wechatidmodel" (ngModelChange)="byidchangedata(wechatidmodel)">
+               	    <nz-option *ngFor="let item of weChatList;let i = index" nzLabel="{{item.nickName}}" nzValue="{{item.id}}">
+               	    	
+               	    </nz-option>
+           </nz-select>
+        </div>
+        <div class="customerstatistics_con">
+	        	<ul class="general_topul">
+	        		 <li class="oneli">
+	        		  	<div class="general_left">
+	        		  		<img src="./assets/images/tongjione.png">
+	        		  	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>客户总数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.friendCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        		 <li>
+	        		 	<div class="general_left">
+	        		 		<img src="./assets/images/tongjitwo.png">
+	        		 	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>近一周新增客户数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.newFriendCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        		 <li>
+	        		 	<div class="general_left">
+	        		 		<img src="./assets/images/tongjithree.png">
+	        		 	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>群组总数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.chatroomCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        		 <li>
+	        		 	<div class="general_left">
+	        		 			<img src="./assets/images/tongjifour.png">
+	        		 	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>今日未读消息数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.unReadMessageCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        	</ul>
+	        	<!--中一-->
+	        	<div class="general_center">
+	        		<!--左-->
+	        		   <div class="toadyweek">
+	        		      <b>{{title}}</b>
+	        		      <div class="tongji">
+	        		      	   <div class="tongji_head">
+	        		      	         <div class="">
+	        		      	    		 <span class="sbnum">{{Groupcount}}</span>
+	        		      	            <span class="sbzi">分组总数</span>
+	        		      	    	</div>
+		        		      		
+			        		      	<div class="tongji_head_right">
+			        		      		 <span class="circle" style="background:rgba(43,169,235,1);"></span>
+			        		      		 <span style="margin-right: 35px;">分组数</span>
+			        		      		 <span class="circle" style="background:rgba(144,216,131,1);"></span>
+			        		      		 <span style="margin-right: 35px;">未分组数</span>
+			        		      	</div>
+			        		   </div>
+	        		      	    <ol>
+	        		      	    	<!--左-->
+	        		      	    	<div class="todaydiv">
+	        		      	    		
+	        		      	    	</div>
+	        		      	    	<!--右-->
+	        		      	    	<div class="riqidiv">
+	        		      	    		<li [ngClass] = "coloritem==0 ? 'li-color' : ''" (click)="getTimeClick(0)">今日</li>
+	        		      	    	    <li [ngClass] = "coloritem==1 ? 'li-color' : ''" (click)="getTimeClick(1)">近一周</li>
+	        		      	    	    <li [ngClass] = "coloritem==2 ? 'li-color' : ''" (click)="getTimeClick(2)">本月</li>
+	        		      	    	    <li style="width: 385px;">
+		        		      	    		  <nz-range-picker nzFormat="yyyy-MM-dd" ngModel (ngModelChange)="getday($event)"></nz-range-picker>
+	        		      	    	    </li>
+	        		      	    	</div>
+	        		      	    </ol>
+	        		      	     <div id="one" style="width:918px;height:228px;">
+
+								</div> 
+	        		      </div> 
+	        	     </div>
+	        	     <!--右-->
+	        	     <div class="runuser">
+	        	     	 <b>近一周活跃客户数排行榜</b>
+	        	     	 <div class="huoyue">
+	        	     	 	      <span class="sbnum">{{Activecount}}</span>
+	        		      	      <span class="sbzi">总活跃数</span>
+	        		      	     <div class="toadychathead">
+						   	       <span>排名</span>
+						   	       <span>社交号</span>
+						   	       <span>活跃客户数</span>
+						   	       <span>占比</span>
+			                     </div>
+						      	 <div class="gaoxuying">
+					      	    	<ul class="toadychathead_ul">
+					      	    		<li *ngFor="let item of activeChatData;let i = index">
+						      	    		<span>{{i}}</span>
+						      	    		<span>{{item['nickName']}}</span>
+						      	    		<span>{{item['chatCount']}}</span>
+						      	    		<span>
+						      	    			  <nz-progress [nzPercent]="item.proportion" nzStatus="active"></nz-progress>
+						      	    		</span>
+					      	    	   </li>
+					      	    	</ul>
+						      	  </div> 
+	        	     	 </div>
+	        	     </div>
+	        	</div>
+	        	<!--中二-->
+	        	<div class="general_centertwo">
+	        		<!--左-->
+	        		   <div class="tuokenum">
+	        		      <b>设备检测</b>
+	        		      <div class="tongji">
+	        		      	    <div class="tongji_head">
+		        		      		<div class="">
+			        		      		 <span class="sbnum">{{deviceCount}}</span>
+		        		      	         <span class="sbzi">设备总数</span>
+			        		      	</div>
+			        		      	<div class="tongji_head_right">
+			        		      		 <span class="circle" style="background:rgba(43,169,235,1);"></span>
+			        		      		 <span style="margin-right: 35px;">总设备数</span>
+			        		      		 <span class="circle" style="background:rgba(144,216,131,1);"></span>
+			        		      		 <span style="margin-right: 35px;">在线设备数</span>
+			        		      		 <span class="circle" style="background:rgba(255,216,120,1);"></span>
+			        		      		 <span>空闲设备数</span>      
+			        		      	</div>
+		        		      	</div>
+	        		      	    
+	        		      	     <ol>
+	        		      	    	<!--左-->
+	        		      	    	<div class="todaydiv">
+	        		      	    		 
+	        		      	    	</div>
+	        		      	    	
+	        		      	    	
+	        		      	    </ol>
+	        		      	     <div id="two" style="width:918px;height:242px;">
+
+								</div>
+	        		      </div>
+	        	     </div>
+	        	     <!--右-->
+	        	     <div class="jiaoliunum">
+	        	     	 <b>今日交流客户数</b>
+	        	     	 <div class="huoyue">
+	        	     	 	      <span class="sbnum">{{Toadycount}}</span>
+	        		      	      <span class="sbzi">总活跃数</span>
+	        		      	    <div class="toadychathead">
+						   	       <span>排名</span>
+						   	       <span>社交号</span>
+						   	       <span>今日交流客户数</span>
+						   	       <span>占比</span>
+			                     </div>
+						      	 <div class="gaoxuying">
+					      	    	<ul class="toadychathead_ul">
+					      	    		<li *ngFor="let item of todayChatData;let i = index">
+						      	    		<span>{{i}}</span>
+						      	    		<span>{{item['nickName']}}</span>
+						      	    		<span>{{item['chatCount']}}</span>
+						      	    		<span>
+						      	    			  <nz-progress [nzPercent]="item.proportion" nzStatus="active"></nz-progress>
+						      	    		</span>
+					      	    	   </li>
+					      	    	</ul>
+						      	  </div> 
+	        	     	 </div>
+	        	     </div>
+	        	</div>
+	        	<!--底部-->
+	        	<div class="general_foot">
+	        		   <ul>
+	        		   	  <li class="onlyli">
+	        		   	  	<div class="general_left"><img src="./assets/images/tongjitwo.png"></div>
+			        		 	  <div class="general_right">
+			        		 	  	 <span>近一周新增群组（数）</span>
+			        		 	  	 <br/>
+			        		 	  	 <b>{{headData.newChatroomCount}}</b>
+			        		 	  	 
+			        		 	  </div> 
+	        		   	  </li>
+	        		   	  <li class="marginno">
+	        		   	  	<span>近一周自动回复（数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.autoreplyCount}}</b>
+		        		 	  	 
+	        		   	  </li>
+	        		   	  <li>
+	        		   	  	<span>今日消息（数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.todayMessageCount}}</b>
+		        		 	  	
+	        		   	  </li>
+	        		   	  <li>
+	        		   	  	<span>社交号（总数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.socialaccountCount}}</b>
+		        		 	  	
+	        		   	  </li>
+	        		   	  <li>
+	        		   	  	<span>发送添加好友申请（总数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.sendApplyCount}}</b>
+		        		 	  	 
+	        		   	  </li>
+	        		   	  <li>
+	        		   	  	<span>未通过好友申请（总数）</span>
+		        		 	  	 <br/>
+		        		 	  	 <b>{{headData.noApplicationCount}}</b>
+		        		 	  	 
+	        		   	  </li>
+	        		   </ul>
+	        	</div>
+	        	
+        </div>
+</div>
+      

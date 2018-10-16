@@ -1,0 +1,137 @@
+<div class="task_management">
+  <div class="task_management_title">
+    <span class="task_management_title_1">任务</span>&nbsp;&nbsp;>&nbsp;任务管理
+  </div>
+  <div class="task_management_body" nz-row>
+        <div class="task_management_all">
+          <div class="task_management_all_search">
+            <input type="text" placeholder="名称/类型/状态/等级" [(ngModel)]='fuzzyQuery' class="task_management_all_search_input">
+            <button class="task_management_all_search_search"  (click)="fuzzy_query_table()">搜索</button>
+            <!--<button class="task_management_all_search_batch_deletion" (click)="delThis(-1)">批量删除</button>-->
+          </div>
+        </div>
+        <div class="address_book_management_body">
+          <nz-table
+            #ajaxTable
+            nzBordered
+            [nzFrontPagination]="false"
+            [nzData]="dataSet"
+            [nzLoading]="loading"
+            [nzTotal]="total"
+            [(nzPageIndex)]="pageIndex"
+            [(nzPageSize)]="pageSize"
+            (nzPageIndexChange)="searchData()"
+            (nzPageSizeChange)="searchData(true)">
+            <!--数据总条数-->
+            <!--当前页码，可双向绑定-->
+            <!--每页展示多少数据，可双向绑定-->
+            <!--当前页码改版时的回调函数-->
+            <!--页数改变时的回调函数-->
+            <thead>
+            <tr>
+              <th nzWidth="3%" nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
+                  (nzCheckedChange)="checkAll($event)"></th>
+              <th nzWidth="5%">序号</th>
+              <th nzWidth="20%">任务名称</th>
+              <th nzWidth="20%">运行任务</th>
+              <th nzWidth="14%">使用次数</th>
+              <th nzWidth="14%">创建人</th>
+              <th nzWidth="14%">创键时间</th>
+              <th nzWidth="10%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dataSet;let index=index"
+                [ngClass]="index%2 === 0 ? 'table_tr_bgColor_white' : 'table_tr_bgColor_gray'">
+              <td nzShowCheckbox [(nzChecked)]="data.checked" [attr.id]="data.id"
+                  (nzCheckedChange)="refreshStatus($event)" class="oneCheck" (click)="thisIndex(index)"></td>
+              <td>{{((pageIndex-1)*10)+index+1}}</td>
+              <td (click)="taskNameseedetail1(data.id)" class="taskNameColor">
+                {{data.taskName}}
+              </td>
+              <td>{{data.runTaskName}}</td>
+              <td>{{data.userNumber}}</td>
+              <td>{{data.account.username}}</td>
+              <td>{{data.createTime}}</td>
+              <td>
+                <ul class="task_table_ul">
+                  <li style="margin-left:11%" nzTitle="统计" nz-tooltip nzPlacement="top" class="task_table_bg1"></li>
+                  <!--<li class="task_table_bg2"></li>-->
+                  <li nzTitle="删除" nz-tooltip nzPlacement="top" class="task_table_bg3" (click)="delThis(data.id)"></li>
+                </ul>
+              </td>
+            </tr>
+            </tbody>
+          </nz-table>
+        </div>
+  </div>
+  <!--删除任务-->
+  <div class="grouping_remove" [hidden]="remobeThePublicNumber">
+    <div class="grouping_remove_con">
+      <div class="grouping_remove_con_title">
+        <span class="grouping_remove_con_title_icon"></span>确认要删除这条任务吗？
+      </div>
+      <div class="grouping_remove_con_text">
+        <span class="waring_color">是否确认删除当前任务</span>，请谨慎删除！
+
+      </div>
+      <div class="grouping_remove_con_button">
+        <button class="friends_circle_choose_cancel" (click)="grouping_remove_close()">取消</button>
+        <button class="friends_circle_choose_sure" (click)="grouping_remove_sure()">确认</button>
+      </div>
+    </div>
+  </div>
+
+  <!--任务计划详情-->
+  <div class="Common_template" [hidden]="Plandetails">
+    <div class="Common_template_title">
+      任务详情
+      <span class="task_template_addPlan_close" (click)="Plandetails_close()">x</span>
+    </div>
+    <div class="Common_template_con">
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">任务名称：</span><span>{{Plandetails_1}}</span>
+      </div>
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">任务归属：</span><span>{{Plandetails_2}}</span>
+      </div>
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">{{Plandetext_3}}：</span><span>{{Plandetails_3}}</span>
+      </div>
+      <div class="Common_template_con_Article" [hidden]="Plandeshow_4">
+        <span class="Common_template_con_Article_title">{{Plandetext_4}}：</span>
+        <div class="Common_template_con_div_con">
+          {{Plandetails_4}}
+        </div>
+      </div>
+      <div class="Common_template_con_Article" [hidden]="Plandeshow_5">
+        <span class="Common_template_con_Article_title">{{Plandetext_5}}：</span><span>{{Plandetails_5}}</span>
+      </div>
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">超时时间：</span><span>{{Plandetails_6}} s</span>
+        <span [hidden]="Plandeshow_7" style="margin-left: 90px" class="Common_template_con_Article_title">{{Plandetext_7}}：</span><span  [hidden]="Plandeshow_7">{{Plandetails_7}}</span>
+      </div>
+      <div class="Common_template_con_Article" [hidden]="Plandeshow_8">
+        <span class="Common_template_con_Article_title">{{Plandetext_8}}：</span><span>{{Plandetails_8}}</span>
+      </div>
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">{{Plandetext_9}}：</span><span>{{Plandetails_9}}</span>
+        <span style="margin-left: 50px" class="Common_template_con_Article_title">{{Plandetext_10}}：</span><span>{{Plandetails_10}}</span>
+      </div>
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">优先级：</span><span>{{taskRank(Plandetails_11)}}</span>
+      </div>
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">{{Plandetext_12}}：</span>
+        <div class="Common_template_con_div_con">{{Plandetails_12}}</div>
+      </div>
+    </div>
+    <div class="Common_template_con_footer">
+      <div class="Common_template_con_choose">
+        <button class="Common_template_con_choose_sure" (click)="Plandetails_close()">确认</button>
+      </div>
+    </div>
+  </div>
+  <div class="Mask" [hidden]="isOperating">
+  </div>
+</div>

@@ -1,0 +1,390 @@
+<div class="task_management group1">
+  <div class="task_management_title">
+    <span class="task_management_title_1">群管理</span>
+  </div>
+  <!--主体title+表格-->
+  <div class="task_management_body" nz-row>
+    <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'">
+      <nz-tab *ngFor="let tab of tabs;let index=index" [nzTitle]="tab " (nzSelect)="tabswith(index)" style="padding-left: 30px;padding-right: 30px">
+        <div class="task_management_all">
+          <div class="task_management_all_title">
+            <div>群总数：<span>{{chatroomTotal}}</span> 个</div>
+            <div>我是群主：<span>{{roleNumber}}</span><span> 个</span></div>
+          </div>
+          <div class="task_management_all_search">
+            <input type="text" placeholder="名称/类型/状态/等级"  [(ngModel)]='fuzzyQuery'  class="task_management_all_search_input">
+            <button class="task_management_all_search_search" (click)="msgSearch()">搜索</button>
+            <button class="task_management_all_search_batch_deletion" (click)="modify_the_group(-1,-1)">批量分组</button>
+          </div>
+        </div>
+        <div>
+          <nz-table
+            #nzTable
+            [nzData]="getTableData"
+            nzShowSizeChanger
+            [nzPageSize]="10"
+            nzBordered
+            [nzFrontPagination]="false"
+            [nzLoading]="loading"
+            [nzTotal]="total"
+            [(nzPageIndex)]="pageIndex"
+            [(nzPageSize)]="pageSize"
+            (nzPageIndexChange)="searchData()"
+            (nzPageSizeChange)="searchData(true)">
+            <thead>
+            <tr>
+              <th nzWidth="3%" nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
+                  (nzCheckedChange)="checkAll($event)"></th>
+              <th nzWidth="5%" class="border_right_none">头像</th>
+              <th nzWidth="7.5%" class="border_right_none">序号</th>
+              <th nzWidth="7.5%" class="border_right_none">群名称</th>
+              <th nzWidth="7.5%" class="border_right_none">群组</th>
+              <th nzWidth="7.5%" class="border_right_none">人数</th>
+              <th nzWidth="7.5%" class="border_right_none">分组</th>
+              <th nzWidth="7.5%" class="border_right_none">好友人数</th>
+              <th nzWidth="7.5%" class="border_right_none">所属社交号</th>
+              <th nzWidth="7.5%" class="border_right_none">上次联系</th>
+              <th nzWidth="5%" class="border_right_none">地区</th>
+              <th nzWidth="12%" class="border_right_none">添加时间</th>
+              <th nzWidth="15%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of getTableData; index as index;" [ngClass]="index%2 === 0 ? 'table_tr_bgColor_white' : 'table_tr_bgColor_gray'">
+              <td nzShowCheckbox [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event)" class="oneCheck"
+                  [attr.id]="data.id" class="oneCheck" (click)="thisIndex(index)"></td>
+              <td class="border_right_none"><img class="table_div_localFriendsPath"
+                                                 [src]="data.chatroomProfilePhoto===''?default_people:data.chatroomProfilePhoto" alt=""></td>
+              <td [attr.colspan]="8" class="table_edit border_right_none">
+                <div class="table_div">
+                  <div class="table_div_titlr">
+                    <div class="text_more" style="left: -7px;position: relative">{{((pageIndex-1)*10)+index+1}}</div>
+                    <div class="text_more" style="left: -7px;position: relative">{{data.chatroomName}}</div>
+                    <div class="text_more" style="left: -5px;position: relative">{{data.chatroomOwner}}</div>
+                    <div class="text_more">{{data.memberCount}}</div>
+                    <div class="text_more">{{group_id_correspond(data.groupId)}}</div>
+                    <div class="text_more">{{data.friendNumber}}</div>
+                    <div class="text_more">{{data.socialaccount.nickName}}</div>
+                    <div>{{data.chatroomLastchatTimeString}}</div>
+                  </div>
+                  <div class="table_div_tag">
+                    <span *ngFor="let tagindex of data.tagss" [hidden]="tagindex.tags===''?true:false">
+                      {{tagindex.tags}}
+                    </span>
+                  </div>
+                </div>
+              </td>
+              <td class="border_right_none">
+                <div>{{data.city}}</div>
+                <!--<span class="task_management_tag"></span>-->
+              </td>
+              <td class="border_right_none">
+                <div>{{data.theDate}}</div>
+              </td>
+              <td>
+                <ul class="task_management_operating_bg_ul">
+                  <li style="margin-left:11%"  nzTitle="分组" nz-tooltip nzPlacement="top" class="task_management_operating_bg1" (click)="modify_the_group(data.id,data.groupId)"></li>
+                  <li  nzTitle="打标签" nz-tooltip nzPlacement="top" class="task_management_operating_bg2" (click)="tagging_open(data.id)"></li>
+                  <li  nzTitle="修改资料" nz-tooltip nzPlacement="top" class="task_management_operating_bg3" (click)="modify_data_open(data.id)"></li>
+                </ul>
+                <ul class="task_management_operating_bg_ul">
+                  <li style="margin-left:11%"  nzTitle="聊天" nz-tooltip nzPlacement="top" class="task_management_operating_bg4"></li>
+                  <li  nzTitle="快捷菜单" nz-tooltip nzPlacement="top" class="task_management_operating_bg5" (click)="shortcut_menu_open(data.key)"></li>
+                  <li  nzTitle="删除" nz-tooltip nzPlacement="top" class="task_management_operating_bg6"></li>
+                </ul>
+              </td>
+            </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+
+  <!--修改分组-->
+  <div class="modify_the_group" [hidden]="modifythegroup">
+    <div class="modify_the_group_title">
+      修改分组
+      <span class="modify_the_group_close" (click)="modify_the_group_close()">x</span>
+    </div>
+    <div class="modify_the_group_con">
+      <div class="modify_the_group_con_title">选择分组：</div>
+      <ul class="modify_the_group_con_radio">
+        <nz-radio-group [(ngModel)]="radioValue" nzName="radiogroup">
+          <label nz-radio nzValue={{groupsIndex.id}}
+                 *ngFor="let groupsIndex of getTGroupsData">{{groupsIndex.name}}</label>
+        </nz-radio-group>
+      </ul>
+    </div>
+    <div class="modify_the_group_footer">
+      <div class="modify_the_group_choose">
+        <button class="modify_the_group_choose_cancel" (click)="modify_the_group_close()">取消</button>
+        <button class="modify_the_group_choose_sure" (click)="modify_the_group_sure()">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--打标签-->
+  <div class="tagging" [hidden]="Tagging">
+    <div class="tagging_title">
+      修改标签
+      <span class="tagging_close" (click)="tagging_close()">x</span>
+    </div>
+
+    <div class="tagging_con">
+      <!--输入搜索打标签部分-->
+      <div class="searchTag">
+        <button class="tagging_con_button" (click)="clean_selectedUser()">添加</button>
+        <nz-select style="width: 80%;" nzMode="multiple" [(ngModel)]="selectedUser" nzPlaceHolder="请输入关键字" nzAllowClear
+                   nzShowSearch [nzServerSearch]="true" (nzOnSearch)="onSearch($event)">
+
+          <ng-container *ngFor="let o of optionList;let ids=index">
+            <nz-option *ngIf="!isLoading"  [nzValue]="ids" [nzLabel]="o.tagName"></nz-option>
+          </ng-container>
+          <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+            <i class="anticon anticon-loading anticon-spin loading-icon"></i> 数据加载中...
+          </nz-option>
+        </nz-select>
+      </div>
+      <!--最新标签-->
+      <div class="newTag">
+        <div class="newTag_title">
+          最新标签
+        </div>
+        <div class="newTag_con">
+          <nz-checkbox-wrapper style="width: 100%;margin-top: -10px" (nzOnChange)="newTag_con_change($event)">
+            <div nz-row>
+              <div nz-col nzSpan="4" *ngFor="let a of newTagList;let idx=index"><label nz-checkbox [(ngModel)]="a.checked" nzValue={{idx}}>{{a.tagName}}</label>
+              </div>
+            </div>
+          </nz-checkbox-wrapper>
+        </div>
+      </div>
+      <!--常用标签-->
+      <div class="newTag" style="margin-top: 2px">
+        <div class="newTag_title">
+          常用标签
+        </div>
+        <div class="newTag_con">
+          <nz-checkbox-wrapper style="width: 100%;margin-top: -10px" (nzOnChange)="usedTag_con_change($event)">
+            <div nz-row>
+              <div nz-col nzSpan="4" *ngFor="let a of useTagList;let idx=index"><label nz-checkbox [(ngModel)]="a.checked" nzValue={{idx}}>{{a.tagName}}</label>
+              </div>
+            </div>
+          </nz-checkbox-wrapper>
+        </div>
+      </div>
+      <!--标签信息-->
+      <div class="tagLibrary">
+        <div class="tagLibrary_box">
+          <nz-tag nzMode="closeable" [nzColor]="'blue'" (nzOnClose)="onClose($event,tagName.id,tagName.addtype,tagName.Tagindex)" (nzAfterClose)="afterClose()"
+                  *ngFor="let tagName of Ownedtag">{{tagName.tagName}}
+          </nz-tag>
+        </div>
+      </div>
+    </div>
+    <div class="tagging_footer">
+      <div class="tagging_choose">
+        <button class="tagging_choose_cancel" (click)="tagging_close()">取消</button>
+        <button class="tagging_choose_sure" (click)="tagging_true()">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--修改个人资料-->
+  <div [hidden]="modifydata" class="modify_data">
+    <div class="modify_data_title">
+      修改资料
+      <span class="modify_data_close" (click)="modify_data_close()">x</span>
+    </div>
+    <div class="modify_data_con">
+      <div class="modify_data_personal">
+        <div class="modify_data_personal_icon">
+          <img [src]="editGroupData.chatroomProfilePhoto===''?default_people:editGroupData.chatroomProfilePhoto"   alt="">
+        </div>
+        <div class="modify_data_personal_text">
+          昵称
+        </div>
+        <div class="modify_data_personal_text1">
+         {{editGroupData.chatroomName}}
+        </div>
+        <div class="modify_data_personal_text">
+          来源微信
+        </div>
+        <div class="modify_data_personal_text1">
+          {{editGroupData.socialaccount.nickName}}
+        </div>
+        <div class="modify_data_personal_text">
+          来源设备
+        </div>
+        <div class="modify_data_personal_text1">
+          {{editGroupData.socialaccount.device.deviceNumber}}
+        </div>
+        <div class="modify_data_personal_text">
+          群主
+        </div>
+        <div class="modify_data_personal_text1">
+          {{editGroupData.chatroomOwner}}
+        </div>
+      </div>
+      <div class="modify_data_detal">
+        <div class="modify_data_detal_tableswith">
+          <span (click)="tableswich(1,$event)"
+                [ngClass]="{'tableswith_click':!tableCssIs,'tableswith_click_no':tableCssIs}">详情</span>
+          <span (click)="tableswich(2,$event)"
+                [ngClass]="{'tableswith_click':tableCssIs,'tableswith_click_no':!tableCssIs}">群成员</span>
+        </div>
+        <div [hidden]="tableCssIs" class="modify_data_detal_con group_modify_data">
+          <nz-table
+            #borderedTable
+            [nzFrontPagination]="false"
+            nzBordered
+            [nzPageSize]="6"
+            [nzData]="editGroupData.chatroomMembers"
+            [nzTotal]="total_edit"
+            [(nzPageIndex)]="pageIndex_edit"
+            (nzPageIndexChange)="searchData1_edit()"
+            (nzPageSizeChange)="searchData1_edit(true)">
+            <thead>
+            <tr>
+              <th nzWidth="10%">头像</th>
+              <th nzWidth="10%">昵称</th>
+              <th nzWidth="10%">性别</th>
+              <th nzWidth="10%">角色</th>
+              <th nzWidth="10%">地域</th>
+              <th nzWidth="20%">热词</th>
+              <th nzWidth="20%">昨日消息数</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of editGroupData.chatroomMembers">
+              <td><img style="width: 30px;height: 30px" [src]="data.profilePhoto===''?default_people:data.profilePhoto"></td>
+              <td class="namemore">{{data.memberName}}</td>
+              <td>{{sex_id_correspond(data.sex)}}</td>
+              <td>{{data.memberRole}}</td>
+              <td>{{data.province}}</td>
+              <td><span *ngFor="let key of data.keywords">{{key.keyword}},</span></td>
+              <td>{{data.messageCount}}</td>
+            </tr>
+            </tbody>
+          </nz-table>
+        </div>
+        <div [hidden]="!tableCssIs" class="modify_data_detal_con">
+          <div class="modify_data_detal_con1">
+            <div class="modify_data_detal_con_trend" style="width: 330px;height: 200px">
+
+            </div>
+            <div class="modify_data_detal_con_cake" style="width: 330px;height: 200px;left: 90px">
+
+            </div>
+
+          </div>
+          <div class="modify_data_detal_con1_tagGroup">
+            <div class="modify_data_detal_con1_tagGroup_title">
+              群标签
+            </div>
+            <div class="modify_data_detal_con1_tags">
+            <span  *ngFor="let groupTags of groupEditTag">
+{{groupTags.tags}}
+            </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="modify_data_footer">
+      <div class="modify_data_choose">
+        <button class="modify_data_choose_sure" (click)="modify_data_close()">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--快捷菜单操作-->
+  <div [hidden]="shortcutmenu" class="shortcut_menu">
+    <div class="modify_data_title">
+      选择操作
+      <span class="modify_data_close" (click)="shortcut_menu_close()">x</span>
+    </div>
+    <div class="shortcut_menu_con">
+      <ul>
+        <li>
+          <dl>
+            <dt class="shortcut_menu_con_icon1"><span></span></dt>
+            <dd>
+              <div class="shortcut_menu_con_text">
+                <span class="shortcut_menu_con_weight">发送文字</span>
+                <span>可以同时发送文字图片</span>
+              </div>
+            </dd>
+          </dl>
+        </li>
+        <li>
+          <dl>
+            <dt class="shortcut_menu_con_icon2"><span></span></dt>
+            <dd>
+              <div class="shortcut_menu_con_text">
+                <span class="shortcut_menu_con_weight">发送链接</span>
+                <span>可以给客户同时发送链接</span>
+              </div>
+            </dd>
+          </dl>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <dl>
+            <dt class="shortcut_menu_con_icon3"><span></span></dt>
+            <dd>
+              <div class="shortcut_menu_con_text">
+                <span class="shortcut_menu_con_weight">朋友圈点赞/评论</span>
+                <span>可以给客户的朋友去点赞评论</span>
+              </div>
+            </dd>
+          </dl>
+        </li>
+        <li>
+          <dl>
+            <dt class="shortcut_menu_con_icon4"><span></span></dt>
+            <dd>
+              <div class="shortcut_menu_con_text">
+                <span class="shortcut_menu_con_weight">拉群/踢群</span>
+                <span>可以给客户拉群踢群</span>
+              </div>
+            </dd>
+          </dl>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <dl>
+            <dt class="shortcut_menu_con_icon5"><span></span></dt>
+            <dd>
+              <div class="shortcut_menu_con_text">
+                <span class="shortcut_menu_con_weight">查看朋友圈</span>
+                <span>可以查看朋友圈</span>
+              </div>
+            </dd>
+          </dl>
+        </li>
+        <li>
+          <dl>
+            <dt class="shortcut_menu_con_icon6"><span></span></dt>
+            <dd>
+              <div class="shortcut_menu_con_text">
+                <span class="shortcut_menu_con_weight">拉黑/删除客户</span>
+                <span>可以拉黑/删除客户</span>
+              </div>
+            </dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+    <div class="modify_data_footer">
+      <div class="modify_data_choose">
+        <button class="modify_data_choose_cancel" (click)="shortcut_menu_close()">取消</button>
+        <button class="modify_data_choose_sure">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--操作蒙层-->
+  <div class="Mask" [hidden]="isOperating">
+  </div>
+</div>

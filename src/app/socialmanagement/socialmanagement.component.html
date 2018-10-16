@@ -1,0 +1,390 @@
+<div class="socialmanagement" style="padding: 24px;">
+        <div class="socialmanagement_text">
+            <span><b>管理</b>&nbsp;&nbsp;>社交号管理</span>
+        </div>
+        <div class="socialmanagement_con">
+            <ul>
+            	 <li>
+            		<input type="text" placeholder="名称/类型/状态/等级" [(ngModel)]="searchmodel"/>
+            	</li>
+            	<li>
+            		<input type="button" value="搜索" (click)="searchlist()">
+            	</li>
+            </ul>
+            <div style="clear: both;"></div>
+            <div class="zaqj">
+		          <nz-table #nzTable  [nzFrontPagination]="false"
+							      [nzData]="shejiaoData"
+							      [nzLoading]="loading"
+							      [nzTotal]="total"
+							      [(nzPageIndex)]="pageIndex"
+							      [(nzPageSize)]="pageSize"
+							      (nzPageIndexChange)="searchData($event)"
+							      (nzPageSizeChange)="searchData(true)">
+		            <thead style="text-align: center;">
+		            <tr style="text-align: center;">
+		              <th nzWidth="3%" class="border_right_none">ID</th>
+		              <th nzWidth="5%" class="border_right_none">头像</th>
+		              <th nzWidth="7%" class="border_right_none" >昵称</th>
+		              <th nzWidth="7%" class="border_right_none">类型</th>
+		              <th nzWidth="7%" class="border_right_none">社交号</th>
+		              <th nzWidth="7%" class="border_right_none">状态</th>
+		              <th nzWidth="7%" class="border_right_none">资产编号</th>
+		              <th nzWidth="7%" class="border_right_none">版本</th>
+		              <th nzWidth="6%" class="border_right_none">好友数量</th>
+		              <th nzWidth="6%" class="border_right_none">群数量</th>
+		              <th nzWidth="9%" class="border_right_none">操作</th>
+		            </tr>
+		            </thead>
+		            <tbody>
+		            <tr *ngFor="let item of shejiaoData;let i = index" [ngClass]="i%2 === 0 ? 'table_tr_bgColor_white' : 'table_tr_bgColor_gray'"> 
+		              <td class="oneCheck">{{item.id}}</td>
+		              <td class="border_right_none" id="touxiang">
+		                  <img [src]="item.profilePhoto" alt="头像" style="margin-left:-35px;">
+		              </td>
+		              <td [attr.colspan]="8" class="table_edit border_right_none">
+		                <div class="table_div">
+		                  <div class="table_div_titlr">
+		                    <div class="text_more" style="position: relative;left: -39px;">{{item.nickName}}</div>
+		                    <div class="text_more" style="position: relative;left: -38px;">{{item.socialaccountType==0?'微信':'qq'}}</div>
+		                    <div class="text_more" style="position: relative;left: -4px;">{{item.socialNumber}}</div>
+		                    <div class="text_more" style="position: relative;left:-20px;">{{item.onlineStatus==0?'离线':'在线'}}</div>
+		                    <div class="text_more" style="position: relative;left: 10px;">{{item.assetNumber}}</div>
+		                    <div class="text_more" style="position: relative;left: 0px;">{{item.wechatVersion}}</div>
+		                    <div class="text_more" style="position: relative;left: 21px;">{{item.friendNumber}}</div>
+		                    <div style="position: relative;left:5px;">{{item.chatroomNumber}}</div>
+		                  </div>
+		                  <div class="table_div_tag">
+		                     <span *ngFor="let tagindex of item.tagss">
+		                      {{tagindex.tags}}
+		                    </span>
+		                  </div>
+		                </div>
+		              </td>
+		              
+		              <td class="imglist">
+		                  <img src="./assets/images/Shape.png" (click)="showistag(item.id)">
+		                  <img src="./assets/images/deveicedeta.png" (click)="showisdetail(item.id)">
+		                  <img src="./assets/images/chart.png" (click)="showistongji(item.id)">
+		                  <img src="./assets/images/deviceupdate.png" (click)="showisziliao(item.id)">
+		              </td>
+		             
+		            </tr>
+		            </tbody>
+		          </nz-table>
+        </div>
+        </div>
+        
+        <!--社交详情弹框-->
+        <div class="socialmanagement_detail" *ngIf="isdetail">
+        	 <div class="socialmanagement_detail_head">
+        	 	 <span>社交号详情</span>
+        	 	 <span (click)="closeisdetail()" class="closebtncur">
+        	 	 	<span>x</span>
+        	 	 </span>
+        	 </div>
+        	 <div class="socialmanagement_detail_center">
+        	 	<ul>
+        	 		<li [ngClass] = "detailnum==0 ? 'li-active' : ''" (click)="DetailClick(0)">好友</li>
+                    <li [ngClass] = "detailnum==1 ? 'li-active' : ''" (click)="DetailClick(1)">群</li>
+        	 	</ul>
+        	 	<div>
+        	 		<div class="haoyou" [style.display] = "detailnum == 0 ? 'block' : 'none'">
+        	 			<nz-table #nzTable   [nzFrontPagination]="false"
+					      [nzData]="haoyouData"
+					      [nzLoading]="loading"
+					      [nzTotal]="total1"
+					      [(nzPageIndex)]="pageIndex1"
+					      [(nzPageSize)]="pageSize1"
+					      (nzPageIndexChange)="searchData1($event)"
+					      (nzPageSizeChange)="searchData1(true)">
+				            <thead>
+					            <tr>
+					              <th nzWidth="10%" class="border_right_none">头像</th>
+					              <th nzWidth="5%" class="border_right_none">ID</th>
+					              <th nzWidth="7%" class="border_right_none" >昵称</th>
+					              <th nzWidth="5%" class="border_right_none">性别</th>
+					              <th nzWidth="7%" class="border_right_none">社交号</th>
+					              <th nzWidth="7%" class="border_right_none">分组</th>
+					              <th nzWidth="7%" class="border_right_none">地区</th>
+					              <th nzWidth="8%" class="border_right_none">所属社交号</th>
+					              <th nzWidth="7%" class="border_right_none">上次联系</th>
+					              <th nzWidth="7%" class="border_right_none">添加时间</th>
+					              <th nzWidth="7%" class="border_right_none">来源</th>
+					            </tr>
+				            </thead>
+				            <tbody>
+						            <tr *ngFor="let item of haoyouData;let i = index">
+						              <td id="touxiang"><img [src]="item.profilePhoto" alt="头像" style="margin-left:-15px;"></td>
+						              <td class="border_right_none" style="position: relative;left:-4px;">
+						                  {{item.id}}
+						              </td>
+						              <td [attr.colspan]="8" class="table_edit border_right_none">
+						                <div class="table_div">
+						                  <div class="table_div_titlr">
+						                    <div class="text_more" style="position: relative;left:-10px;">
+						                    	<span title="{{item.nickName}}">{{item.nickName}}</span>
+						                    </div>
+						                    <div class="text_more" style="position: relative;left: -13px;">
+						                    	{{item.sex==0?'未知':item.sex==1?'男':item.sex==2?'女':''}}
+						                    	
+						                    </div>
+						                    <div class="text_more" style="position: relative;left: -13px;">
+						                    	<span title="{{item.contactNumber}}">{{item.contactNumber}}</span>
+						                    </div>
+						                    <div class="text_more" style="position: relative;left:-14px;">{{getGroupName(item.groupId)}}</div>
+						                    <div class="text_more" style="position: relative;left: -14px;">{{item.province+item.city}}</div>
+						                    <div class="text_more" style="position: relative;left: -8px;">{{item.socialaccount.nickName}}</div>
+						                    <div class="text_more" style="position: relative;left: 9px;">
+						                    	<span title="{{item.lastChatTimeString}}">{{item.lastChatTimeString}}</span>
+						                    </div>
+						                    <div style="position: relative;left:14px;" class="text_more">{{item.theDateString}}</div>
+						                  </div>
+						                  <div class="table_div_tag">
+						                     <span *ngFor="let tagindex of item.tagss">
+						                      {{tagindex.tags}}
+						                    </span>
+						                  </div>
+						                </div>
+						              </td>
+						              <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{item.friendSource}}</td>
+						            </tr>
+				            </tbody>
+                    </nz-table>
+        	 		</div>
+        	 		<div class="group" [style.display] = "detailnum == 1 ? 'block' : 'none'"> 
+        	 			<nz-table #nzTable   [nzFrontPagination]="false"
+					      [nzData]="haoyouData"
+					      [nzLoading]="loading"
+					      [nzTotal]="total2"
+					      [(nzPageIndex)]="pageIndex2"
+					      [(nzPageSize)]="pageSize2"
+					      (nzPageIndexChange)="searchData2($event)"
+					      (nzPageSizeChange)="searchData2(true)">
+				            <thead>
+					            <tr>
+					              <th nzWidth="13%" class="border_right_none">头像</th>
+					              <th nzWidth="5%" class="border_right_none">ID</th>
+					              <th nzWidth="15%" class="border_right_none" >群名称</th>
+					              <th nzWidth="13%" class="border_right_none">分组</th>
+					              <th nzWidth="13%" class="border_right_none">人数</th>
+					              <th nzWidth="20%" class="border_right_none">所属社交号</th>
+					              <th nzWidth="13%" class="border_right_none">好友人数</th>
+					              <th nzWidth="10%" class="border_right_none">添加时间</th>
+					               
+					            </tr>
+				            </thead>
+				            <tbody>
+						            <tr *ngFor="let item of qunzuData;let i = index">
+						              <td id="touxiang"><img [src]="item.chatroomProfilePhoto" alt="头像" style="margin-left:-15px;"></td>
+						              <td class="border_right_none">
+						                  {{item.id}}
+						              </td>
+						              <td [attr.colspan]="8" class="table_edit border_right_none">
+						                <div class="table_div">
+						                  <div class="table_div_titlr">
+						                    <div class="text_more" style="position: relative;left:27px;">
+						                    	<span title="{{item.chatroomName}}">{{item.chatroomName}}</span>
+						                    </div>
+						                    <div class="text_more" style="position: relative;left:55px;">{{getGroupName(item.groupId)}}</div>
+						                    <div class="text_more" style="position: relative;left:79px;">{{item.memberCount}}</div>
+						                    <div class="text_more" style="position: relative;left:139px;">{{item.socialaccount.nickName}}</div>
+						                    <div class="text_more" style="position: relative;left:198px;">{{item.friendNumber}}</div>
+						                  </div>
+						                  <div class="table_div_tag">
+						                     <span *ngFor="let tagindex of item.tagss">
+						                      {{tagindex.tags}}
+						                    </span>
+						                  </div>
+						                </div>
+						              </td>
+						              <td style="position: relative;right: 53px;">{{item.theDateString}}</td>
+						            </tr>
+				            </tbody>
+                    </nz-table>
+        	 		</div>
+        	 	</div>
+        	 </div>
+        	 <div class="socialmanagement_detail_footer">
+        	 	<span style="float: right;margin-right:20px;">
+	        		<button class="quxiao" (click)="closeisdetail()">取消</button>
+	        		<button class="sure">确定</button>
+                </span>
+        	 </div>
+        </div>
+        
+        <!--社交统计弹框-->
+        <div class="socialmanagement_statistics" *ngIf="istongji">
+        	 <div class="socialmanagement_statistics_head">
+        	 	 <span>社交号详情</span>
+        	 	 <span (click)="colseistongji()" class="closebtncur">
+        	 	 	<span>x</span>
+        	 	 </span>
+        	 </div>
+        	 <div class="socialmanagement_statistics_center">
+        	 	<ul>
+        	 		<li [ngClass] = "statnum==0 ? 'li-active' : ''" (click)="StatClick(0)">走势</li>
+                    <li [ngClass] = "statnum==1 ? 'li-active' : ''" (click)="StatClick(1)">群成员</li>
+                    <li [ngClass] = "statnum==2 ? 'li-active' : ''" (click)="StatClick(2)">任务统计</li>
+        	 	</ul>
+        	 	<div class="socialmanagement_statistics_list">
+        	 		<div class="zoushi" [style.display] = "statnum == 0 ? 'block' : 'none'">
+        	 			<h3>{{title}}</h3>
+        	 			<ol>
+        	 				<li [ngClass] = "coloritem==0 ? 'li-color' : ''" (click)="getTimeClick(0)" style="margin-left: 330px;">今日</li>
+		      	    	    <li [ngClass] = "coloritem==1 ? 'li-color' : ''" (click)="getTimeClick(1)">近一周</li>
+		      	    	    <li [ngClass] = "coloritem==2 ? 'li-color' : ''" (click)="getTimeClick(2)">本月</li>
+		      	    	    <li style="width: 385px;">
+    		      	    		  <nz-range-picker nzFormat="yyyy-MM-dd" ngModel (ngModelChange)="getday($event)"></nz-range-picker>
+		      	    	    </li>
+        	 			</ol>
+        	 			 <div id="one" style="width:942px;height:240px;">
+
+						 </div> 
+        	 		</div>
+        	 		<div class="groupevery" [style.display] = "statnum == 1 ? 'block' : 'none'">
+        	 			<h3>{{title1}}</h3>
+        	 			<ol>
+        	 				<li [ngClass] = "coloritem1==0 ? 'li-color' : ''" (click)="getTimeClick1(0)" style="margin-left: 330px;">今日</li>
+		      	    	    <li [ngClass] = "coloritem1==1 ? 'li-color' : ''" (click)="getTimeClick1(1)">近一周</li>
+		      	    	    <li [ngClass] = "coloritem1==2 ? 'li-color' : ''" (click)="getTimeClick1(2)">本月</li>
+		      	    	    <li style="width: 385px;">
+    		      	    		  <nz-range-picker nzFormat="yyyy-MM-dd" ngModel (ngModelChange)="getday1($event)"></nz-range-picker>
+		      	    	    </li>
+        	 			</ol>
+        	 			<div id="two" style="width:942px;height:240px;">
+
+						 </div> 
+        	 		</div>
+        	 		<div class="tasktong" [style.display] = "statnum == 2 ? 'block' : 'none'">
+        	 			<h3>任务统计</h3>
+        	 			 <div id="three" style="width:942px;height:285px;">
+
+						 </div> 
+        	 		</div>
+        	 	</div>
+        	 </div>
+        	 <div class="socialmanagement_statistics_footer">
+        	 	<span style="float: right;margin-right:20px;">
+	        		<button class="quxiao" (click)="colseistongji()">取消</button>
+	        		<button class="sure">确定</button>
+                </span>
+        	 </div>
+        </div>
+        
+        <!--修改资料弹框-->
+        <div class="socialmanagement_update" *ngIf="isziliao">
+        	<div class="socialmanagement_update_head">
+        		<span>修改资料</span>
+        		<span (click)="colseisziliao()" class="closebtncur">
+        			<span>x</span>
+        		</span>
+        	</div>
+        	<div class="socialmanagement_update_cen">
+        		<div class="socialmanagement_update_cen_top">
+        			<div class="touxiang">
+        				<img [src]="imgurl" alt="头像">
+        			</div>
+        		    <button>上传头像</button>
+        		    <button>修改密码</button>
+        		</div>
+        		<div class="socialmanagement_update_cen_con">
+        			<ul>
+        				<li>
+        					<span>昵称:</span>
+        					<div>
+        						<input type="text" [(ngModel)]="person_nc"/>
+        					</div>
+        				</li>
+        				<li>
+        					<span>地区:</span>
+        					<div>
+        						<input type="text" [(ngModel)]="person_city"/>
+        					</div>
+        				</li>
+        				<li>
+        					<span>性别:</span>
+        					<div>
+        						 <nz-select style="width:432px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="person_sex" (ngModelChange)="ying($event)">
+        						 	<nz-option nzLabel="未知" nzValue="未知"></nz-option>
+		                            <nz-option nzLabel="男" nzValue="男"></nz-option>
+		                            <nz-option nzLabel="女" nzValue="女"></nz-option>
+	                             </nz-select>        					
+        					</div>
+        				</li>
+        				<li>
+        					<span>签名:</span>
+        					<div>
+        						<input type="text" [(ngModel)]="person_qm"/>
+        					</div>
+        				</li>
+        			</ul>
+        		</div>
+        		
+        	</div>
+        	<div class="socialmanagement_update_foot">
+        		<span style="float: right;margin-right:20px;">
+        			<button class="quxiao" (click)="colseisziliao()">取消</button>
+        		    <button class="sure">确定</button>
+        		</span>
+        	</div>
+        </div>
+        <!--目标微信的选择标签-->
+     
+     <div class="accurateadd_wechat_label" *ngIf="istag">
+     	<!--上-->
+     	<div class="accurateadd_wechat_label_head">
+     		<b>修改标签1</b>
+     		<span class="wechatclose" (click)="closeistag()">x</span>
+     	</div>
+     	<!--中-->
+     	<div class="accurateadd_wechat_label_con">
+     		<div class="wechat_labelhead">
+     			<input type="text" placeholder="输入标签搜索" [(ngModel)]="tagmodel" (ngModelChange)="tagsearch()">
+     			<button (click)="addtagstodiv()">添加</button>
+     		</div>
+     		<div class="wechat_labelcenter">
+     			<ul class="newlabel">
+	     			<b>最新标签</b>
+	     			<li>
+	     				 <label nz-checkbox [nzValue]="item.id" [(ngModel)]="item.checked" *ngFor="let item of newsTag;let i = index" (click)="getindextag(item,item.checked)">
+	     				 	{{item.tagName}}
+	     				 </label>
+	     			</li>
+     		   </ul>
+     			<ul class="oftenlabel">
+	     			<b>常用标签标签</b>
+	     			<li>
+	     				<label nz-checkbox [nzValue]="item.id" [(ngModel)]="item.checked"  *ngFor="let item of useTag;let i = index" (click)="getindextag(item,item.checked)">
+	     					{{item.tagName}}
+	     				</label>
+	     			</li>
+     		   </ul>
+     		   <div class="chooselabelfram">
+     		    	<div style="background: skyblue;" *ngFor="let item of checkedtaglist;let i = index">
+     		    		<b>{{item.tagName}}</b>
+     		    		<span (click)="delectindextag(item,i)">x</span>
+     		    	</div>
+     		    	
+     		    	
+     		    </div>
+     		</div>
+     	</div>
+     	<!--下-->
+     	<div class="accurateadd_wechat_label_footer">
+     		<span style="float: right;">
+     			<button class="quxiao" (click)="closeistag()">取消</button>
+        	    <button class="sure" (click)="suretag()">确定</button>
+     		</span>
+     	</div>
+     	<!--搜索后div-->
+     	<div class="accurateadd_search">
+     			<ul>
+	     			<li *ngFor="let item of tagsearchData;let i = index" (click)="searchtag(item)">
+	     				{{item.tagName}}
+	     			</li>
+     		 </ul>
+     	</div>
+     </div>
+</div>
+ <app-mask *ngIf="ismask"></app-mask>     

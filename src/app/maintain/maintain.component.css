@@ -1,0 +1,75 @@
+.maintain{
+    background: #fff;
+}
+.maintain_headtext{
+   height: 28px;
+   line-height: 16px;
+   border-bottom:2px solid rgba(220,220,220,1);
+}
+.maintain_headtext b{
+    font-family:PingFangSC-Semibold;
+    color:rgba(43,43,43,1);
+    font-size: 16px;
+}
+.maintain_con{
+   padding-left:30px;
+   display:flex;
+}
+.maintain_con ul{
+    list-style: none;
+}
+
+.maintain_con ul li{
+    width:400px;
+    height:80px;
+    background:rgba(255,255,255,1);
+    box-shadow: 2px 2px 8px #d2d6de;
+    list-style: none;
+    margin-top: 30px;
+    display:flex;
+    padding: 15px;
+}
+.maintain_con ul li .maintain_con_left_div{
+    width:56px;
+    height:56px;
+    background:rgba(0,125,206,1);
+    border-radius:2px;
+    padding: 8px 5px;
+}
+.maintain_con ul li .maintain_con_right_div{
+    margin-left:30px;
+}
+.maintain_con ul li .maintain_con_right_div b{
+    color:rgba(49,49,49,1);
+ }
+.maintain_con ul li .maintain_con_right_div span{
+   position: relative;
+   top:12px;
+   color:rgba(49,49,49,1);
+}
+.maintain_con_left_div{
+	position:relative;
+}
+.maintain_con_left_div img{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
+.maintain_con_left_div .one{
+	width:32px;
+	height: 33px;
+	margin-left: -16px;
+	margin-top: -16.5px;
+}
+.maintain_con_left_div .two{
+	width:26px;
+	height: 32px;
+	margin-left: -13px;
+	margin-top: -16px;
+}
+.maintain_con_left_div .three{
+	width:27px;
+	height: 32px;
+	margin-left: -13.5px;
+	margin-top: -16px;
+}

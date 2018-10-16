@@ -1,0 +1,404 @@
+<div class="material_management">
+  <div class="material_management_title">
+    <span class="material_management_title_1">资源</span>&nbsp;&nbsp;>&nbsp;素材管理
+  </div>
+  <!--主体title+表格-->
+  <div class="material_management_body" nz-row>
+    <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'">
+      <nz-tab *ngFor="let tab of tabs;let i=index" [nzTitle]="tab " style="padding-left: 30px;padding-right: 30px"
+              (nzClick)="nztableswith(i)">
+        <div class="material_management_all">
+          <div class="material_management_all_title">
+            <div>图片素材：<span>{{pictureCounts}}</span> 个</div>
+            <div>图文素材：<span>{{imgandlinkCount}}</span> 个</div>
+            <div>话术素材：<span>{{scriptCount}}</span> 个</div>
+          </div>
+          <div class="material_management_all_search">
+            <input type="text" placeholder="名称 / 标签" [(ngModel)]='fuzzyQuery'
+                   class="material_management_all_search_input">
+            <button class="material_management_all_search_search" (click)="fuzzy_query_table()">搜索</button>
+            <button class="material_management_all_search_batch_deletion" (click)="tagging_public_open(-1)" style="margin-right: 30px">批量打标签</button>
+            <button class="material_management_all_search_batch_deletion" (click)="image_addPlan_open()"
+                    style="margin-right: 30px">{{EtN}}
+            </button>
+            <button class="material_management_all_search_batch_deletion" (click)="delThis(-1)">批量删除</button>
+          </div>
+        </div>
+        <!--图片素材-->
+        <div *ngIf="Picturematerial" class="material_management_table">
+          <nz-table
+            #nzTable
+            [nzPageSize]="10"
+            nzBordered
+            [nzFrontPagination]="false"
+            [nzData]="dataSet"
+            [nzLoading]="loading"
+            [nzTotal]="total"
+            [(nzPageIndex)]="pageIndex"
+            [(nzPageSize)]="pageSize"
+            (nzPageIndexChange)="searchData()"
+            (nzPageSizeChange)="searchData(true)">
+            <thead>
+            <tr>
+              <th nzWidth="3%" nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
+                  (nzCheckedChange)="checkAll($event)"></th>
+              <th nzWidth="5%" class="">序号</th>
+              <th nzWidth="5%" class="">缩略图</th>
+              <th nzWidth="15%" class="">主题</th>
+              <th nzWidth="18%" class="">标签</th>
+              <th nzWidth="25%" class="">分享描述</th>
+              <th nzWidth="9%" class="">是否公有</th>
+              <th nzWidth="10%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dataSet; let index=index;"
+                [ngClass]="index%2 === 0 ? 'table_tr_bgColor_white' : 'table_tr_bgColor_gray'">
+              <td nzShowCheckbox [(nzChecked)]="data.checked" [attr.id]="data.id"
+                  (nzCheckedChange)="refreshStatus($event)" class="oneCheck" (click)="thisIndex(index)"></td>
+              <td class=" ">{{((pageIndex-1)*10)+index+1}}</td>
+              <td class=" "><img class="material_management_avatar"
+                                 [src]="data.imagePath===''?default_people:data.imagePath"></td>
+              <td class="  con_table">{{data.title}}</td>
+              <td class="  con_table">{{data.tags}}</td>
+              <td class="  con_table">{{data.picdesc}}</td>
+              <td class=" ">{{whetherPublic(data.isPublic)}}</td>
+              <td>
+                <ul class="material_management_operating_bg_ul">
+                  <li  style="margin-left:11%" nzTitle="修改" nz-tooltip nzPlacement="top" class="material_management_operating_bg2" (click)="open_image_addPlan(data.id)"></li>
+                  <li  nzTitle="打标签" nz-tooltip nzPlacement="top" class="material_management_operating_bg1" (click)="tagging_public_open(data.id)"></li>
+                  <li  nzTitle="删除" nz-tooltip nzPlacement="top" class="material_management_operating_bg3" (click)="delThis(data.id)"></li>
+                </ul>
+              </td>
+            </tr>
+            </tbody>
+          </nz-table>
+        </div>
+        <!--链接素材-->
+        <div *ngIf="Linkingmaterial" class="material_management_table">
+          <nz-table
+            #nzTable
+            [nzPageSize]="10"
+            nzBordered
+            [nzFrontPagination]="false"
+            [nzData]="dataSet1"
+            [nzLoading]="loading"
+            [nzTotal]="total"
+            [(nzPageIndex)]="pageIndex"
+            [(nzPageSize)]="pageSize"
+            (nzPageIndexChange)="searchData()"
+            (nzPageSizeChange)="searchData(true)">
+            <thead>
+            <tr>
+              <th nzWidth="3%" nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
+                  (nzCheckedChange)="checkAll1($event)"></th>
+              <th nzWidth="5%" class=" ">序号</th>
+              <th nzWidth="5%" class=" ">缩略图</th>
+              <th nzWidth="15%" class=" ">主题</th>
+              <th nzWidth="18%" class=" ">标签</th>
+              <th nzWidth="25%" class=" ">链接描述</th>
+              <th nzWidth="9%" class=" ">是否公有</th>
+              <th nzWidth="10%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dataSet1; let index=index;"
+                [ngClass]="index%2 === 0 ? 'table_tr_bgColor_white' : 'table_tr_bgColor_gray'">
+              <td nzShowCheckbox [(nzChecked)]="data.checked" [attr.id]="data.id"
+                  (nzCheckedChange)="refreshStatus1($event)" class="oneCheck" (click)="thisIndex(index)"></td>
+              <td class=" ">{{((pageIndex-1)*10)+index+1}}</td>
+              <td class=" "><img class="material_management_avatar"
+                                 [src]="data.imagePath===''?default_people:data.imagePath"></td>
+              <td class=" ">{{data.title}}</td>
+              <td class=" ">{{data.tags}}</td>
+              <td class=" ">{{data.description}}</td>
+              <td class=" ">{{whetherPublic(data.isPublic)}}</td>
+              <td>
+                <ul class="material_management_operating_bg_ul">
+                  <li  nzTitle="修改" nz-tooltip nzPlacement="top" class="material_management_operating_bg2" (click)="open_graphic_addPlan(data.id)"></li>
+                  <li  nzTitle="打标签" nz-tooltip nzPlacement="top" class="material_management_operating_bg1" (click)="tagging_public_open(data.id)"></li>
+                  <li  nzTitle="删除" nz-tooltip nzPlacement="top" class="material_management_operating_bg3" (click)="delThis(data.id)"></li>
+                </ul>
+              </td>
+            </tr>
+            </tbody>
+          </nz-table>
+        </div>
+        <!--话术素材-->
+        <div *ngIf="Speechmaterial" class="material_management_table">
+          <nz-table
+            #nzTable
+            [nzPageSize]="10"
+            nzBordered
+            [nzFrontPagination]="false"
+            [nzData]="dataSet2"
+            [nzLoading]="loading"
+            [nzTotal]="total"
+            [(nzPageIndex)]="pageIndex"
+            [(nzPageSize)]="pageSize"
+            (nzPageIndexChange)="searchData()"
+            (nzPageSizeChange)="searchData(true)">
+            <thead>
+            <tr>
+              <th nzWidth="3%" nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
+                  (nzCheckedChange)="checkAll2($event)"></th>
+              <th nzWidth="5%" class=" ">序号</th>
+              <th nzWidth="12%" class=" ">话术标题</th>
+              <th nzWidth="20%" class=" ">标签</th>
+              <th nzWidth="35%" class=" ">内容</th>
+              <th nzWidth="10%" class=" ">是否公有</th>
+              <th nzWidth="15%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dataSet2; let index=index;"
+                [ngClass]="index%2 === 0 ? 'table_tr_bgColor_white' : 'table_tr_bgColor_gray'">
+              <td nzShowCheckbox [(nzChecked)]="data.checked" [attr.id]="data.id"
+                  (nzCheckedChange)="refreshStatus2($event)" class="oneCheck" (click)="thisIndex(index)"></td>
+              <td class=" ">{{((pageIndex-1)*10)+index+1}}</td>
+              <td class=" ">{{data.title}}</td>
+              <td class=" ">{{data.tags}}</td>
+              <td class=" ">{{data.content}}</td>
+              <td class=" ">{{whetherPublic(data.isPublic)}}</td>
+              <td>
+                <ul class="material_management_operating_bg_ul">
+                  <li nzTitle="修改" nz-tooltip nzPlacement="top" class="material_management_operating_bg2" (click)="open_speech_addPlan(data.id)"></li>
+                  <li nzTitle="打标签" nz-tooltip nzPlacement="top" class="material_management_operating_bg1" (click)="tagging_public_open(data.id)"></li>
+                  <li nzTitle="删除" nz-tooltip nzPlacement="top" class="material_management_operating_bg3" (click)="delThis(data.id)"></li>
+                </ul>
+              </td>
+            </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+  <!--添加修改图片素材-->
+  <div class="image_addPlan" [hidden]="imageAddPlan">
+    <div class="image_addPlan_title">
+      {{imageAddPlanTitle}}
+      <span class="image_addPlan_close" (click)="image_addPlan_close()">x</span>
+    </div>
+    <div class="image_addPlan_con">
+      <ul>
+        <li class="image_addPlan_con-text">缩略图：</li>
+        <li>
+          <div class="clearfix" style="position: absolute">
+            <nz-upload
+              [(nzAction)]="getimgUrl"
+              nzListType="picture-card"
+              [nzBeforeUpload]="beforeUpload_image"
+              [nzRemove]="RemoveUpload_image"
+              [(nzFileList)]="fileList_image"
+              [nzShowButton]="fileList_image.length < 1"
+              [nzPreview]="handlePreview_image">
+              <i class="anticon anticon-plus"></i>
+              <div class="ant-upload-text">上传</div>
+            </nz-upload>
+            <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+                      (nzOnCancel)="previewVisible=false">
+              <ng-template #modalContent>
+                <img [src]="previewImage1" [ngStyle]="{ 'width': '100%' }"/>
+              </ng-template>
+            </nz-modal>
+          </div>
+        </li>
+      </ul>
+
+      <ul style="margin-top: 70px">
+        <li class="image_addPlan_con-text">图片主题：</li>
+        <li><input class="image_addPlan_con-text_input" type="text" [(ngModel)]="image_title" placeholder="请输入"></li>
+      </ul>
+      <ul>
+        <li class="image_addPlan_con-text">分享描述：</li>
+        <li><textarea class="image_addPlan_con-text_textarea" [(ngModel)]="image_picdesc"></textarea></li>
+      </ul>
+      <ul>
+        <li class="image_addPlan_con-text">是否公有：</li>
+        <li>
+          <nz-select style="width:100%;" [(ngModel)]="imageaddPlanIspublic">
+            <nz-option nzLabel="是" nzValue="0"></nz-option>
+            <nz-option nzLabel="否" nzValue="1"></nz-option>
+          </nz-select>
+        </li>
+      </ul>
+
+    </div>
+    <div class="image_addPlan_footer">
+      <div class="image_addPlan_choose">
+        <button class="image_addPlan_choose_cancel" (click)="image_addPlan_close()">取消</button>
+        <button class="image_addPlan_choose_sure" (click)="image_addPlan_sure()">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--添加图文素材-->
+  <div class="image_addPlan" [hidden]=graphicAddPlan style="height: 480px">
+    <div class="image_addPlan_title" style="height: 10%;padding: 12px 20px">
+      {{graphicAddPlanTitle}}
+      <span class="image_addPlan_close" (click)="graphic_addPlan_close()">x</span>
+    </div>
+    <div class="image_addPlan_con" style="height: 80%">
+      <ul>
+        <li class="image_addPlan_con-text">缩略图：</li>
+        <li>
+          <div class="clearfix" style="position: absolute">
+            <nz-upload
+              [(nzAction)]="getimgUrl"
+              nzListType="picture-card"
+              [nzBeforeUpload]="beforeUpload_image"
+              [nzRemove]="RemoveUpload1"
+              [(nzFileList)]="fileList1"
+              [nzShowButton]="fileList1.length < 1"
+              [nzPreview]="handlePreview1">
+              <i class="anticon anticon-plus"></i>
+              <div class="ant-upload-text">上传</div>
+            </nz-upload>
+            <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+                      (nzOnCancel)="previewVisible=false">
+              <ng-template #modalContent>
+                <img [src]="previewImage1" [ngStyle]="{ 'width': '100%' }"/>
+              </ng-template>
+            </nz-modal>
+          </div>
+        </li>
+      </ul>
+
+      <ul style="margin-top: 70px">
+        <li class="image_addPlan_con-text">图文标题：</li>
+        <li><input class="image_addPlan_con-text_input" [(ngModel)]="text_link_title" type="text" placeholder="请输入">
+        </li>
+      </ul>
+      <ul>
+        <li class="image_addPlan_con-text">链接URL：</li>
+        <li><input class="image_addPlan_con-text_input" [(ngModel)]="text_link_URL" type="text" placeholder="请输入"></li>
+      </ul>
+      <ul>
+        <li class="image_addPlan_con-text">图文内容：</li>
+        <li><textarea class="image_addPlan_con-text_textarea" [(ngModel)]="text_link_con"></textarea></li>
+      </ul>
+      <ul>
+        <li class="image_addPlan_con-text">是否公有：</li>
+        <li>
+          <nz-select style="width:100%;" [(ngModel)]="text_link_value">
+            <nz-option nzLabel="是" nzValue="0"></nz-option>
+            <nz-option nzLabel="否" nzValue="1"></nz-option>
+          </nz-select>
+        </li>
+      </ul>
+
+    </div>
+    <div class="image_addPlan_footer">
+      <div class="image_addPlan_choose" style="padding: 8px 20px 20px 20px; ">
+        <button class="image_addPlan_choose_cancel" (click)="graphic_addPlan_close()">取消</button>
+        <button class="image_addPlan_choose_sure" (click)="graphic_addPlan_sure()">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--添加话术素材-->
+  <div class="image_addPlan" [hidden]=speechAddPlan style="height: 340px">
+    <div class="image_addPlan_title" style="height: 14%;padding: 12px 20px">
+      {{speechAddPlanTitle}}
+      <span class="image_addPlan_close" (click)="speech_addPlan_close()">x</span>
+    </div>
+    <div class="image_addPlan_con" style="height: 72%">
+      <ul style="margin-top: 30px">
+        <li class="image_addPlan_con-text">话术标题：</li>
+        <li><input class="image_addPlan_con-text_input" [(ngModel)]="speech_title" type="text" placeholder="请输入"></li>
+      </ul>
+      <ul>
+        <li class="image_addPlan_con-text">话术内容：</li>
+        <li><textarea class="image_addPlan_con-text_textarea" [(ngModel)]="speech_con"></textarea></li>
+      </ul>
+      <ul>
+        <li class="image_addPlan_con-text">是否公有：</li>
+        <li>
+          <nz-select style="width:100%;" [(ngModel)]="speech_value">
+            <nz-option nzLabel="是" nzValue="0"></nz-option>
+            <nz-option nzLabel="否" nzValue="1"></nz-option>
+          </nz-select>
+        </li>
+      </ul>
+
+    </div>
+    <div class="image_addPlan_footer">
+      <div class="image_addPlan_choose" style="padding: 8px 20px 20px 20px; ">
+        <button class="image_addPlan_choose_cancel" (click)="speech_addPlan_close()">取消</button>
+        <button class="image_addPlan_choose_sure" (click)="speech_addPlan_sure()">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--打标签-->
+  <div class="tagging_public" [hidden]="taggingPublic">
+    <div class="tagging_public_title">
+      修改标签
+      <span class="tagging_public_close" (click)="tagging_public_close()">x</span>
+    </div>
+
+    <div class="tagging_public_con">
+      <!--输入搜索打标签部分-->
+      <div class="searchTag">
+        <button class="tagging_public_con_button" (click)="tagging_public_clean_selectedUser()">添加</button>
+        <nz-select style="width: 80%;" nzMode="multiple" [(ngModel)]="selectedUser" nzPlaceHolder="请输入关键字" nzAllowClear
+                   nzShowSearch [nzServerSearch]="true" (nzOnSearch)="onSearch($event)">
+          <ng-container *ngFor="let o of optionList;let ids=index">
+            <nz-option *ngIf="!isLoading" [nzValue]="ids" [nzLabel]="o.tagName"></nz-option>
+          </ng-container>
+          <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+            <i class="anticon anticon-loading anticon-spin loading-icon"></i> 数据加载中...
+          </nz-option>
+        </nz-select>
+      </div>
+      <!--最新标签-->
+      <div class="newTag_public">
+        <div class="newTag_public_title">
+          最新标签
+        </div>
+        <div class="newTag_public_con">
+          <nz-checkbox-wrapper style="width: 100%;margin-top: -10px" (nzOnChange)="newTag_con_change($event)">
+            <div nz-row>
+              <div nz-col nzSpan="4" *ngFor="let a of newTagList;let idx=index"><label nz-checkbox
+                                                                                       [(ngModel)]="a.checked"
+                                                                                       nzValue={{idx}}>{{a.tagName}}</label>
+              </div>
+            </div>
+          </nz-checkbox-wrapper>
+        </div>
+      </div>
+      <!--常用标签-->
+      <div class="newTag_public" style="margin-top: 2px">
+        <div class="newTag_public_title">
+          常用标签
+        </div>
+        <div class="newTag_public_con">
+          <nz-checkbox-wrapper style="width: 100%;margin-top: -10px" (nzOnChange)="usedTag_con_change($event)">
+            <div nz-row>
+              <div nz-col nzSpan="4" *ngFor="let a of useTagList;let idx=index"><label nz-checkbox
+                                                                                       [(ngModel)]="a.checked"
+                                                                                       nzValue={{idx}}>{{a.tagName}}</label>
+              </div>
+            </div>
+          </nz-checkbox-wrapper>
+        </div>
+      </div>
+      <!--标签信息-->
+      <div class="tagLibrary">
+        <div class="tagLibrary_box">
+          <nz-tag nzMode="closeable" [nzColor]="'blue'"
+                  (nzOnClose)="tagging_public_onClose($event,a.id,a.addtype,a.Tagindex)"
+                  (nzAfterClose)="tagging_public_afterClose()"
+                  *ngFor="let a of Ownedtag;let ins=index">{{a.tagName}}
+          </nz-tag>
+        </div>
+      </div>
+    </div>
+    <div class="tagging_public_footer">
+      <div class="tagging_public_choose">
+        <button class="tagging_public_choose_cancel" (click)="tagging_public_close()">取消</button>
+        <button class="tagging_public_choose_sure" (click)="tagging_public_true()">确认</button>
+      </div>
+    </div>
+  </div>
+  <div class="Mask" [hidden]="isOperating">
+  </div>
+</div>

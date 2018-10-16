@@ -1,0 +1,441 @@
+<div class="fridentcircle" style="padding: 24px;">
+    <div class="fridentcircle_text">
+        <span><b>拟人</b>&nbsp;&nbsp;>查看朋友圈</span>
+    </div>
+    <div class="fridentcircle_con">
+        <ul>
+            <li>
+                <span>任务名称</span>
+                <div>
+                  <input type="text" [(ngModel)]="fridenttext">
+                </div>
+            </li>
+            <li>
+                <span>社交号&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <div>
+                  <input type="text" [(ngModel)]="fridentshejiao">
+                  <button class="choosebutton" (click)="showpengshe()">选择</button>
+                </div>
+               
+            </li>
+            <!--<li>
+                <span>优先级&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <div>
+                    <nz-radio-group [(ngModel)]="radioValue">
+                        <label nz-radio nzValue="A">普通</label>
+                        <label nz-radio nzValue="B">紧急</label>
+                    </nz-radio-group>
+                </div>
+            </li>-->
+            <!--<li>
+                <span>执行时间</span>
+                <div>
+                    <nz-week-picker nzFormat="yyyy-MM-dd" [(ngModel)]="date" (ngModelChange)="getWeek($event)" nzPlaceHolder="Select week"></nz-week-picker>
+                    <nz-time-picker [(ngModel)]="time" (ngModelChange)="getTime($event)" style="margin-left:25px;width: 178px;"></nz-time-picker>
+                </div>
+            </li>-->
+            
+             <li>
+                <span>朋友圈&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <div>
+                	 <div style="margin-left: 0;">
+                	 	<div style="display: flex;">
+                	 		<ol class="oltab">
+			                    <li class="tab tabonenomar" [ngClass] = "item==0 ? 'li-active' : ''" (click)="OnItemClick(0)">最近</li>
+			                    <li class="tab" [ngClass] = "item==1 ? 'li-active' : ''" (click)="OnItemClick(1)">指定好友</li>
+			                 </ol>
+			                 <div>
+			                 	 <button class="oltab_choose" [style.display] = "item == 1 ? 'block' : 'none'" (click)="showlaqun()">选择</button>
+			                 </div>
+                	 	</div>
+			                 
+			                
+			                 <div class="tab-content">
+			                    <!--<div [style.display] = "item == 0 ? 'block' : 'none'">最近</div>-->
+			                    <div [style.display] = "item == 1 ? 'block' : 'none'" class="specificfrident">
+			                    	
+			                    	
+			                    </div>
+			                 </div> 
+                    </div>
+                    <br/>
+                    <br/>
+                    <span>查看数量</span>
+                      <nz-select style="width: 88px;margin-left:20px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="seenumber">
+                        <nz-option nzLabel="1" nzValue="1"></nz-option>
+                        <nz-option nzLabel="2" nzValue="2"></nz-option>
+                        <nz-option nzLabel="3" nzValue="3"></nz-option>
+                        <nz-option nzLabel="4" nzValue="4"></nz-option>
+                        <nz-option nzLabel="5" nzValue="5"></nz-option>
+                        <nz-option nzLabel="6" nzValue="6"></nz-option>
+                        <nz-option nzLabel="7" nzValue="7"></nz-option>
+                        <nz-option nzLabel="8" nzValue="8"></nz-option>
+                        <nz-option nzLabel="9" nzValue="9"></nz-option>
+                        <nz-option nzLabel="10" nzValue="10"></nz-option>
+                    </nz-select>
+                    <br/>
+                    <span class="choosespan">查看多少个好友和群的数量</span>
+                    <br>
+                    <br>
+                    <br>
+                    <span>查看时间</span>
+                   <nz-select style="width: 88px;margin-left:20px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="seetime">
+                        <nz-option nzLabel="5分钟" nzValue="5"></nz-option>
+                        <nz-option nzLabel="10分钟" nzValue="10"></nz-option>
+                        <nz-option nzLabel="15分钟" nzValue="15"></nz-option>
+                        <nz-option nzLabel="20分钟" nzValue="20"></nz-option>
+                        <nz-option nzLabel="25分钟" nzValue="25"></nz-option>
+                        <nz-option nzLabel="30分钟" nzValue="30"></nz-option>
+                    </nz-select>
+                    <br/>
+                    <span class="choosespan">查看驻留的时间</span>
+                </div>
+            </li>
+            <li class="flexwrap">
+               <span>高级选项</span>
+                <div>
+                    <span>超时时间</span>
+                    <nz-select style="width: 160px;margin-left:20px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="timeout">
+                        <nz-option nzLabel="10分钟" nzValue="10"></nz-option>
+                        <nz-option nzLabel="30分钟" nzValue="30"></nz-option>
+                        <nz-option nzLabel="1小时" nzValue="60"></nz-option>
+                        <nz-option nzLabel="2小时" nzValue="120"></nz-option>
+                        <nz-option nzLabel="12小时" nzValue="720"></nz-option>
+                        <nz-option nzLabel="24小时" nzValue="1440"></nz-option>
+                    </nz-select>
+                   <br>
+                   <br>
+                   <span>发送间隔</span>
+                   <nz-select style="width:88px;margin-left:20px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="interval1">
+                      <nz-option nzLabel="5" nzValue="5"></nz-option>
+                      <nz-option nzLabel="10" nzValue="10"></nz-option>
+                      <nz-option nzLabel="15" nzValue="15"></nz-option>
+                      <nz-option nzLabel="20" nzValue="20"></nz-option>
+                      <nz-option nzLabel="25" nzValue="25"></nz-option>
+                      <nz-option nzLabel="30" nzValue="30"></nz-option>
+                      <nz-option nzLabel="35" nzValue="35"></nz-option>
+                      <nz-option nzLabel="40" nzValue="40"></nz-option>
+                      <nz-option nzLabel="45" nzValue="45"></nz-option>
+                      <nz-option nzLabel="50" nzValue="50"></nz-option>
+                      <nz-option nzLabel="55" nzValue="55"></nz-option>
+                      <nz-option nzLabel="60" nzValue="60"></nz-option>
+                   </nz-select>
+                    <b>～</b>
+                    <nz-select style="width:88px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="interval2">
+                        <nz-option nzLabel="5" nzValue="5"></nz-option>
+                        <nz-option nzLabel="10" nzValue="10"></nz-option>
+                        <nz-option nzLabel="15" nzValue="15"></nz-option>
+                        <nz-option nzLabel="20" nzValue="20"></nz-option>
+                        <nz-option nzLabel="25" nzValue="25"></nz-option>
+                        <nz-option nzLabel="30" nzValue="30"></nz-option>
+                        <nz-option nzLabel="35" nzValue="35"></nz-option>
+                        <nz-option nzLabel="40" nzValue="40"></nz-option>
+                        <nz-option nzLabel="45" nzValue="45"></nz-option>
+                        <nz-option nzLabel="50" nzValue="50"></nz-option>
+                        <nz-option nzLabel="55" nzValue="55"></nz-option>
+                        <nz-option nzLabel="60" nzValue="60"></nz-option>
+                    </nz-select>&nbsp;&nbsp;&nbsp;&nbsp;秒
+                      <!--选择周期-->
+                      <div style="margin-top:20px;">
+                      	 <nz-radio-group [(ngModel)]="cycle" (ngModelChange)="changezq($event)">
+	                            <label nz-radio nzValue="A1">定时任务</label>
+	                            <label nz-radio nzValue="B1">周期任务</label>
+	                            <label nz-radio nzValue="C1">立即执行(开始时间后)</label>
+                         </nz-radio-group>
+                            <br/>
+                         <br/>
+                         <span style="color:rgba(0,125,206,1);" class="success">注:后者选择的时间框的时间应该大于前者</span>
+                      </div>
+                      <!--定时-->
+                      <div  class="dingshi">
+                      	<div class="dingshi_div" *ngFor="let item of dingshiarr;let i = index">
+                      		<span>每日{{i}}</span>
+                      		<nz-time-picker  [(ngModel)]="item.time1" (ngModelChange)="log1($event)" nzFormat="HH:mm:ss"></nz-time-picker>
+                      		<nz-time-picker  [(ngModel)]="item.time2" (ngModelChange)="log2($event)" nzFormat="HH:mm:ss"></nz-time-picker>
+                      		<span class="close" (click)="delectdingshi(i)">x</span>
+                      	</div>
+                      	
+                      	<div class="dingshi_add" (click)="adddingshi()">+添加</div>
+                      </div>
+                      <!--周期-->
+                      <div  class="zhouqi">
+                         <div  class="zhouqi_div" *ngFor="let item of zhouqiarr;let i = index">
+                         	 <nz-select style="width:80px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="item.zhouqiweek">
+	                            <nz-option nzLabel="周日" nzValue="0"></nz-option>
+	                            <nz-option nzLabel="周一" nzValue="1"></nz-option>
+	                            <nz-option nzLabel="周二" nzValue="2"></nz-option>
+	                            <nz-option nzLabel="周三" nzValue="3"></nz-option>
+	                            <nz-option nzLabel="周四" nzValue="4"></nz-option>
+	                            <nz-option nzLabel="周五" nzValue="5"></nz-option>
+	                            <nz-option nzLabel="周六" nzValue="6"></nz-option>
+                            </nz-select>
+	                      	<nz-time-picker [(ngModel)]="item.time3" (ngModelChange)="log3($event)" nzFormat="HH:mm:ss"></nz-time-picker>
+	                      	<nz-time-picker [(ngModel)]="item.time4" (ngModelChange)="log4($event)" nzFormat="HH:mm:ss"></nz-time-picker>
+	                      	<span class="close" (click)="delectzhouqi(i)">x</span>
+                         </div>
+                         <div class="zhouqi_add" (click)="addzhouqi()">+添加</div>
+                      </div>
+                    <br/>
+                	<label nz-checkbox [(ngModel)]="taskchek" (ngModelChange)="showtask($event)" >是否加入任务计划</label>
+                </div>
+            </li>
+              <li class="quejia" style="display: none;">
+                	<span></span>
+                	<div style="margin-left: 174px;position: relative;top: 20px;">
+                		 <div>
+                		 	 <span>开始时间</span>
+                		     <nz-week-picker class="timesele" nzFormat="yyyy-MM-dd HH:mm:ss" [(ngModel)]="startdate"  (ngModelChange)="getStart($event)"   [nzDisabledDate]="disabledDate" nzPlaceHolder="Select week"></nz-week-picker>
+                		 </div>
+                		<div>
+                			 <span>结束时间</span>
+                		     <nz-week-picker  class="timesele" nzFormat="yyyy-MM-dd HH:mm:ss" [(ngModel)]="enddate" (ngModelChange)="getEnd($event)" [nzDisabledDate]="disabledDate1" nzPlaceHolder="Select week"></nz-week-picker>
+                		</div>
+                		
+                		<div>
+                			 <span>优先级</span>
+                            <nz-radio-group [(ngModel)]="radioValue" style="margin-left:51px;">
+		                        <label nz-radio nzValue="A">普通</label>
+		                        <label nz-radio nzValue="B">紧急</label>
+                           </nz-radio-group>
+                		</div>
+                       <div style="display: flex;">
+	                       	<span>备注</span>
+	                        <div class="zhushi" contenteditable="true"></div>
+                       </div>
+                        
+                	</div>
+                </li>
+        </ul>
+         <div class="buttongroup">
+               <button class="onebut" *ngIf="surebtn"  (click)="fridentsure()">立即执行</button>
+               <button class="twobut" *ngIf="!surebtn" (click)="addtaskplan()">确认添加</button>
+         </div>
+    </div>
+     <!--选择社交号-->
+     <div class="fridentcircle_social" *ngIf="pengshe">
+        	<div class="fridentcircle_social_head">
+        		<span>选择社交号</span>
+        		<span class="spanclose" (click)="closepengshe()">x</span>
+        	</div>
+        	<div class="fridentcircle_social_center">
+        		<div class="tankuang_headdiv">
+        			<ul class="tankuang_ul">
+        				<li>未选择14</li>
+        				
+        				<li>
+        					<input type="text" placeholder="标签/微信号/设备号/资产号" [(ngModel)]="sjinputmodel">
+        				</li>
+        				<li>
+        					<button (click)="changesj()">搜索</button>
+        				</li>
+        			</ul>
+        		</div>
+        		<div class="tankuang_cendiv">
+        			
+        			 <div class="wechat_leftdiv">
+        				 <nz-table #nzTable 
+        				 	  [nzData]="shejarr"
+						      [nzFrontPagination]="false"
+						      [nzTotal]="total"
+						      [(nzPageIndex)]="pageIndex"
+						      [(nzPageSize)]="pageSize"
+						      (nzPageIndexChange)="searchData($event)"
+						      (nzPageSizeChange)="searchData(true)">
+						  <thead>
+						    <tr>
+						      <th></th>
+						      <th>id</th>
+						      <th>手机号/微信号</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr *ngFor="let item of shejarr;let i = index">
+						      <td>
+						      	 <label nz-checkbox [nzValue]="item.id" [(ngModel)]="item.checked" (ngModelChange)="addright(item,item.checked)" class="lable"> 
+	     				 	        {{item.tagName}}
+	     				         </label>
+	     				          
+						      </td>
+						      <td [attr.colspan]="2">
+						      	 <div class="idphonediv">
+				                 	 <span style="position: relative;right: 11px;">{{item.id}}</span>
+				                 	 <span></span>
+				                     <span style="position: relative;right: 20px;">{{item.socialNumber}}</span>
+                                 </div>
+				                 <div class="taglist">
+				                 	<span *ngFor="let tagindex of item.tagss">
+				                      {{tagindex.tags}}
+				                    </span>
+				                 </div> 	
+						      </td>
+						    </tr>
+						  </tbody>
+						</nz-table>
+        			</div>
+        			
+        			<div class="wechat_botdiv" id="scrolldiv">
+        				 <table  id="righttable">
+						  <thead>
+						    <tr>
+						      <th>id</th>
+						      <th>手机号/微信号</th>
+						      <th>操作</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						      <div>
+						      	  <tr *ngFor="let item of rightData;let i = index">
+							    	<td colspan="3">
+							    			<div class="idphonediv" style="margin-top: 6px;">
+							                 	 <span style="position: relative;right:-13px;">{{item.id}}</span>
+							                 	 <span style="position: relative;right:-22px;">{{item.socialNumber}}</span>
+							                     <span style="position: relative;right:-18px;" (click)="delectwechta(item,i)">删除</span>
+	                                       </div>	
+						                 <div class="taglist" style="position: relative;left: 26px;">
+						                 	<span *ngFor="let tagindex of item.tagss">
+					                             {{tagindex.tags}}
+					                         </span>
+						                 </div> 	
+							    	</td>
+							    </tr>
+							    
+							    
+						      </div>
+						  </tbody>
+						</table>
+        			</div>
+        		</div>
+        	</div>
+        	<div class="fridentcircle_social_foot">
+        		<span style="float: right;">
+        			<button class="quxiao" (click)="closepengshe()">取消</button>
+        		    <button class="sure" (click)="surewechat()">确定</button>
+        		</span>
+        		
+        	</div>
+     </div>
+              <!--选择拉群-->
+  <div class="sendlink_social" *ngIf="ishowlaqun">
+        	<div class="sendlink_social_head">
+        		<span>拉群</span>
+        		<span class="spanclose" (click)="closelaqun()">x</span>
+        	</div>
+        	<div class="sendlink_social_center">
+        		<div class="tankuang_headdiv">
+        			<ul class="tankuang_ul">
+        				<li>
+	        				<nz-select style="width:160px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="wchatnameid" (ngModelChange)="bywchatnameidchange(wchatnameid)">
+	                     <nz-option *ngFor="let item of wechatName;let i = index" nzLabel="{{item.nickName}}" nzValue="{{item.id}}">
+	                     	
+	                     </nz-option>
+	                </nz-select>
+        				</li>
+        				<li style="margin-left:230px;">
+        					<input type="text" placeholder="主题/描述/URL" [(ngModel)]="forwardmodel">
+        				</li>
+        				<li>
+        					<button (click)="bymodelchange()">搜索</button>
+        				</li>
+        			</ul>
+        		</div>
+        		<div class="tankuang_cendiv">
+        		      	   <div class="onetable">
+					     		  <nz-table  #nzTable 
+					     		  (nzCurrentPageDataChange)="currentPageDataChangeforward($event)"
+        				 	      [nzData]="sendcirData"
+							      [nzFrontPagination]="false"
+							      [nzTotal]="totalforward"
+							      [(nzPageIndex)]="pageIndexforward"
+							      [(nzPageSize)]="pageSizeforward"
+							      (nzPageIndexChange)="searchDataforward($event)"
+							      (nzPageSizeChange)="searchDataforward(true)">
+									      <thead>
+									        <tr>
+									          <th nzShowCheckbox [(nzChecked)]="allCheckedforward" [nzIndeterminate]="indeterminateforward" (nzCheckedChange)="checkAllforward($event)" (click)="alladdforward(allCheckedforward)"></th>
+									          <th>昵称</th>
+									          <th>id</th>
+									          <th>微信号</th>
+									          <th>分组</th>
+									        </tr>
+									      </thead>
+									      <tbody>
+									        <tr *ngFor="let data of sendcirData">
+									          <td nzShowCheckbox [(nzChecked)]="data.checked"  (nzCheckedChange)="refreshStatusforward($event)" (click)="oneaddforward(data,data.checked)"></td>
+									          <td [attr.colspan]="5">
+									          	
+									          	<div class="idphonediv" style="position: relative;top: -1px;width: 215px;left: 100px;">
+								                 	 <span style="position: relative;right:96px;" title="{{data.nickName}}">
+								                 	   {{data.nickName}}
+								                 	 </span>
+								                   <span style="position: relative;right:83px;">
+								                    {{data.id}}
+								                   </span>
+								                   <span style="position: relative;right:56px;" title="{{data.contactNumber}}">
+								                    {{data.contactNumber}}
+								                   </span>
+								                   <span style="position: relative;right:11px;">
+								                     {{getGroupName(data.groupId)}}
+								                   </span>
+						                  </div>
+						                 <div class="taglist">
+								                 	<span *ngFor="let tagindex of data.tagss">
+								                      {{tagindex.tags}}
+								                  </span>   
+										        </div> 	
+									          </td>
+									        </tr>
+									      </tbody>
+								    </nz-table>
+		     		    </div>
+			     		<div class="twotable">
+			        		<table id="rightwctable">
+										 <thead>
+										    <tr>
+										      <th>昵称</th>
+							            <th>id</th>
+										      <th>微信号</th>
+										      <th>操作</th>
+										    </tr>
+										 </thead>
+										 <tbody>
+										      <div>
+										      	  <tr *ngFor="let item of sendcirRightData;let i = index" style="position: relative;">
+														    	<td colspan="4">
+														    			<div class="idphonediv" style="margin-top:3.5px;">
+													                 	 <span style="position: relative;right:-6px;">
+													                 	 	  {{item.nickName}}
+													                 	 </span>
+													                 	 <span style="position: relative;right:-17px;">
+													                 	 	 	{{item.id}}
+													                 	 </span>
+													                  <span style="position: relative;right:-23px;">
+													                  	  {{item.contactNumber}}
+													                  </span>
+													                  <span style="position: relative;left:27px;" (click)="deletctforward(item,i)">删除</span>
+								                     </div>	
+										                 <div class="taglist" style="position:absolute;left:33px;width:352px;top:30px;height: 24px;">
+										                      	<span *ngFor="let tagindex of item.tagss">
+									                             {{tagindex.tags}}
+									                          </span>
+										                 </div> 	
+														    	</td>
+											       </tr>
+										      </div>
+										 </tbody>
+						     </table>
+			        </div> 	   
+			     		
+        		</div>
+        		
+        	</div>
+        	<div class="sendlink_social_foot">
+        		<span style="float: right;">
+        			<button class="quxiao" (click)="closelaqun()">取消</button>
+        		    <button class="sure" (click)="surefrident()">确定</button>
+        		</span>
+        		
+        	</div>
+     </div>
+    
+</div>
+<app-mask *ngIf="ismask"></app-mask>

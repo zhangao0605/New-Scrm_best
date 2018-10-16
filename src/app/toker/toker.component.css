@@ -1,0 +1,89 @@
+.toker{
+    background: #fff;
+}
+.toker_headtext{
+   height: 28px;
+   line-height: 16px;
+   border-bottom:2px solid rgba(220,220,220,1);
+}
+.toker_headtext b{
+    font-family:PingFangSC-Semibold;
+    font-size: 16px;
+}
+.toker_con{
+   padding-left:30px;
+   display:flex;
+}
+.toker_con ul{
+    list-style: none;
+}
+
+.toker_con ul li{
+    width:400px;
+    height:80px;
+    background:rgba(255,255,255,1);
+    box-shadow: 2px 2px 8px #d2d6de;
+    list-style: none;
+    margin-top: 30px;
+    display:flex;
+    padding: 15px;
+}
+.toker_con ul li .toker_con_left_div{
+    width:56px;
+    height:56px;
+    background:rgba(0,125,206,1);
+    border-radius:2px;
+    padding: 8px 5px;
+}
+.toker_con ul li .toker_con_right_div{
+    margin-left:30px;
+}
+.toker_con ul li .toker_con_right_div b{
+    color:rgba(49,49,49,1);
+ }
+.toker_con ul li .toker_con_right_div span{
+   position: relative;
+   top:12px;
+   color:rgba(49,49,49,1);
+}
+.toker_con .toker_con_right{
+     padding-left:150px;
+}
+.toker_con_left_div{
+	position:relative;
+}
+.toker_con_left_div img{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
+.toker_con_left_div .one,.qi,.ba{
+	width:32px;
+	height: 32px;
+	margin-left: -16px;
+	margin-top:-16px;
+}
+.toker_con_left_div .two,.six{
+	width: 27px;
+	height: 32px;
+	margin-left: -13.5px;
+	margin-top:-16px;
+}
+.toker_con_left_div .four{
+	width: 28px;
+	height: 32px;
+	margin-left: -14px;
+	margin-top:-16px;
+}
+.toker_con_left_div .five{
+	width: 32px;
+	height: 28px;
+	margin-left: -16px;
+	margin-top:-14px;
+}
+.toker_con_left_div .three{
+	width: 32px;
+	height: 29px;
+	margin-left: -16px;
+	margin-top:-14.5px;
+}

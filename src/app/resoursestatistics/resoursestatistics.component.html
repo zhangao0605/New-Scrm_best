@@ -1,0 +1,122 @@
+<div class="resoursestatistics" style="padding: 24px;">
+        <div class="resoursestatistics_text">
+            <span><b>统计</b>&nbsp;&nbsp;>资源统计</span>
+        </div>
+        <div class="resoursestatistics_con">
+	        	<ul class="general_topul">
+	        		 <li class="oneli">
+	        		  	<div class="general_left">
+	        		  		<img src="./assets/images/ziyuanone.png">
+	        		  	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>通讯录资源总数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.communicationCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        		 <li>
+	        		 	<div class="general_left">
+	        		 		<img src="./assets/images/ziyuantwo.png">
+	        		 	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>图片素材总数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.pictureCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        		 <li>
+	        		 	<div class="general_left">
+	        		 		<img src="./assets/images/ziyuanthree.png">
+	        		 	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>链接素材总数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.imgandlinkCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        		 <li>
+	        		 	<div class="general_left">
+	        		 		<img src="./assets/images/ziyuanfour.png">
+	        		 	</div>
+	        		 	  <div class="general_right">
+	        		 	  	 <span>话术素材总数</span>
+	        		 	  	 <br/>
+	        		 	  	 <b>{{headData.scriptCount}}</b>
+	        		 	  	 
+	        		 	  </div>
+	        		 </li>
+	        	</ul>
+	        	<!--中一-->
+	        	<div class="general_center">
+	        		<!--左-->
+	        		   <div class="toadyweek">
+	        		      <b>{{title}}</b>
+	        		      <div class="tongji">
+	        		      	    <div class="tongji_head">
+	        		      	    	<div class="tongji_head_left">
+			        		      		<span class="sbnum">{{ headData.resourceCount}}</span>
+			        		      	    <span class="sbzi">资源总数</span>
+	        		      			</div>
+	        		      			<div class="tongji_head_right" style="line-height: 30px;">
+	        		      				<span class="circle" style="background:rgba(0,125,206,1);"></span>
+	        		      				<span style="margin-right:50px;">公有资源数：{{headData.publicResource}}</span>
+	        		      				<span class="circle" style="background:rgba(0,186,42,1);"></span>
+	        		      				<span>私有资源数：{{headData.privateResource}}</span>
+	        		      			</div>
+	        		      	    </div>
+	        		      	    
+	        		      	     <ol>
+	        		      	    	<!--左-->
+	        		      	    	<div class="todaydiv">
+	        		      	    		
+	        		      	    	</div>
+	        		      	    	<!--右-->
+	        		      	    	<div class="riqidiv">
+	        		      	    		<li [ngClass] = "coloritem==0 ? 'li-color' : ''" (click)="getTimeClick(0)">今日</li>
+	        		      	    	    <li [ngClass] = "coloritem==1 ? 'li-color' : ''" (click)="getTimeClick(1)">近一周</li>
+	        		      	    	    <li [ngClass] = "coloritem==2 ? 'li-color' : ''" (click)="getTimeClick(2)">本月</li>
+	        		      	    	    <li>
+		        		      	    		 <nz-range-picker nzFormat="yyyy-MM-dd" ngModel (ngModelChange)="getday($event)"></nz-range-picker>
+		        		      	    		 <!--<nz-week-picker nzFormat="yyyy-MM-dd" [(ngModel)]="startdate" (ngModelChange)="getday($event)"></nz-week-picker>-->
+	        		      	    	    </li>
+	        		      	    	</div>
+	        		      	    </ol>
+	        		      	     <div id="two" style="width:918px;height:228px;">
+
+								</div> 
+	        		      </div> 
+	        	     </div>
+	        	     <!--右-->
+	        	     <div class="runuser">
+	        	     	 <b>标签使用频率排行榜</b>
+	        	     	 <div class="huoyue">
+	        	     	 	      <span class="sbnum">{{headData.tagCount}}</span>
+	        		      	      <span class="sbzi">标签总数</span>
+	        		      	    <div class="toadychathead">
+						   	       <span>排名</span>
+						   	       <span>标签名称</span>
+						   	       <span>使用次数</span>
+						   	       <span>占比</span>
+			                     </div>
+						      	 <div class="gaoxuying">
+					      	    	<ul class="toadychathead_ul">
+					      	    		<li *ngFor="let item of rightData;let i = index">
+						      	    		<span>{{i}}</span>
+						      	    		<span>{{item['tagName']}}</span>
+						      	    		<span>{{item['count']}}</span>
+						      	    		<span>
+						      	    			  <nz-progress [nzPercent]="item.proportion" nzStatus="active"></nz-progress>
+						      	    		</span>
+					      	    	   </li>
+					      	    	</ul>
+						      	  </div> 
+	        	     	 </div>
+	        	     </div>
+	        	</div>
+	        	
+        </div>
+</div>
+      

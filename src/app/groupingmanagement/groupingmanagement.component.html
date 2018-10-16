@@ -1,0 +1,159 @@
+<div class="label_management">
+  <div class="label_management_title">
+    <span class="label_management_title_1">分组管理</span>
+  </div>
+  <div class="label_management_all_search">
+    <input type="text" placeholder="分组名称" [(ngModel)]='fuzzyQuery'  class="label_management_all_search_input">
+    <button class="label_management_all_search_search"  (click)="fuzzy_query_table()">搜索</button>
+    <button class="label_management_all_search_batch_deletion" (click)="add_The_grouping()" style="margin-right: 50px">
+      新建分组
+    </button>
+    <button class="label_management_all_search_batch_deletion" (click)="grouping_remove_open(0,0,0,0)">批量删除</button>
+
+  </div>
+  <!--主体title+表格-->
+  <div class="label_management_body">
+    <nz-table
+      #ajaxTable
+      nzBordered
+      [nzFrontPagination]="false"
+      [nzData]="dataSet"
+      [nzLoading]="loading"
+      [nzTotal]="total"
+      [(nzPageIndex)]="pageIndex"
+      [(nzPageSize)]="pageSize"
+      (nzPageIndexChange)="searchData()"
+      (nzPageSizeChange)="searchData(true)">
+      <!--数据总条数-->
+      <!--当前页码，可双向绑定-->
+      <!--每页展示多少数据，可双向绑定-->
+      <!--当前页码改版时的回调函数-->
+      <!--页数改变时的回调函数-->
+      <thead>
+      <tr>
+        <th nzWidth="3%" nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
+            (nzCheckedChange)="checkAll($event)"></th>
+        <th nzWidth="5%">序号</th>
+        <th nzWidth="26%">分组名称</th>
+        <th nzWidth="13%">客户使用量</th>
+        <th nzWidth="13%">群使用量</th>
+        <th nzWidth="20%">添加时间</th>
+        <th nzWidth="10%">是否公有</th>
+        <th nzWidth="10%">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of dataSet;let index=index"[ngClass]="index%2 === 0 ? 'table_tr_bgColor_white' : 'table_tr_bgColor_gray'">
+        <td nzShowCheckbox [(nzChecked)]="data.checked" [attr.id]="data.cell"
+            (nzCheckedChange)="refreshStatus($event)" class="oneCheck" (click)="thisIndex(index)"></td>
+        <td>{{index+1}}</td>
+        <td>{{data.name}}</td>
+        <td>{{data.friendNumber}}</td>
+        <td>{{data.chatroomNumber}}</td>
+        <td>{{data.createTime}}</td>
+        <td>{{tagIsPublic(data.isPublic)}}</td>
+        <td class="label_management_operating_ed">
+          <span style="margin-left:11%" nzTitle="修改" nz-tooltip nzPlacement="top" class="label_management_operating_bg3" (click)="modify_the_grouping_open(data.id)"></span>
+          <span nzTitle="删除" nz-tooltip nzPlacement="top" class="label_management_operating_bg1" (click)="grouping_remove_open(data.id,data.friendNumber,data.chatroomNumber)"></span>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+
+  <!--修改分组-->
+  <div class="label_management_edit" style="height: 280px" [hidden]="modifyThePublicNumber">
+    <div class="label_management_edit-title">
+      修改分组
+      <span class="friends_circle_close" (click)="modify_the_grouping_close()">x</span>
+    </div>
+    <div class="label_management_edit-con" style="height: 66%">
+      <div class="label_management_edit-con1">
+        <div class="label_management_edit_friendImg" style="margin-top: 35px">
+          <div class="label_management_edit_left">
+            分组名称：
+          </div>
+          <div class="label_management_edit_right">
+            <input type="text" class="edit_name" [(ngModel)]="SingleGroupInformation" placeholder="请输入">
+          </div>
+        </div>
+        <div class="label_management_edit_say" style="margin-top:20px">
+          <div class="label_management_edit_left">
+            是否公有：
+          </div>
+          <div class="label_management_edit_right">
+            <nz-select style="width: 100%;"
+                       [(ngModel)]="editselectedValue"
+                       [nzPlaceHolder]="'请选择'">
+              <nz-option nzValue="0" nzLabel="是"></nz-option>
+              <nz-option nzValue="1" nzLabel="否"></nz-option>
+            </nz-select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="friends_circle_footer">
+      <div class="friends_circle_choose">
+        <button class="friends_circle_choose_cancel" (click)="modify_the_grouping_close()">取消</button>
+        <button class="friends_circle_choose_sure" (click)="modify_the_grouping_sure()">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--添加分组-->
+  <div class="label_management_edit" style="height: 280px" [hidden]="addThePublicNumber">
+    <div class="label_management_edit-title" style="height: 17%">
+      新建分组
+      <span class="friends_circle_close" (click)="add_the_grouping_close()">x</span>
+    </div>
+    <div class="label_management_edit-con" style="height: 66%">
+      <div class="label_management_edit-con1">
+        <div class="label_management_edit_friendImg" style="margin-top: 35px">
+          <div class="label_management_edit_left">
+            分组名称：
+          </div>
+          <div class="label_management_edit_right">
+            <input type="text" class="edit_name" [(ngModel)]="addGroupName" placeholder="请输入">
+          </div>
+        </div>
+        <div class="label_management_edit_say" style="margin-top:20px">
+          <div class="label_management_edit_left">
+            是否公有：
+          </div>
+          <div class="label_management_edit_right">
+            <nz-select style="width: 100%;"
+                       [(ngModel)]="editselectedValue1"
+                       [nzPlaceHolder]="'请选择'">
+              <nz-option nzValue="0" nzLabel="是"></nz-option>
+              <nz-option nzValue="1" nzLabel="否"></nz-option>
+            </nz-select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="friends_circle_footer">
+      <div class="friends_circle_choose">
+        <button class="friends_circle_choose_cancel" (click)="add_the_grouping_close()">取消</button>
+        <button class="friends_circle_choose_sure" (click)="add_the_grouping_sure()">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--删除分组-->
+  <div class="grouping_remove" [hidden]="remobeThePublicNumber">
+    <div class="grouping_remove_con">
+      <div class="grouping_remove_con_title">
+        <span class="grouping_remove_con_title_icon"></span>确认要删除这个分组吗？
+      </div>
+      <div class="grouping_remove_con_text">
+        你分组中存在<span class="waring_color">"{{cusNumber}}"</span><span class="waring_color">个客户</span>，<span
+        class="waring_color">"{{grpNumber}}"</span><span class="waring_color">个群</span>，请谨慎删除！
+      </div>
+      <div class="grouping_remove_con_button">
+        <button class="friends_circle_choose_cancel" (click)="grouping_remove_close()">取消</button>
+        <button class="friends_circle_choose_sure" (click)="grouping_remove_sure()">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--操作蒙层-->
+  <div class="Mask" [hidden]="isOperating">
+  </div>
+</div>

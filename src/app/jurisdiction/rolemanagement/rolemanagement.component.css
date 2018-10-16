@@ -1,0 +1,139 @@
+.rolemanagemen{
+    background: #fff;
+}
+.rolemanagemen .rolemanagemen_headtext{
+   height: 28px;
+   line-height: 16px;
+   border-bottom:2px solid rgba(220,220,220,1);
+}
+.rolemanagemen .rolemanagemen_headtext b{
+    font-family:PingFangSC-Semibold;
+    font-size: 16px;
+}
+.rolemanagemen .rolemanagemen_con{
+	height: 50px;
+}
+.rolemanagemen .rolemanagemen_con ul{
+	margin-left: 400px;
+	padding: 20px;
+	display:flex;
+}
+.rolemanagemen .rolemanagemen_con ul li{
+	margin-right:20px;
+}
+.rolemanagemen .rolemanagemen_con ul li input[type="text"]{
+	width: 242px;
+    height: 30px;
+	border-radius:15px;
+	border:1px solid rgba(220,220,220,1);
+	padding-left: 20px;
+}
+
+.rolemanagemen .rolemanagemen_con ul li input[type="button"]{
+	width: 50px;
+    height: 28px;
+	border-radius:2px;
+	border:1px solid #eee;
+	background: none;
+	margin-right:15px;
+}
+.rolemanagemen .rolemanagemen_con ul li .newuser{
+	width:110px;
+    height:28px;
+	background:rgba(244,244,244,1);
+	border-radius:2px;
+	border:1px solid rgba(220,220,220,1);
+	margin-right:15px;
+}
+.rolemanagemen .tablelist{
+	padding: 20px;
+	width: 900px;
+}
+/*添加手机卡管理*/
+.rolemanagemen_addcard{
+	width:624px;
+    height:436px;
+    background:rgba(255,255,255,1);
+	box-shadow:0px 4px 15px 0px rgba(0,0,0,0.2);
+	position:absolute;
+	left: 50%;
+    top: 50%;
+    margin-top:-218px;
+    margin-left:-312px;
+    z-index: 1;
+}
+.rolemanagemen_addcard_head{
+	height:50px;
+	display: flex;
+	justify-content: space-between;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-bottom:2px solid rgba(233,233,233,1);
+}
+.rolemanagemen_addcard_center{
+	height:310px;
+	padding:0px 70px;
+	border-bottom:2px solid rgba(233,233,233,1);
+}
+.rolemanagemen_addcard_footer{
+	height:50px;
+	padding: 8px;
+}
+.rolemanagemen_addcard_footer .sure{
+	width:65px;
+	height:34px;
+	background:rgba(16,142,233,1);
+	border-radius:4px;
+	border: none;
+}
+.rolemanagemen_addcard_footer .quxiao{
+	width:65px;
+	height:34px;
+	background:rgba(255,255,255,1);
+	border-radius:4px;
+	border:1px solid rgba(217,217,217,1);
+	margin-right:10px;
+}
+.rolemanagemen_addcard_center ul li input{
+	width:345px;
+	height:28px;
+	border-radius:3px;
+	border: none;
+	border:1px solid #ccc;
+	padding-left: 20px;
+	
+}
+.rolemanagemen_addcard_center ul li input::-webkit-input-placeholder{
+	color: #ccc;
+}
+.rolemanagemen_addcard_center ul li{
+	display: flex;
+	margin-top: 24px;
+	text-align: right;
+}
+.rolemanagemen_addcard_center ul li div{
+	margin-left: 20px;
+}
+.rolemanagemen_addcard_center ul li span{
+	display: inline-block;
+    width: 88px;
+    line-height: 36px;
+}
+.imglist img{
+	margin-left: 20px;
+}
+:host ::ng-deep .tablelist .ant-table-tbody > tr > td {
+  text-align: center;
+  padding: 15px 10px;
+}
+.closebtncur{
+	width:20px;
+	height: 20px;
+	cursor:pointer;
+}
+.closebtncur span{
+	font-size: 24px;
+    position: relative;
+    top: -11px;
+    left: 5px;
+}

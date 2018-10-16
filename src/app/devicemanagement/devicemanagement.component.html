@@ -1,0 +1,68 @@
+<div class="devicemanagement" style="padding: 24px;">
+        <div class="devicemanagement_text">
+            <span><b>管理</b>&nbsp;&nbsp;>设备管理</span>
+        </div>
+        <div class="devicemanagement_con">
+            <ul>
+            	 <li>
+            		<input type="text" placeholder="名称/类型/状态/等级"  [(ngModel)]="searmodle"/>
+            	</li>
+            	<li>
+            		<input type="button" value="搜索" (click)="search()">
+            	</li>
+            	<li>
+            		<button class="Scanning">扫描设备</button>
+            	</li>
+            </ul>
+            <div style="clear: both;"></div>
+            <div style="margin-top: 20px;" class="zaqj">
+	            	<nz-table #nzTable nzBordered   
+	            		[nzData]="deviceData" 
+	            		[nzFrontPagination]="false"
+	            		[nzTotal]="total"
+				        [(nzPageIndex)]="pageIndex"
+					      [(nzPageSize)]="pageSize"
+					      (nzPageIndexChange)="searchData($event)"
+					      (nzPageSizeChange)="searchData(true)">
+				      <thead>
+					      <tr class="onewhitetr">
+					        <th nzWidth="5%">ID</th>
+					        <th nzWidth="9%">设备编号</th>
+					        <th nzWidth="8%">社交号</th>
+					        <th nzWidth="8%">状态</th>
+					        <th nzWidth="8%">任务状态</th>
+					        <th nzWidth="8%">资产编号</th>
+					        <th nzWidth="8%">微信版本</th>
+					        <th nzWidth="8%">插件版本</th>
+					        <th nzWidth="8%">分组</th>
+					        <th nzWidth="12%">操作</th>
+					      </tr>
+				      </thead>
+				      <tbody>
+						      <tr *ngFor="let item of deviceData;let i = index" [ngClass]="i%2 === 0 ? 'table_tr_bgColor_white' : 'table_tr_bgColor_gray'">
+							        <td>{{item.id}}</td>
+							        <td>{{item.deviceNumber}}</td>
+							        <td>{{item.socialaccount.nickName}}</td>
+							        <td>{{item.onlineStatus==1?'在线':"离线"}}</td>
+							        <td>{{item.taskStatus}}</td>
+							        <td>{{item.assetNumber}}</td>
+							        <td>{{item.wechatVersion}}</td>
+							        <td>{{item.systemVersion}}</td>
+							        <td>
+							        	
+							        	{{getGroupName(item.groupId)}}
+							        </td>
+							        <td class="imglist">
+							        	<img src="./assets/images/shebeione.png">
+							        	<img src="./assets/images/deviceupdate.png">
+							        	<img src="./assets/images/shebeithree.png">
+							        	<img src="./assets/images/shebeifour.png">
+							        	<img src="./assets/images/shebeifive.png">
+							        </td>
+						      </tr>
+				      </tbody>
+				    </nz-table>
+            </div>
+        </div>
+</div>
+      

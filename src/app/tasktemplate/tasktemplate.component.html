@@ -1,0 +1,253 @@
+<div class="task_management">
+  <div class="task_management_title">
+    <span class="task_management_title_1">任务</span>&nbsp;&nbsp;>&nbsp;任务模板
+  </div>
+  <div class="task_management_body" nz-row>
+    <div class="task_management_all">
+      <div class="task_management_all_search">
+        <input type="text" placeholder="名称/类型/状态/等级" [(ngModel)]='fuzzyQuery' class="task_management_all_search_input">
+        <button class="task_management_all_search_search" (click)="fuzzy_query_table()">搜索</button>
+        <button class="task_management_all_search_batch_deletion" (click)="editTaskfunc(-1)">添加模板</button>
+      </div>
+    </div>
+    <div class="address_book_management_body">
+      <nz-table
+        #ajaxTable
+        nzBordered
+        [nzFrontPagination]="false"
+        [nzData]="dataSet"
+        [nzLoading]="loading"
+        [nzTotal]="total"
+        [(nzPageIndex)]="pageIndex"
+        [(nzPageSize)]="pageSize"
+        (nzPageIndexChange)="searchData()"
+        (nzPageSizeChange)="searchData(true)">
+        <!--数据总条数-->
+        <!--当前页码，可双向绑定-->
+        <!--每页展示多少数据，可双向绑定-->
+        <!--当前页码改版时的回调函数-->
+        <!--页数改变时的回调函数-->
+        <thead>
+        <tr>
+          <th nzWidth="4.2%" nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
+              (nzCheckedChange)="checkAll($event)"></th>
+          <th nzWidth="9.1%">序号</th>
+          <th nzWidth="30%">任务模板名称</th>
+          <th nzWidth="36%">备注</th>
+          <th nzWidth="20.7%">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of dataSet;let index=index"
+            [ngClass]="index%2 === 0 ? 'table_tr_bgColor_white' : 'table_tr_bgColor_gray'">
+          <td nzShowCheckbox [(nzChecked)]="data.checked" [attr.id]="data.id"
+              (nzCheckedChange)="refreshStatus($event)" class="oneCheck" (click)="thisIndex(index)"></td>
+          <td>{{((pageIndex-1)*10)+index+1}}</td>
+          <td (click)="taskNameseedetail(data.id,data.planType)" class="taskNameColor">
+            {{data.templateName}}
+          </td>
+          <td>{{data.remark}}</td>
+          <td>
+            <ul class="task_table_ul">
+              <li style="margin-left:11%"  nzTitle="编辑模板" nz-tooltip nzPlacement="top" class="task_table_bg1" (click)="Choosetel_open(data.id)"></li>
+              <li  nzTitle="修改" nz-tooltip nzPlacement="top" class="task_table_bg3" (click)="editTaskfunc(data.id)"></li>
+              <li  nzTitle="删除" nz-tooltip nzPlacement="top" class="task_table_bg2" (click)="delThis(data.id)"></li>
+            </ul>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+  <!--任务模板详情-->
+  <div class="taskscheduler_filedetail " [hidden]="taskTemplatedetail">
+    <div class="task_template_addPlan_title">
+      任务模板详情
+      <span class="task_template_addPlan_close" (click)="taskTemplatedetail_close()">x</span>
+    </div>
+    <div class="task_template_addPlan_con1">
+      <div class="task_html_title">
+        <div class="task_html_title_2">
+          <span class="task_html_title_1">任务名称：</span><span>{{tasktemplateData.templateName}}</span>
+        </div>
+        <div class="task_html_title_2">
+          <span class="task_html_title_1">备注：</span><span>{{tasktemplateData.remark}}</span>
+        </div>
+      </div>
+      <div class="task_template_addPlan_con1_conter">
+        <div class="taskscheduler_filedetail_title">
+          <ul>
+            <li>编号</li>
+            <li>任务名称</li>
+            <li>运行任务</li>
+          </ul>
+        </div>
+        <div class="taskscheduler_filedetail_title_1">
+          <ul *ngFor="let data of tasktemplateData.tasklist;let index=index">
+            <li>{{index+1}}</li>
+            <li class="taskNameColor" (click)="taskNameseedetail1(data.id)" >{{data.taskName}}</li>
+            <li class="color3">{{data.runTaskName}}</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <div class="task_template_addPlan_footer">
+      <div class="task_template_addPlan_choose">
+        <button class="task_template_addPlan_choose_sure" (click)="taskTemplatedetail_close()">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--删除任务-->
+  <div class="grouping_remove" [hidden]="remobeThePublicNumber">
+    <div class="grouping_remove_con">
+      <div class="grouping_remove_con_title">
+        <span class="grouping_remove_con_title_icon"></span>确认要删除这条任务吗？
+      </div>
+      <div class="grouping_remove_con_text">
+        <span class="waring_color">是否确认删除当前任务管理</span>，请谨慎删除！
+
+      </div>
+      <div class="grouping_remove_con_button">
+        <button class="friends_circle_choose_cancel" (click)="grouping_remove_close()">取消</button>
+        <button class="friends_circle_choose_sure" (click)="grouping_remove_sure()">确认</button>
+      </div>
+    </div>
+  </div>
+  <!--操作选择任务-->
+  <div class="choose_task" [hidden]="chooseTask">
+    <div class="choose_task_title">
+      选择任务
+      <span class="choose_task_title_close" (click)="Choosetel_close()">x</span>
+    </div>
+    <div class="choose_task_con">
+      <p>选择任务：</p>
+      <div class="choose_task_con_container">
+        <div class="choose_task_con_container_left">
+          <ul class="choose_task_left_title">
+            <li>编号</li>
+            <li>任务名称</li>
+            <li>运行任务</li>
+            <li>创建时间</li>
+            <li>调用次数</li>
+            <li>创建人</li>
+            <li>操作</li>
+          </ul>
+          <div class="choose_task_left_con_all">
+            <ul class="choose_task_left_con" *ngFor="let data of allChosseTasks;let index=index">
+              <li>{{index+1}}</li>
+              <li class="more_hidden">{{data.taskName}}</li>
+              <li class="more_hidden">{{data.runName}}</li>
+              <li>{{time_cut(data.createTime)}}</li>
+              <li>{{data.userNumber}}</li>
+              <li>{{data.socialaccountIds}}</li>
+              <li class="taskNameColor" (click)="choose_join(data.id)">加入</li>
+            </ul>
+          </div>
+
+        </div>
+        <div class="choose_task_con_container_right">
+          <ul class="choose_task_right_title">
+            <li>编号</li>
+            <li>任务名称</li>
+            <li>运行任务</li>
+            <li>操作</li>
+          </ul>
+          <div class="choose_task_left_con_all">
+            <ul class="choose_task_right_con" *ngFor="let data of ChosseTasks;let index=index">
+              <li>{{index+1}}</li>
+              <li class="more_hidden">{{data.taskName}}</li>
+              <li class="more_hidden">{{data.runName}}</li>
+              <li class="taskNameColor" (click)="choose_del(data.id)">删除</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="choose_task_footer">
+      <div class="choose_task_footer_choose">
+        <button class="choose_task_footer_choose_sure" (click)="Choosetel_close()">确认</button>
+      </div>
+    </div>
+
+  </div>
+  <!--添加/修改模板-->
+  <div class="tasktemplate_edit" [hidden]="editTask">
+    <div class="tasktemplate_edit_title">
+      选择任务
+      <span class="tasktemplate_edit_title_close" (click)="editTask_close()">x</span>
+    </div>
+    <div class="tasktemplate_edit_con">
+      <ul>
+        <li>任务模板名称：</li>
+        <li><input type="text" class="inpt" placeholder="请输入模板名称" [(ngModel)]="editTaskName"></li>
+      </ul>
+      <ul>
+        <li>备注：</li>
+        <li><input type="text" class="inpt" placeholder="请输入备注" [(ngModel)]="editTaskRemarks"></li>
+      </ul>
+    </div>
+    <div class="tasktemplate_edit_footer">
+      <div class="tasktemplate_edit_footer_choose">
+        <button class="tasktemplate_edit_footer_can" (click)="editTask_close()">取消</button>
+        <button class="tasktemplate_edit_footer_sure" (click)="editTask_sure()">确认</button>
+
+      </div>
+    </div>
+  </div>
+  <!--任务计划详情-->
+  <div class="Common_template" [hidden]="Plandetails">
+    <div class="Common_template_title">
+      任务详情
+      <span class="task_template_addPlan_close" (click)="Plandetails_close()">x</span>
+    </div>
+    <div class="Common_template_con">
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">任务名称：</span><span>{{Plandetails_1}}</span>
+      </div>
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">任务归属：</span><span>{{Plandetails_2}}</span>
+      </div>
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">{{Plandetext_3}}：</span><span>{{Plandetails_3}}</span>
+      </div>
+      <div class="Common_template_con_Article" [hidden]="Plandeshow_4">
+        <span class="Common_template_con_Article_title">{{Plandetext_4}}：</span>
+        <div class="Common_template_con_div_con">
+          {{Plandetails_4}}
+        </div>
+      </div>
+      <div class="Common_template_con_Article" [hidden]="Plandeshow_5">
+        <span class="Common_template_con_Article_title">{{Plandetext_5}}：</span><span>{{Plandetails_5}}</span>
+      </div>
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">超时时间：</span><span>{{Plandetails_6}} s</span>
+        <span [hidden]="Plandeshow_7" style="margin-left: 90px" class="Common_template_con_Article_title">{{Plandetext_7}}：</span><span  [hidden]="Plandeshow_7">{{Plandetails_7}}</span>
+      </div>
+      <div class="Common_template_con_Article" [hidden]="Plandeshow_8">
+        <span class="Common_template_con_Article_title">{{Plandetext_8}}：</span><span>{{Plandetails_8}}</span>
+      </div>
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">{{Plandetext_9}}：</span><span>{{Plandetails_9}}</span>
+        <span style="margin-left: 50px" class="Common_template_con_Article_title">{{Plandetext_10}}：</span><span>{{Plandetails_10}}</span>
+      </div>
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">优先级：</span><span>{{taskRank(Plandetails_11)}}</span>
+      </div>
+      <div class="Common_template_con_Article">
+        <span class="Common_template_con_Article_title">{{Plandetext_12}}：</span>
+        <div class="Common_template_con_div_con">{{Plandetails_12}}</div>
+      </div>
+    </div>
+    <div class="Common_template_con_footer">
+      <div class="Common_template_con_choose">
+        <button class="Common_template_con_choose_sure" (click)="Plandetails_close()">确认</button>
+      </div>
+    </div>
+  </div>
+  <div class="Mask1" [hidden]="isOperating1">
+  </div>
+  <div class="Mask" [hidden]="isOperating">
+  </div>
+
+</div>

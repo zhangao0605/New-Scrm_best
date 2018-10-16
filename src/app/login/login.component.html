@@ -1,0 +1,25 @@
+<!--------------登录界面----------->
+<div class="login-page ">
+  <div class="login-myself">
+    <div class="login-logo" ></div>
+    <div class="login-title">高 效 客 户 管 理 系 统</div>
+    <div class="login-write">
+      <div class="model1">
+        <!--<i class="anticon anticon-user-add icon"></i>-->
+        <!--<input nz-input placeholder="Basic usage"style="height: 43px;" [(ngModel)]="username">-->
+        <nz-input-group  nzPrefixIcon="anticon anticon-user" style="height: 40px">
+          <input type="text" nz-input placeholder="请输入用户名" [(ngModel)]="username">
+        </nz-input-group>
+      </div>
+      <div class="model1 " style="margin-top: 20px">
+        <nz-input-group  nzPrefixIcon="anticon anticon-lock" style="height: 40px">
+          <input type="password" nz-input placeholder="请输入密码" [(ngModel)]="password">
+        </nz-input-group>
+      </div>
+      <div class="remember-me">
+        <label nz-checkbox [(ngModel)]="isremember">记住我</label>
+      </div>
+      <button class="sure-button"(click)="login()">登录</button>
+    </div>
+  </div>
+</div>

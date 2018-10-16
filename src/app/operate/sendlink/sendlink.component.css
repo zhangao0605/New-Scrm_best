@@ -1,0 +1,780 @@
+shuru .sendlink_text{
+    height: 28px;
+    line-height: 16px;
+    border-bottom:2px solid rgba(220,220,220,1);
+}
+ .sendlink_text b{
+ 	font-size:16px;
+ }
+.sendlink_con{
+    padding-left:35px;
+    padding-top:15px;
+    /* background:pink; */
+}
+.sendlink_con .sendlink_con—ul>li{
+     display:flex;
+     margin-top:25px;
+}
+.sendlink_con .sendlink_con—ul li>div{
+    margin-left:120px;
+}
+.sendlink_con .sendlink_con—ul li input[type="text"]{
+    width:380px;
+    height:28px;
+    border-radius:2px;
+    border:1px solid rgba(220,220,220,1);
+}
+
+.sendlink_con .sendlink_con—ul li .choosebutton{
+    width:80px;
+    height:28px;
+    background:rgba(244,244,244,1);
+    border-radius:2px;
+    border:1px solid rgba(220,220,220);
+    margin-left:10px;
+}
+.sendlink .buttongroup{
+   
+    margin-left:485px;
+}
+.sendlink .buttongroup button{
+      width:68px;
+    height:30px;
+    font-size:12px;
+    color:rgba(255,255,255,1);
+    line-height:18px;
+    border-radius: 5px;
+    border:none;
+}
+.sendlink .buttongroup .onebut{
+     color:black;
+     background: #fff;
+     border:1px solid #ccc;
+}
+
+.sendlink .buttongroup .twobut{
+    margin-left:20px;
+    background: rgba(0,125,206,1);
+}
+
+.tab:hover{
+    color: rgba(16,142,233,1);
+}
+  .li-active{
+    border:1px solid rgba(16,142,233,1);
+    color: rgba(16,142,233,1);
+  }
+ .sendlink .oltab{
+    display: flex;
+}
+.sendlink .oltab>.tab{
+    width:75px;
+    height:28px;
+    background:rgba(255,255,255,1);
+    border-radius:2px 0px 0px 2px;
+    line-height: 28px;
+    text-align:center;
+    margin-left:5px;
+    margin-top:0;
+    list-style: none;
+  }
+  .sendlink .oltab .tabonenomar{
+      margin-left:0;
+  }
+  .sendlink .tab-content{
+       margin-top:30px;
+  }
+  
+  .sendlink .tab-content .gouxuan div{
+  	   width:380px;
+       height:60px;
+       border:1px solid #ccc;
+  }
+    .sendlink .tab-content .shuru ul{
+    	margin-left: -147px;
+    }   
+     
+     .sendlink .tab-content .shuru ul li{
+     	display: flex;
+     	margin-top:20px;
+     	
+     } 
+     .sendlink .tab-content .shuru ul li span{
+     	color:#999;
+     	
+     } 
+     .sendlink .tab-content .shuru ul li>div{
+     	width: 380px;
+     	height: 30px;
+     	line-height: 30px;
+     	text-align: center;
+     }
+      .sendlink .tab-content .shuru ul li div input{
+     	padding-left: 15px;
+     }
+     .sendlink .tab-content .shuru ul li .miaoshu{
+     	height: 50px;
+     	line-height: 50px;
+     } 
+     
+     
+  .sendlink .oltab .oltab_choose{
+    width:80px;
+    height:28px;
+    margin-left:145px;
+    background:rgba(244,244,244,1);
+    border-radius:2px;
+    border:1px solid rgba(220,220,220);
+  }
+  .sendlink_con .ant-checkbox-wrapper{
+  	margin-top: 10px;
+ }
+  .sendlink_con .choosespan{
+   	  position: relative;
+   	  top: 5px;
+   	  color:rgba(0,125,206,1);
+   	  font-size: 12px;
+  }
+ .sendlink_con .margin93{
+ 	margin-left: 93px !important;
+ }
+ .sendlink_con .kehudiv{
+ 	 width:380px;
+     height:60px;
+     border:1px solid #ccc;
+     margin-top:30px;
+     margin-left:0 !important;
+ }
+.sendlink_social{
+    width:918px;
+    height:500px;
+    background: rgba(255,255,255,1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -459px;
+    margin-top: -250px;
+    box-shadow:2px 2px 8px #d2d6de;
+    z-index: 1;
+    
+}
+.sendlink_social .sendlink_social_head{
+	height: 50px;
+	border-bottom:2px solid rgba(233,233,233,1);
+	padding: 6px 6px 0px 15px;
+	color:rgba(102,102,102,1);
+	display: flex;
+	justify-content: space-between;
+	line-height: 33px;
+}
+.sendlink_social .sendlink_social_head .spanclose{
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	
+}
+
+.sendlink_social .sendlink_social_center{
+	height: 400px;
+	border-bottom:2px solid rgba(233,233,233,1);
+}
+.sendlink_social .sendlink_social_foot{
+	height: 50px;
+	padding: 9px 30px;
+}
+.sendlink_social .sendlink_social_center .tankuang_headdiv{
+   padding: 10px 20px 0px;
+}
+.sendlink_social .sendlink_social_center .tankuang_headdiv .tankuang_ul{
+	display: flex;
+	line-height: 30px;
+}
+.sendlink_social .sendlink_social_center .tankuang_headdiv .tankuang_ul li{
+	margin-left: 20px;
+}
+.sendlink_social .sendlink_social_center .tankuang_headdiv .tankuang_ul li input{
+	width:270px;
+	height:30px;
+	background:rgba(255,255,255,1);
+	border-radius:2px;
+	border:1px solid rgba(220,220,220,1);
+	padding-left: 15px;
+}
+.sendlink_social .sendlink_social_center .tankuang_headdiv .tankuang_ul li button{
+	width:80px;
+	height:28px;
+	background:rgba(244,244,244,1);
+    border-radius:2px;
+    border: none;
+}
+.sendlink_social .sendlink_social_center .tankuang_cendiv{
+	display: flex;
+}
+/*图文*/
+.sendlink_social .sendlink_social_center .tankuang_cendiv .onetable{
+	width:396px;
+	height:330px;
+	position: relative;
+	left: 30px;
+	border: 1px solid #ccc;
+}
+.sendlink_social .sendlink_social_center .tankuang_cendiv .onetable .idphonediv span{
+	width: 100px;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.sendlink_social .sendlink_social_center .tankuang_cendiv .twotable{
+	width: 396px;
+	border:1px solid #ccc;
+	position: relative;
+	left:82px;
+	height: 330px;
+	overflow: auto;
+}
+.sendlink_social .sendlink_social_center .tankuang_cendiv .twotable #rightwctable thead{
+	border-bottom:1px solid #ccc;
+}
+.sendlink_social .sendlink_social_center .tankuang_cendiv .twotable #rightwctable thead tr{
+	width: 394px;
+    display: flex;
+    justify-content: space-around;
+    line-height: 36px;
+    background: #fafafa;
+}
+.sendlink_social .sendlink_social_center .tankuang_cendiv .twotable #rightwctable thead th{
+	width: 100px;
+	text-align: center;
+	height: 36px;
+	border: none;
+	font-weight: 500;
+}
+.sendlink_social .sendlink_social_center .tankuang_cendiv .twotable #rightwctable tbody tr{
+	width:392px;
+	display: block;
+	height: 58px;
+	border-bottom:1px solid #ccc;
+}
+.sendlink_social .sendlink_social_center .tankuang_cendiv .twotable #rightwctable tbody{
+    width: 394px;
+    height: 290px;
+    display: block;
+    overflow: auto;
+}
+.sendlink_social .sendlink_social_center .tankuang_cendiv .twotable #rightwctable tbody div{
+     width: 360px;
+}
+
+.sendlink_social .sendlink_social_center .tankuang_cendiv .twotable #rightwctable tbody::-webkit-scrollbar{
+    width:2px;
+}
+.sendlink_social .sendlink_social_center .tankuang_cendiv .twotable #rightwctable tbody::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 4px;
+}
+/*滑块样式*/
+.sendlink_social .sendlink_social_center .tankuang_cendiv .twotable #rightwctable tbody::-webkit-scrollbar-thumb {
+    border-radius:3px;
+    background:#2ABF9E;
+}
+.sendlink_social .sendlink_social_center .tankuang_cendiv .twotable .idphonediv{
+	display: flex;
+	justify-content: space-around;
+}
+.sendlink_social .sendlink_social_center .tankuang_cendiv .twotable .idphonediv span{
+	width: 100px;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+:host ::ng-deep .sendlink_social .sendlink_social_center .tankuang_cendiv .onetable .ant-table-tbody > tr > td{
+		padding:3px 10px;
+		text-align: center;
+}
+:host ::ng-deep .sendlink_social .sendlink_social_center .tankuang_cendiv .onetable .ant-table-thead > tr > th{
+	    padding:8px 5px;
+	    text-align: center;
+}
+
+.sendlink_social .sendlink_social_foot .quxiao{
+	width:65px;
+	height:32px;
+	background:rgba(255,255,255,1);
+	border-radius:4px;
+	border:1px solid rgba(217,217,217,1);
+	margin-right:10px;
+}
+.sendlink_social .sendlink_social_foot .sure{
+	width:65px;
+	height:32px;
+	background:rgba(16,142,233,1);
+	border-radius:4px;
+	border: none;
+}
+
+/*选择社交号*/
+.accurateadd_social{
+	width:853px;
+    height: 512px;
+    background: rgba(255,255,255,1);
+    position: absolute;
+    left: 50%;
+    top:50%;
+    margin-left:-426px;
+    margin-top:-256px;
+    box-shadow:2px 2px 8px #d2d6de;
+    z-index: 1;
+}
+.accurateadd_social .accurateadd_social_head{
+	height: 50px;
+	border-bottom:2px solid rgba(233,233,233,1);
+	padding: 6px 6px 0px 15px;
+	color:rgba(102,102,102,1);
+	display: flex;
+	justify-content: space-between;
+	line-height: 33px;
+	font-size: 16px;
+}
+.accurateadd_social .accurateadd_social_head .spanclose{
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	
+}
+
+.accurateadd_social .accurateadd_social_center{
+	height:412px;
+	border-bottom:2px solid rgba(233,233,233,1);
+}
+.accurateadd_social .accurateadd_social_foot{
+	height: 50px;
+	padding: 9px 30px;
+}
+.accurateadd_social .accurateadd_social_center .tankuang_headdiv{
+   padding: 10px 20px 0px;
+}
+.accurateadd_social .accurateadd_social_center .tankuang_headdiv .tankuang_ul{
+	display: flex;
+	line-height: 30px;
+}
+.accurateadd_social .accurateadd_social_center .tankuang_headdiv .tankuang_ul li{
+	margin-left: 20px;
+}
+.accurateadd_social .accurateadd_social_center .tankuang_headdiv .tankuang_ul li input{
+	width:270px;
+	height:30px;
+	background:rgba(255,255,255,1);
+	border-radius:2px;
+	border:1px solid rgba(220,220,220,1);
+	padding-left: 15px;
+}
+.accurateadd_social .accurateadd_social_center .tankuang_headdiv .tankuang_ul li button{
+	width:80px;
+	height:28px;
+	background:rgba(244,244,244,1);
+    border-radius:2px;
+    border: none;
+}
+.accurateadd_social .accurateadd_social_center .tankuang_cendiv{
+	display: flex;
+}
+.accurateadd_social .accurateadd_social_foot .quxiao{
+	width:65px;
+	height:32px;
+	background:rgba(255,255,255,1);
+	border-radius:4px;
+	border:1px solid rgba(217,217,217,1);
+	margin-right:10px;
+}
+.accurateadd_social .accurateadd_social_foot .sure{
+	width:65px;
+	height:32px;
+	background:rgba(16,142,233,1);
+	border-radius:4px;
+	border: none;
+}
+/*xinjia*/
+.sendlink_con .quejia{
+	position: relative;
+    top: -25px;
+}
+.sendlink_con .quejia>div div{
+	margin-top:15px;
+}
+
+.sendlink_con .quejia .timesele{
+	margin-left: 38px;
+}
+.sendlink_con .quejia input{
+	width:279px !important;
+	height:30px;
+	margin-left:51px;
+	border-radius:2px;
+    border:1px solid rgba(220,220,220,1);
+}
+.sendlink_con .quejia .zhushi{
+	width:279px;
+	height: 80px;
+	margin-left:68px;
+	border-radius:2px;
+    border:1px solid rgba(220,220,220,1);
+    outline: none;
+}
+.sendlink_con .quejia .option{
+	margin-left: 23px;
+	width: 188px;
+}
+
+.dingshi{
+	width:410px;
+	margin-top: 20px;
+}
+.dingshi .dingshi_div{
+	margin-top:10px;
+}
+.dingshi .dingshi_div .close{
+    width: 15px;
+    height: 15px;
+    color: white;
+    background: red;
+    display: inline-block;
+    border-radius: 50%;
+    line-height: 13px;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+.dingshi .dingshi_add{
+	width:70px;
+	height: 22px;
+	border:1px dashed rgba(0,125,206,1);
+	text-align: center;
+	color:rgba(0,125,206,1);
+	margin-top:20px;
+	cursor: pointer;
+}
+
+.zhouqi{
+	width:423px;
+	margin-top: 20px;
+	display: none;
+}
+.zhouqi .zhouqi_div{
+	margin-top:10px;
+}
+.zhouqi .zhouqi_div .close{
+	 width: 15px;
+    height: 15px;
+    color: white;
+    background: red;
+    display: inline-block;
+    border-radius: 50%;
+    line-height: 13px;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+     margin-left: 20px;
+}
+.zhouqi .zhouqi_add{
+	width:70px;
+	height: 22px;
+	border:1px dashed rgba(0,125,206,1);
+	text-align: center;
+	color:rgba(0,125,206,1);
+	margin-top:20px;
+    cursor: pointer;
+}
+:host ::ng-deep .ant-time-picker{
+	margin-left: 20px;
+}
+
+/*社交号弹框里的样式*/
+.taglist{
+    width: 312px;
+    height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align:left;
+    position: relative;
+    top: 6px;
+}
+ .taglist span{
+    	display:inline-block;
+    	width: 50px;
+    	height:22px;
+    	line-height:22px;
+    	text-align: center;
+    	background:white;
+    	white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin-left:15px;
+		border: 1px solid #ccc;
+ }
+ .taglist span:nth-of-type(1){
+ 	margin-left: 0;
+ }
+  .idphonediv{
+	 	display: flex;
+	 	justify-content: space-around;
+	 	position: relative;
+	 	top: -1px;
+  }
+   :host ::ng-deep .tankuang_cendiv .ant-table-tbody > tr > td{
+		padding:6px 10px;
+		text-align: center;
+   }
+	:host ::ng-deep .tankuang_cendiv .ant-table-thead > tr > th{
+	    padding:5px 5px;
+	    text-align: center;
+	    background: white;
+	}
+.wechat_leftdiv{
+	width: 370px;
+	border:1px solid #ccc;
+	position: relative;
+	left:35px;
+	height: 345px;
+}
+	
+.wechat_botdiv{
+	width: 370px;
+	border:1px solid #ccc;
+	position: relative;
+	left: 78px;
+	height: 345px;
+	overflow: auto;
+}
+#righttable thead{
+	border-bottom:1px solid #ccc;
+}
+#righttable thead tr{
+	width: 368px;
+    display: flex;
+    justify-content: space-around;
+    line-height: 30px;
+}
+#righttable thead th{
+	height: 30px;
+	border: none;
+	font-weight: 600;
+}
+#righttable tbody tr{
+	width:366px;
+	display: block;
+	height: 64px;
+	border-bottom:1px solid #ccc;
+}
+#righttable tbody{
+    width: 368px;
+    height: 310px;
+    display: block;
+    overflow: auto;
+}
+#righttable tbody div{
+     width: 340px;
+}
+
+#righttable tbody::-webkit-scrollbar{
+    width:2px;
+}
+#righttable tbody::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 4px;
+}
+/*滑块样式*/
+#righttable tbody::-webkit-scrollbar-thumb {
+    border-radius:3px;
+    background:#2ABF9E;
+}
+
+/*勾选客户或群*/
+.follownumber_social{
+     width:918px;
+     height:500px;
+    background: rgba(255,255,255,1);
+    top:50%;
+    position: absolute;
+    left:50%;
+    margin-left: -459px;
+    margin-top: -250px;
+    box-shadow:2px 2px 8px #d2d6de;
+    z-index: 1;
+    
+}
+.follownumber_social .follownumber_social_head{
+	height: 50px;
+	border-bottom:2px solid rgba(233,233,233,1);
+	padding: 6px 6px 0px 15px;
+	color:rgba(102,102,102,1);
+	display: flex;
+	justify-content: space-between;
+	line-height: 33px;
+}
+.follownumber_social .follownumber_social_head .spanclose{
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	
+}
+
+.follownumber_social .follownumber_social_center{
+	height: 400px;
+	border-bottom:2px solid rgba(233,233,233,1);
+}
+.follownumber_social .follownumber_social_foot{
+	height: 50px;
+	padding: 9px 30px;
+}
+.follownumber_social .follownumber_social_center .tankuang_headdiv{
+   padding: 10px 20px 0px;
+}
+.follownumber_social .follownumber_social_center .tankuang_headdiv .tankuang_ul{
+	display: flex;
+	line-height: 30px;
+}
+.follownumber_social .follownumber_social_center .tankuang_headdiv .tankuang_ul li{
+	margin-left: 20px;
+}
+.follownumber_social .follownumber_social_center .tankuang_headdiv .tankuang_ul li input{
+	width:270px;
+	height:30px;
+	background:rgba(255,255,255,1);
+	border-radius:2px;
+	border:1px solid rgba(220,220,220,1);
+	padding-left: 15px;
+}
+.follownumber_social .follownumber_social_center .tankuang_headdiv .tankuang_ul li button{
+	width:80px;
+	height:28px;
+	background:rgba(244,244,244,1);
+    border-radius:2px;
+    border: none;
+}
+.follownumber_social .follownumber_social_center .tankuang_cendiv{
+	display: flex;
+}
+/*图文*/
+.follownumber_social .follownumber_social_center .tankuang_cendiv .onetable{
+	width:396px;
+	height:330px;
+	position: relative;
+	left: 30px;
+	border: 1px solid #ccc;
+}
+.follownumber_social .follownumber_social_center .tankuang_cendiv .onetable .idphonediv span{
+	width: 100px;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.follownumber_social .follownumber_social_center .tankuang_cendiv .twotable{
+	width: 396px;
+	border:1px solid #ccc;
+	position: relative;
+	left:82px;
+	height: 330px;
+	overflow: auto;
+}
+.follownumber_social .follownumber_social_center .tankuang_cendiv .twotable #rightwctable thead{
+	border-bottom:1px solid #ccc;
+}
+.follownumber_social .follownumber_social_center .tankuang_cendiv .twotable #rightwctable thead tr{
+	width: 394px;
+    display: flex;
+    justify-content: space-around;
+    line-height: 36px;
+    background: #fafafa;
+}
+.follownumber_social .follownumber_social_center .tankuang_cendiv .twotable #rightwctable thead th{
+	width: 100px;
+	text-align: center;
+	height: 36px;
+	border: none;
+	font-weight: 500;
+}
+.follownumber_social .follownumber_social_center .tankuang_cendiv .twotable #rightwctable tbody tr{
+	width:392px;
+	display: block;
+	height: 58px;
+	border-bottom:1px solid #ccc;
+}
+.follownumber_social .follownumber_social_center .tankuang_cendiv .twotable #rightwctable tbody{
+    width: 394px;
+    height: 290px;
+    display: block;
+    overflow: auto;
+}
+.follownumber_social .follownumber_social_center .tankuang_cendiv .twotable #rightwctable tbody div{
+     width: 360px;
+}
+
+.follownumber_social .follownumber_social_center .tankuang_cendiv .twotable #rightwctable tbody::-webkit-scrollbar{
+    width:2px;
+}
+.follownumber_social .follownumber_social_center .tankuang_cendiv .twotable #rightwctable tbody::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 4px;
+}
+/*滑块样式*/
+.follownumber_social .follownumber_social_center .tankuang_cendiv .twotable #rightwctable tbody::-webkit-scrollbar-thumb {
+    border-radius:3px;
+    background:#2ABF9E;
+}
+.follownumber_social .follownumber_social_center .tankuang_cendiv .twotable .idphonediv{
+	display: flex;
+	justify-content: space-around;
+}
+.follownumber_social .follownumber_social_center .tankuang_cendiv .twotable .idphonediv span{
+	width: 100px;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+:host ::ng-deep .follownumber_social .follownumber_social_center .tankuang_cendiv .onetable .ant-table-tbody > tr > td{
+		padding:3px 10px;
+		text-align: center;
+}
+:host ::ng-deep .follownumber_social .follownumber_social_center .tankuang_cendiv .onetable .ant-table-thead > tr > th{
+	    padding:8px 5px;
+	    text-align: center;
+}
+.follownumber_social .follownumber_social_foot .quxiao{
+	width:65px;
+	height:32px;
+	background:rgba(255,255,255,1);
+	border-radius:4px;
+	border:1px solid rgba(217,217,217,1);
+	margin-right:10px;
+}
+.follownumber_social .follownumber_social_foot .sure{
+	width:65px;
+	height:32px;
+	background:rgba(16,142,233,1);
+	border-radius:4px;
+	border: none;
+}
+textarea{
+	width:380px;
+    height: 60px;
+    border:1px solid #ccc;
+    outline: none;
+    text-align: left;
+    resize: none;
+    padding-left: 15px;
+}

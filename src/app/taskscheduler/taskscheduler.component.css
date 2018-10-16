@@ -1,0 +1,733 @@
+.task_management_title_1 {
+  font-size: 20px;
+  font-family: PingFangSC-Semibold;
+  color: rgba(43, 43, 43, 1);
+}
+
+.task_management_title {
+  font-size: 16px;
+  font-family: PingFangSC-Regular;
+  color: #636363;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(220, 220, 220, 1);
+}
+
+.task_management_body {
+  margin-top: 30px;
+  width: 100%;
+  /*border:1px solid rgba(198,198,198,1)*/
+  /*background-color: red;*/
+}
+
+.task_management {
+  height: 100%;
+  /*padding-left: 20px;*/
+}
+
+.task_management_body ::ng-deep .ant-tabs-nav .ant-tabs-tab {
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+  font-size: 16px;
+  margin-left: 0;
+  /*border: none;*/
+}
+
+.task_management_all {
+  padding: 10px 30px;
+  display: flex;
+
+}
+
+.task_management_all_title {
+  display: flex;
+}
+
+.task_management_all_title div {
+  margin-left: 60px;
+  font-size: 16px;
+  font-family: PingFangSC-Regular;
+  color: rgba(43, 43, 43, 1);
+}
+
+.task_management_all_title div:nth-of-type(1) {
+  margin-left: 20px;
+}
+
+.task_management_all_search {
+  position: absolute;
+  right: 60px;
+}
+
+.task_management_all_search_batch_deletion {
+  width: 110px;
+  height: 28px;
+  background: rgba(244, 244, 244, 1);
+  border-radius: 2px;
+  border: 1px solid rgba(220, 220, 220, 1);
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  outline: none;
+}
+
+.task_management_all_search_batch_deletion1 {
+  width: 110px;
+  height: 28px;
+  background: rgba(244, 244, 244, 1);
+  border-radius: 2px;
+  border: 1px solid rgba(220, 220, 220, 1);
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  outline: none;
+  margin-right: 50px;
+}
+
+.task_management_all_search_search {
+  margin-right: 50px;
+  width: 50px;
+  height: 30px;
+  border-radius: 2px;
+  border: 1px solid rgba(220, 220, 220, 1);
+  font-size: 14px;
+  font-family: PingFangSC-Light;
+  color: rgba(43, 43, 43, 1);
+  background-color: #ffffff;
+  outline: none;
+  cursor: pointer;
+}
+
+.margin_right {
+  margin-right: 50px;
+}
+
+.task_management_all_search_input {
+  width: 242px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid rgba(220, 220, 220, 1);
+  outline: none;
+  text-indent: 15px;
+  margin-right: 25px;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 30px;
+}
+.table_tr_bgColor_gray {
+  background:rgba(255,255,255,1)
+}
+
+.table_tr_bgColor_white {
+  background:rgba(248,248,248,1)
+}
+
+:host::ng-deep.ant-table-thead > tr > th {
+  background-color: #ffffff;
+  font-weight: normal;
+  font-size: 15px;
+}
+.task_management_all_search_input::-webkit-input-placeholder { /* WebKit browsers */
+  font-size: 14px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+}
+
+.task_management_all_search_input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  font-size: 14px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+}
+
+.task_management_all_search_input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  font-size: 14px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+}
+
+.task_management_all_search_input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  font-size: 14px;
+  /*font-family:PingFangSC-Light;*/
+  font-weight: normal;
+  color: rgba(205, 205, 205, 1);
+}
+
+::ng-deep.ant-table-body {
+  /*border: 1px #D4D4D4 solid;*/
+  margin-top: 20px;
+}
+
+::ng-deep.ant-table-bordered .ant-table-thead > tr > th {
+  text-align: center;
+}
+
+.task_table_bg1 {
+  width: 20px;
+  height: 20px;
+  background: url("../../assets/images/edit_blue.png")no-repeat center center ;
+  background-size: 98% 98%;
+
+}
+
+.task_table_bg3 {
+  width: 20px;
+  height: 20px;
+  background: url("../../assets/images/detail.png") no-repeat center center;
+  background-size: 98% 98%;
+
+}
+
+.task_table_bg2 {
+  width: 20px;
+  height: 20px;
+  background: url("../../assets/images/delete_blue.png" ) no-repeat center center;
+  background-size: 98% 98%;
+
+}
+
+.task_table_ul {
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task_table_ul li {
+  width: 25px;
+  margin: 0 13px;
+  height: 22px;
+  cursor: pointer;
+  position: relative;
+  padding: 10px 5px 5px 5px;
+  top: 5px;
+  list-style: none;
+}
+
+::ng-deep.ant-table-bordered .ant-table-tbody > tr > td {
+  text-align: center;
+  padding: 5px 10px;
+}
+
+/*.data_table {*/
+/*margin-top: 37px;*/
+/*}*/
+
+.task_template_addPlan {
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 620px;
+  height: 400px;
+  margin-left: -310px;
+  margin-top: -200px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.taskscheduler_filedetail {
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 620px;
+  height: 460px;
+  margin-left: -310px;
+  margin-top: -200px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.task_template_addPlan_title {
+  height: 13%;
+  font-size: 16px;
+  font-family: PingFangSC-Regular;
+  color: rgba(102, 102, 102, 1);
+  padding: 20px;
+}
+
+.task_template_addPlan_close {
+  float: right;
+  font-size: 18px;
+  cursor: pointer;
+  color: rgba(153, 153, 153, 1);
+  position: relative;
+  top: -3px;
+}
+
+.task_template_addPlan_con {
+  height: 70%;
+  padding: 25px 60px;
+  width: 100%;
+  border-top: 1px solid rgba(233, 233, 233, 1);
+  border-bottom: 1px solid rgba(233, 233, 233, 1);
+}
+
+.task_template_addPlan_con1 {
+
+  height: 74%;
+  padding: 27px 30px;
+  width: 100%;
+  border-top: 2px solid rgba(233, 233, 233, 1);
+  border-bottom: 2px solid rgba(233, 233, 233, 1);
+}
+
+.task_template_addPlan_choose {
+  float: right;
+  padding: 15px 20px 20px 20px;
+}
+
+.task_template_addPlan_choose_cancel {
+  width: 65px;
+  height: 32px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  border: 1px solid rgba(217, 217, 217, 1);
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: rgba(102, 102, 102, 1);
+  margin-right: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.task_template_addPlan_choose_sure {
+  width: 65px;
+  height: 32px;
+  background: rgba(16, 142, 233, 1);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.task_template_addPlan_con ul {
+  width: 100%;
+  display: flex;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.task_template_addPlan_con ul li {
+  list-style: none;
+}
+
+.task_template_addPlan_con ul li:nth-of-type(1) {
+  width: 20%;
+  text-align: right;
+}
+
+.task_template_addPlan_con ul li:nth-of-type(2) {
+  width: 70%;
+  margin-left: 5%;
+}
+
+.task_template_addPlan_con ul li:nth-of-type(2) input, select {
+  position: relative;
+  top: -3px;
+  border-radius: 3px;
+  border: 1px solid rgba(233, 233, 233, 1);
+  outline: none;
+  height: 36px;
+  width: 100%;
+  text-indent: 15px;
+
+}
+
+.task_template_addPlan_con-text {
+  font-size: 16px;
+  font-family: PingFangSC-Regular;
+  color: rgba(102, 102, 102, 1);
+}
+
+.task_template_addPlan_con ul li:nth-of-type(2) input::-webkit-input-placeholder {
+  font-size: 15px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+}
+
+.task_template_addPlan_con ul li:nth-of-type(2) input:-moz-placeholder { /* Firefox 18- */
+  font-size: 15px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+}
+
+.task_template_addPlan_con ul li:nth-of-type(2) input::-moz-placeholder { /* Firefox 19+ */
+  font-size: 15px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+
+}
+
+.task_template_addPlan_con ul li:nth-of-type(2) input:-ms-input-placeholder {
+  font-size: 15px;
+  /*font-family:PingFangSC-Light;*/
+  color: rgba(205, 205, 205, 1);
+  font-weight: normal;
+}
+
+.select_css option {
+  height: 50px;
+}
+
+.task_template_addPlan ::ng-deep.ant-radio-wrapper {
+  margin-left: 4px;
+}
+
+:host ::ng-deep .time_style .ant-calendar-picker {
+  width: 100%;
+}
+
+.color1 {
+  color: #131CFE;
+}
+
+.color2 {
+  color: #FA2929;
+}
+
+.color3 {
+  color: #F5A623;
+}
+
+.color4 {
+  color: #074700;
+}
+
+.color5 {
+  color: #710088;
+}
+
+.color1_1 {
+  color: #971F00;
+  cursor: pointer;
+}
+
+.color1_2 {
+  color: #007DCE;
+  cursor: pointer;
+}
+
+.seeFail {
+  width: 20px;
+  height: 20px;
+  background: url("../../assets/images/failclick.png") no-repeat center center;
+  background-size: 98% 98%;
+}
+
+.seeunFail {
+  width: 20px;
+  height: 20px;
+  background: url("../../assets/images/failunclick.png") no-repeat center center;
+  cursor: not-allowed !important;
+  background-size: 98% 98%;
+}
+
+.taskscheduler_filedetail_title {
+  width: 100%;
+  background-color: #FAFAFA;
+}
+
+.taskscheduler_filedetail_title_1 {
+  width: 100%;
+  height: 170px;
+  margin-bottom: 10px;
+  overflow: auto;
+  margin-top: 5px;
+}
+
+.taskscheduler_filedetail_title ul {
+  padding: 0;
+  width: 100%;
+  display: flex;
+  height: 38px;
+  line-height: 38px;
+  border-bottom: 1px solid #DCDCDC;
+  margin: 0;
+}
+
+.taskscheduler_filedetail_title_1 ul {
+  padding: 0;
+  width: 100%;
+  display: flex;
+  height: 38px;
+  line-height: 38px;
+  margin: 0;
+}
+
+.taskscheduler_filedetail_title ul li {
+  text-align: center;
+  width: 100%;
+  list-style: none;
+  color: #202020;
+  font-size: 15px;
+}
+
+.taskscheduler_filedetail_title_1 ul li {
+  text-align: center;
+  width: 100%;
+  list-style: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task_template_addPlan_con1_conter {
+  border: 1px solid rgba(220, 220, 220, 1);
+  margin-top: 15px;
+}
+
+.taskscheduler_filedetail_title_1::-webkit-scrollbar-track {
+  border-radius: 2px;
+  background: white;
+}
+
+.taskscheduler_filedetail_title_1::-webkit-scrollbar {
+  width: 2px;
+  background: white;
+}
+
+.taskscheduler_filedetail_title_1::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: #C1C1C0;
+}
+
+.task_html_title {
+  margin-left: 10px;
+  margin-top: -20px;
+}
+
+.task_html_title_1 {
+  color: #202020;
+  font-size: 15px;
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+}
+
+.task_html_title_2 {
+  height: 30px;
+  line-height: 30px;
+  margin-top: 5px;
+}
+
+.style_1 {
+  height: 400px;
+}
+
+.style_1_til {
+  height: 15%;
+}
+
+.style_1_con {
+  height: 70%;
+}
+
+.style_1_con_div {
+  margin-top: -2px;
+}
+
+.Common_template {
+  z-index: 4;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  width: 800px;
+  height: auto;
+  margin-left: -400px;
+  margin-top: -220px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.Common_template_title {
+
+  height: 13%;
+  font-size: 16px;
+  font-family: PingFangSC-Regular;
+  color: #3F3F3F;
+  padding: 20px 34px;
+}
+
+.Common_template_con {
+  height: 74%;
+  padding: 40px 80px;
+  width: 100%;
+  border-top: 1px solid rgba(233, 233, 233, 1);
+  border-bottom: 1px solid rgba(233, 233, 233, 1);
+}
+
+.Common_template_con_choose {
+  float: right;
+  padding: 14px 34px 20px 34px;
+}
+
+.Common_template_con_choose_sure {
+  width: 65px;
+  height: 32px;
+  background: rgba(16, 142, 233, 1);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.Common_template_con_Article {
+  margin: 15px 30px 5px 0px;
+}
+
+.Common_template_con_Article_title {
+  display: inline-block;
+  font-size: 15px;
+  margin-right: 30px;
+  color: #202020;
+  min-width: 80px;
+}
+
+.Common_template_con_div_con {
+  padding: 5px;
+  position: relative;
+  top: -26px;
+  left: 105px;
+  max-width: 534px;
+  max-height: 60px;
+  overflow: auto;
+}
+
+.Common_template_con_div_con::-webkit-scrollbar-track {
+  border-radius: 2px;
+  background: white;
+}
+
+.Common_template_con_div_con::-webkit-scrollbar {
+  width: 2px;
+  background: white;
+}
+
+.Common_template_con_div_con::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: #C1C1C0;
+}
+
+.Mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #00000026;
+  filter: Alpha(Opacity=60);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.Mask1 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #00000026;
+  filter: Alpha(Opacity=60);
+  opacity: 0.6;
+  z-index: 3;
+}
+
+.grouping_remove {
+  position: fixed;
+  width: 416px;
+  height: 228px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  top: 50%;
+  left: 50%;
+  margin-left: -208px;
+  margin-top: -150px;
+  z-index: 3;
+
+}
+
+.grouping_remove_con {
+  margin: 8%;
+  width: 84%;
+  height: 70%;;
+}
+
+.grouping_remove_con_title_icon {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background: url("../../assets/images/waring.png");
+  position: relative;
+  top: 5px;
+  margin-right: 10px;
+}
+
+.waring_color {
+  color: #DF5263;
+}
+
+.grouping_remove_con_text {
+  margin-top: 10px;
+  width: 80%;
+  margin-left: 30px;
+}
+
+.grouping_remove_con_button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 30px;
+  margin-right: 30px;
+}
+
+.grouping_remove_con_button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 30px;
+  margin-right: 30px;
+}
+
+.friends_circle_choose_sure {
+  width: 65px;
+  height: 32px;
+  background: rgba(16, 142, 233, 1);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.friends_circle_choose_cancel {
+  width: 65px;
+  height: 32px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  border: 1px solid rgba(217, 217, 217, 1);
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  color: rgba(102, 102, 102, 1);
+  margin-right: 10px;
+  outline: none;
+  cursor: pointer;
+}

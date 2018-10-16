@@ -1,0 +1,83 @@
+.login-page {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  height: 100%;
+  background-color: #EEEEEE;
+  left: 0;
+  top: 0;
+}
+
+.login-myself {
+  border-radius: 3px;
+  width: 400px;
+  height: 450px;
+  background-color: #FFFFFF;
+  position: relative;
+  margin: 10% auto;
+  -moz-box-shadow: 0px 4px 4px #ABABAB;
+  -webkit-box-shadow: 0px 4px 4px #ABABAB;
+  box-shadow: 0px 4px 4px #ABABAB;
+}
+
+.login-logo {
+  margin: 40px 130px;
+  background: url("../../assets/images/login_top.png")no-repeat;
+  width: 150px;
+  height: 60px;
+  display: inline-block;
+}
+
+.login-title {
+  font-family: 微软雅黑;
+  text-align: center;
+  font-weight: normal;
+  margin-top: -35px;
+  margin-left: 5px;
+  color: #777777;
+}
+
+.login-write {
+  margin-top: 40px;
+}
+
+.model1 {
+  display: flex;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.remember-me {
+  margin-left: 10%;
+  margin-top: 30px;
+}
+.model1  .icon{
+  display: inline-block;
+  width: 15%;
+  font-size: 23px;
+  line-height: 40px;
+}
+.model1 .anticon-user{
+  font-size: 25px;
+}
+.model1 .ant-input-affix-wrapper .ant-input:not(:first-child){
+  padding-left: 40px;
+}
+
+.model1  .ant-input-affix-wrapper{
+font-size: 20px;
+}
+.sure-button{
+  margin-left: 10%;
+  width: 80%;
+  background: rgba(60,141,188,1);
+  font-size: 16px;
+  font-family: PingFangSC-Medium;
+  color: rgba(255,255,255,1);
+  line-height: 22px;
+  height: 42px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: 40px;
+}
